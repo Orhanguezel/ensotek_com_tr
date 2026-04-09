@@ -18,8 +18,8 @@
     "contact": "Contact",
     "contactTitle": "Contact",
     "address": "Istanbul, Turkey",
-    "phone": "+90 212 123 45 67",
-    "email": "info@ensotek.com.tr",
+    "phone": "+90 212 613 33 01",
+    "email": "ensotek@ensotek.com.tr",
     "rights": "All rights reserved.",
     "certification": "ISO 9001:2015 Certified",
     "product": {
@@ -196,9 +196,9 @@
       "title": "Get in Touch",
       "subtitle": "Reach our expert team for technical questions and projects.",
       "info": {
-        "address": { "label": "Address", "value": "Organized Industrial Zone, Istanbul" },
-        "phone": { "label": "Phone", "value": "+90 212 123 45 67" },
-        "email": { "label": "Email", "value": "info@ensotek.com.tr" }
+        "address": { "label": "Address", "value": "Oruçreis District, Tekstilkent Site, A17 Block No:41, 34235 Esenler / Istanbul" },
+        "phone": { "label": "Phone", "value": "+90 212 613 33 01 / +90 531 880 31 51" },
+        "email": { "label": "Email", "value": "ensotek@ensotek.com.tr" }
       },
       "field": {
         "name": "Full Name *",

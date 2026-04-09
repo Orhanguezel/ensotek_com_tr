@@ -3,9 +3,10 @@ import { setRequestLocale } from 'next-intl/server';
 import { hasLocale } from '@/i18n/locales';
 import { fetchActiveLocales } from '@/i18n/server';
 import { notFound } from 'next/navigation';
-import { SITE_URL } from '@/lib/utils';
+import { API_BASE_URL, SITE_URL } from '@/lib/utils';
 import { getTranslations } from 'next-intl/server';
 import { ContactSection } from '@/components/sections/ContactSection';
+import type { ContactInfo } from '@/lib/api';
 
 export async function generateStaticParams() {
   const locales = await fetchActiveLocales();
@@ -25,14 +26,31 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+async function fetchContactInfo(locale: string): Promise<ContactInfo> {
+  try {
+    const res = await fetch(
+      `${API_BASE_URL}/site_settings/contact_info?locale=${locale}`,
+      { next: { revalidate: 3600 } },
+    );
+    if (!res.ok) return {};
+    const dto = await res.json();
+    const raw = dto?.value;
+    return (typeof raw === 'string' ? JSON.parse(raw) : raw) ?? {};
+  } catch {
+    return {};
+  }
+}
+
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!hasLocale(locale)) notFound();
   setRequestLocale(locale);
 
+  const contactInfo = await fetchContactInfo(locale);
+
   return (
     <div className="pt-24">
-      <ContactSection />
+      <ContactSection contactInfo={contactInfo} />
     </div>
   );
 }

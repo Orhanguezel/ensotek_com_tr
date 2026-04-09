@@ -106,6 +106,20 @@ export interface ContactPayload {
   locale?: string;
 }
 
+export interface ContactInfo {
+  company_name?: string;
+  phone?: string;
+  phone_2?: string;
+  email?: string;
+  email_2?: string;
+  address?: string;
+  city?: string;
+  country?: string;
+  working_hours?: string;
+  maps_lat?: string;
+  maps_lng?: string;
+}
+
 export interface ApiListResponse<T> {
   items: T[];
   total?: number;

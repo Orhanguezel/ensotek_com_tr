@@ -3,9 +3,15 @@ import { Link } from '@/i18n/navigation';
 import { Reveal } from '@/components/motion/Reveal';
 import { ArrowRight, Phone } from 'lucide-react';
 
-export function CtaSection() {
+interface Props {
+  phone?: string;
+}
+
+export function CtaSection({ phone }: Props) {
   const t = useTranslations('home.cta');
   const locale = useLocale();
+
+  const tel = (phone ?? '+90 212 613 33 01').replace(/\s/g, '');
 
   return (
     <section className="relative py-24 overflow-hidden">
@@ -23,7 +29,7 @@ export function CtaSection() {
             <Link href="/contact" locale={locale} className="btn-fill">
               {t('cta1')} <ArrowRight size={16} />
             </Link>
-            <a href="tel:+902121234567" className="btn-ghost inline-flex items-center gap-2">
+            <a href={`tel:${tel}`} className="btn-ghost inline-flex items-center gap-2">
               <Phone size={16} /> {t('cta2')}
             </a>
           </div>

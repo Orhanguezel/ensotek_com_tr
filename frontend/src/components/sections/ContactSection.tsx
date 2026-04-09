@@ -9,6 +9,7 @@ import { contactService } from '@/features/contact/contact.service';
 import { Reveal } from '@/components/motion/Reveal';
 import { SectionHeader } from '@/components/patterns/SectionHeader';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import type { ContactInfo } from '@/lib/api';
 
 const schema = z.object({
   name: z.string().min(2),
@@ -20,7 +21,11 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export function ContactSection() {
+interface Props {
+  contactInfo?: ContactInfo;
+}
+
+export function ContactSection({ contactInfo }: Props) {
   const t = useTranslations('home.contact');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -40,6 +45,32 @@ export function ContactSection() {
     }
   }
 
+  const infoItems = [
+    {
+      icon: MapPin,
+      key: 'address',
+      value: contactInfo?.address ?? t('info.address.value'),
+    },
+    {
+      icon: Phone,
+      key: 'phone',
+      value: contactInfo?.phone
+        ? contactInfo.phone_2
+          ? `${contactInfo.phone} / ${contactInfo.phone_2}`
+          : contactInfo.phone
+        : t('info.phone.value'),
+    },
+    {
+      icon: Mail,
+      key: 'email',
+      value: contactInfo?.email
+        ? contactInfo.email_2
+          ? `${contactInfo.email} · ${contactInfo.email_2}`
+          : contactInfo.email
+        : t('info.email.value'),
+    },
+  ];
+
   return (
     <section className="section-py bg-(--deep)" id="contact">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -53,11 +84,7 @@ export function ContactSection() {
               className="mb-10"
             />
             <div className="space-y-6">
-              {[
-                { icon: MapPin, key: 'address' },
-                { icon: Phone, key: 'phone' },
-                { icon: Mail, key: 'email' },
-              ].map(({ icon: Icon, key }) => (
+              {infoItems.map(({ icon: Icon, key, value }) => (
                 <div key={key} className="flex items-start gap-4">
                   <div className="size-10 border border-(--color-border) flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Icon size={16} className="text-(--cyan)" />
@@ -66,7 +93,7 @@ export function ContactSection() {
                     <div className="text-xs text-(--silver) uppercase tracking-wider mb-1 font-[family-name:var(--font-display)]">
                       {t(`info.${key}.label`)}
                     </div>
-                    <div className="text-sm text-(--light)">{t(`info.${key}.value`)}</div>
+                    <div className="text-sm text-(--light)">{value}</div>
                   </div>
                 </div>
               ))}

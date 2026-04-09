@@ -17,9 +17,9 @@
     "references": "Referanslar",
     "contact": "İletişim",
     "contactTitle": "İletişim",
-    "address": "İstanbul, Türkiye",
-    "phone": "+90 212 123 45 67",
-    "email": "info@ensotek.com.tr",
+    "address": "Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41 34235 Esenler / İstanbul",
+    "phone": "+90 212 613 33 01",
+    "email": "ensotek@ensotek.com.tr",
     "rights": "Tüm hakları saklıdır.",
     "certification": "ISO 9001:2015 Sertifikalı",
     "product": {
@@ -196,9 +196,9 @@
       "title": "Bizimle İletişime Geçin",
       "subtitle": "Teknik sorularınız ve projeleriniz için uzman ekibimize ulaşın.",
       "info": {
-        "address": { "label": "Adres", "value": "Organize Sanayi Bölgesi, İstanbul" },
-        "phone": { "label": "Telefon", "value": "+90 212 123 45 67" },
-        "email": { "label": "E-posta", "value": "info@ensotek.com.tr" }
+        "address": { "label": "Adres", "value": "Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41 34235 Esenler / İstanbul" },
+        "phone": { "label": "Telefon", "value": "+90 212 613 33 01 / +90 531 880 31 51" },
+        "email": { "label": "E-posta", "value": "ensotek@ensotek.com.tr" }
       },
       "field": {
         "name": "Ad Soyad *",

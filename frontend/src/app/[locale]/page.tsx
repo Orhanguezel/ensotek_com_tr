@@ -5,7 +5,7 @@ import { hasLocale } from '@/i18n/locales';
 import { fetchActiveLocales } from '@/i18n/server';
 import { notFound } from 'next/navigation';
 import { API_BASE_URL, SITE_URL } from '@/lib/utils';
-import type { Product } from '@/lib/api';
+import type { Product, ContactInfo } from '@/lib/api';
 
 import { HeroSection } from '@/components/sections/HeroSection';
 import { MarqueeBar } from '@/components/sections/MarqueeBar';
@@ -72,6 +72,21 @@ async function fetchFeaturedProducts(locale: string): Promise<Product[]> {
   }
 }
 
+async function fetchContactInfo(locale: string): Promise<ContactInfo> {
+  try {
+    const res = await fetch(
+      `${API_BASE_URL}/site_settings/contact_info?locale=${locale}`,
+      { next: { revalidate: 3600 } },
+    );
+    if (!res.ok) return {};
+    const dto = await res.json();
+    const raw = dto?.value;
+    return (typeof raw === 'string' ? JSON.parse(raw) : raw) ?? {};
+  } catch {
+    return {};
+  }
+}
+
 export default async function HomePage({
   params,
 }: {
@@ -81,7 +96,10 @@ export default async function HomePage({
   if (!hasLocale(locale)) notFound();
   setRequestLocale(locale);
 
-  const products = await fetchFeaturedProducts(locale);
+  const [products, contactInfo] = await Promise.all([
+    fetchFeaturedProducts(locale),
+    fetchContactInfo(locale),
+  ]);
 
   return (
     <>
@@ -96,8 +114,8 @@ export default async function HomePage({
       <AdvantagesSection />
       <GlobalReachSection />
       <TestimonialSection />
-      <CtaSection />
-      <ContactSection />
+      <CtaSection phone={contactInfo.phone} />
+      <ContactSection contactInfo={contactInfo} />
       <FaqSection />
     </>
   );
