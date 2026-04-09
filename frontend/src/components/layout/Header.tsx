@@ -38,16 +38,16 @@ export function Header() {
       )}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex h-24 items-stretch justify-between">
+        <div className="flex h-20 items-stretch justify-between">
           {/* Logo */}
-          <Link href="/" locale={locale} className="flex items-center group">
+          <Link href="/" locale={locale} className="flex h-full w-[210px] shrink-0 items-center lg:w-[250px]">
             <Image
-              src="/logo.png"
+              src="/ensotek_icon_512.png"
               alt="Ensotek"
-              width={237}
-              height={90}
-              className="brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
-              style={{ width: 'auto', height: '90px' }}
+              width={381}
+              height={119}
+              className="h-auto w-full object-contain object-left"
+              sizes="(min-width: 1024px) 250px, 210px"
               priority
             />
           </Link>

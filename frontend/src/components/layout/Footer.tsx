@@ -24,15 +24,15 @@ export function Footer({ contactInfo }: Props) {
         <div className="footer-top-et">
           {/* Brand column */}
           <div>
-            <div className="mb-6">
-              <Link href="/" locale={locale}>
+            <div className="mb-4">
+              <Link href="/" locale={locale} className="flex w-[210px] items-center lg:w-[250px]">
                 <Image
-                  src="/logo.png"
+                  src="/ensotek_icon_512.png"
                   alt="Ensotek"
-                  width={237}
-                  height={90}
-                  className="brightness-0 invert"
-                  style={{ width: 'auto', height: '80px' }}
+                  width={381}
+                  height={119}
+                  className="h-auto w-full object-contain object-left"
+                  sizes="(min-width: 1024px) 250px, 210px"
                 />
               </Link>
             </div>
@@ -87,7 +87,14 @@ export function Footer({ contactInfo }: Props) {
           <p className="text-xs text-(--silver)">
             © {year} Ensotek. {t('rights')}
           </p>
-          <p className="text-xs text-(--silver)">{t('certification')}</p>
+          <a
+            href="https://guzelwebdesign.com"
+            target="_blank"
+            rel="noreferrer"
+            className="text-xs text-(--silver) hover:text-(--cyan) transition-colors"
+          >
+            GWD | guzelwebdesign.com
+          </a>
         </div>
       </div>
     </footer>

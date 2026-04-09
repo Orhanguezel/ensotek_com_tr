@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
 
     return [
       { source: '/uploads/:path*', destination: `${backendBase}/uploads/:path*` },
+      { source: '/media/:path*',   destination: `${backendBase}/media/:path*` },
       { source: '/storage/:path*', destination: `${backendBase}/storage/:path*` },
     ];
   },

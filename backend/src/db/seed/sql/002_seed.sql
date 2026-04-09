@@ -72,11 +72,17 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
   (UUID(), 'site_description', 'de', 'Kühlturm-Lösungen',        CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
 
   -- Logo
-  (UUID(), 'site_logo',       '*', 'https://res.cloudinary.com/dbozv7wqd/image/upload/v1770587346/site-media/logo.png', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
-  (UUID(), 'site_logo_dark',  '*', 'https://res.cloudinary.com/dbozv7wqd/image/upload/v1770587346/site-media/logo.png', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
-  (UUID(), 'site_logo_light', '*', 'https://res.cloudinary.com/dbozv7wqd/image/upload/v1770587346/site-media/logo.png', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
-  (UUID(), 'site_favicon',    '*', 'https://res.cloudinary.com/dbozv7wqd/image/upload/v1770613423/site-media/favicon.ico', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
-  (UUID(), 'site_og_default_image', '*', 'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767249482/site-media/2.jpg', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'site_logo',            '*', '/media/logo.png',                  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'site_logo_dark',       '*', '/media/logo.png',                  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'site_logo_light',      '*', '/media/logo.png',                  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'site_favicon',         '*', '/favicon.ico',                     CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'site_og_default_image','*', '/media/ensotek_icon_512.png',      CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+
+  -- App icons
+  (UUID(), 'app_icon_192',         '*', '/media/ensotek_icon_192.png',      CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'app_icon_512',         '*', '/media/ensotek_icon_512.png',      CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'app_icon_apple',       '*', '/media/apple-touch-icon.png',      CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'app_icon_apple_512',   '*', '/media/ensotek-apple-icon-512.png',CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
 
   -- Storage
   (UUID(), 'storage_driver', '*', 'cloudinary', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
@@ -144,6 +150,43 @@ ON DUPLICATE KEY UPDATE
   `value`      = VALUES(`value`),
   `updated_at` = CURRENT_TIMESTAMP(3);
 
+INSERT INTO `storage_assets` (
+  `id`, `user_id`, `name`, `bucket`, `path`, `folder`, `mime`, `size`, `width`, `height`, `url`, `hash`, `provider`, `provider_public_id`, `provider_resource_type`, `provider_format`, `provider_version`, `etag`, `metadata`, `created_at`, `updated_at`
+) VALUES (
+  'c9d7df58-8aa5-4f1f-9e3f-2ebea7ac1001',
+  NULL,
+  'kap.jpg',
+  'uploads',
+  'kap.jpg',
+  'about',
+  'image/jpeg',
+  9094,
+  270,
+  300,
+  '/uploads/kap.jpg',
+  NULL,
+  'local',
+  NULL,
+  'image',
+  'jpg',
+  NULL,
+  NULL,
+  JSON_OBJECT('section', 'about'),
+  CURRENT_TIMESTAMP(3),
+  CURRENT_TIMESTAMP(3)
+)
+ON DUPLICATE KEY UPDATE
+  `name`       = VALUES(`name`),
+  `folder`     = VALUES(`folder`),
+  `mime`       = VALUES(`mime`),
+  `size`       = VALUES(`size`),
+  `width`      = VALUES(`width`),
+  `height`     = VALUES(`height`),
+  `url`        = VALUES(`url`),
+  `provider`   = VALUES(`provider`),
+  `metadata`   = VALUES(`metadata`),
+  `updated_at` = CURRENT_TIMESTAMP(3);
+
 -- =============================================================
 -- SITE SETTINGS — Dinamik Bölüm İçerikleri (Admin Panelden Düzenlenebilir)
 -- =============================================================
@@ -163,7 +206,9 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
     'feature1',    'ISO 9001:2015 kalite yönetim sistemi sertifikasyonu',
     'feature2',    'İstanbul ofisi ve Ankara fabrikasıyla tam entegre üretim kapasitesi',
     'feature3',    '40''tan fazla ülkede proje deneyimi ve teknik destek',
-    'feature4',    '7/24 servis ve bakım desteği'
+    'feature4',    '7/24 servis ve bakım desteği',
+    'image_url',   '/uploads/kap.jpg',
+    'storage_asset_id', 'c9d7df58-8aa5-4f1f-9e3f-2ebea7ac1001'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'about_content', 'en', JSON_OBJECT(
     'label',       'About Us',
@@ -172,7 +217,9 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
     'feature1',    'ISO 9001:2015 quality management system certification',
     'feature2',    'Fully integrated production capacity with Istanbul office and Ankara factory',
     'feature3',    'Project experience and technical support in 40+ countries',
-    'feature4',    '24/7 service and maintenance support'
+    'feature4',    '24/7 service and maintenance support',
+    'image_url',   '/uploads/kap.jpg',
+    'storage_asset_id', 'c9d7df58-8aa5-4f1f-9e3f-2ebea7ac1001'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'about_content', 'de', JSON_OBJECT(
     'label',       'Über uns',
@@ -181,7 +228,9 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
     'feature1',    'ISO 9001:2015 Qualitätsmanagementsystem-Zertifizierung',
     'feature2',    'Vollintegrierte Produktionskapazität mit Istanbul-Büro und Ankara-Fabrik',
     'feature3',    'Projekterfahrung und technischer Support in 40+ Ländern',
-    'feature4',    '24/7 Service und Wartungsunterstützung'
+    'feature4',    '24/7 Service und Wartungsunterstützung',
+    'image_url',   '/uploads/kap.jpg',
+    'storage_asset_id', 'c9d7df58-8aa5-4f1f-9e3f-2ebea7ac1001'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
 
   -- Global Reach Stats

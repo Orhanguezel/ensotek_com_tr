@@ -76,32 +76,24 @@
     "towerTypes": {
       "label": "Tower Types",
       "title": "Cooling Tower Types",
-      "subtitle": "Cooling tower solutions specially designed for every industrial application.",
+      "subtitle": "Open-circuit and closed-circuit cooling tower solutions aligned with Ensotek's product structure and core operating principles.",
       "type": {
         "tag": "Series",
+        "openCircuit": {
+          "title": "Open Circuit Cooling Tower",
+          "description": "A classic evaporative cooling solution that rejects heat by evaporating a portion of the water. At Ensotek, these systems are offered in counterflow and crossflow configurations."
+        },
+        "closedCircuit": {
+          "title": "Closed Circuit Cooling Tower",
+          "description": "The process fluid circulates in a closed-loop coil and does not directly contact the outside environment. Ideal where fluid cleanliness must be preserved."
+        },
         "counterflow": {
           "title": "Counterflow",
-          "description": "Water flows downward, air flows upward. High thermal efficiency, compact footprint."
+          "description": "In open-circuit towers, water flows downward while air moves upward. It offers a compact footprint and high thermal efficiency."
         },
         "crossflow": {
           "title": "Crossflow",
-          "description": "Water flows vertically, air flows horizontally. Easy maintenance, low fan power consumption."
-        },
-        "inducedDraft": {
-          "title": "Induced Draft",
-          "description": "Fan positioned at top, less recirculation. Low noise levels."
-        },
-        "forcedDraft": {
-          "title": "Forced Draft",
-          "description": "Fan at bottom position, easy maintenance. Energy efficient operation."
-        },
-        "closedCircuit": {
-          "title": "Closed Circuit",
-          "description": "Process fluid remains clean, no contact with contaminants. Ideal for sensitive industries."
-        },
-        "naturalDraft": {
-          "title": "Natural Draft",
-          "description": "Hyperbolic or cylindrical chimney form. Suitable for large capacity power plants."
+          "description": "In open-circuit towers, water flows vertically while air moves horizontally. It provides easier maintenance access and a broad air intake area."
         }
       }
     },
@@ -129,19 +121,19 @@
     "techSpecs": {
       "label": "Technical Specs",
       "title": "Comparison Table",
-      "subtitle": "Technical comparison between different tower types.",
+      "subtitle": "A comparison summary based on Ensotek's product structure and general operating principles.",
       "col": {
         "parameter": "Parameter",
         "counterflow": "Counterflow",
         "crossflow": "Crossflow",
         "closedCircuit": "Closed Circuit"
       },
-      "row1": { "param": "Thermal Efficiency", "counterflow": "High", "crossflow": "Medium-High", "closedCircuit": "Medium" },
-      "row2": { "param": "Footprint", "counterflow": "Compact", "crossflow": "Wide", "closedCircuit": "Medium" },
-      "row3": { "param": "Maintenance Ease", "counterflow": "Medium", "crossflow": "Easy", "closedCircuit": "Easy" },
-      "row4": { "param": "Water Quality", "counterflow": "Standard", "crossflow": "Standard", "closedCircuit": "Very High" },
-      "row5": { "param": "Energy Consumption", "counterflow": "Low", "crossflow": "Very Low", "closedCircuit": "Medium" },
-      "row6": { "param": "Capacity Range", "counterflow": "50-5000 TR", "crossflow": "100-8000 TR", "closedCircuit": "50-3000 TR" }
+      "row1": { "param": "Flow Principle", "counterflow": "Water moves downward while air moves upward", "crossflow": "Water moves downward while air moves horizontally", "closedCircuit": "Process fluid circulates in a closed-loop coil" },
+      "row2": { "param": "Product Type", "counterflow": "Open-circuit evaporative tower", "crossflow": "Open-circuit evaporative tower", "closedCircuit": "Closed-circuit cooling tower" },
+      "row3": { "param": "Water-Air Contact", "counterflow": "Direct contact occurs", "crossflow": "Direct contact occurs", "closedCircuit": "Process fluid does not directly contact the outside environment" },
+      "row4": { "param": "Fluid Protection", "counterflow": "Suitable for standard system water applications", "crossflow": "Suitable for standard system water applications", "closedCircuit": "Suitable where fluid cleanliness must be preserved" },
+      "row5": { "param": "Key Advantage", "counterflow": "Compact structure and high thermal efficiency", "crossflow": "Easy maintenance access and broad air intake area", "closedCircuit": "Closed-loop operation that reduces contamination risk" },
+      "row6": { "param": "Typical Use", "counterflow": "Industrial open-circuit tower applications", "crossflow": "Open-circuit applications where maintenance access matters", "closedCircuit": "Systems where process fluid protection is critical" }
     },
     "industries": {
       "label": "Industries",

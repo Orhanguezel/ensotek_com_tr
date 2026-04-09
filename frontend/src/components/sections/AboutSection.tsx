@@ -3,6 +3,7 @@ import { Reveal } from '@/components/motion/Reveal';
 import { SectionHeader } from '@/components/patterns/SectionHeader';
 import { CheckCircle } from 'lucide-react';
 import type { AboutContent } from '@/lib/api';
+import Image from 'next/image';
 
 interface Props {
   aboutContent?: AboutContent;
@@ -10,6 +11,7 @@ interface Props {
 
 export function AboutSection({ aboutContent }: Props) {
   const t = useTranslations('home.about');
+  const aboutImageUrl = aboutContent?.image_url ?? '/uploads/kap.jpg';
   const features = aboutContent
     ? [aboutContent.feature1, aboutContent.feature2, aboutContent.feature3, aboutContent.feature4].filter(Boolean) as string[]
     : Array.from({ length: 4 }, (_, i) => t(`feature${i + 1}`));
@@ -21,13 +23,17 @@ export function AboutSection({ aboutContent }: Props) {
           {/* Image side */}
           <Reveal>
             <div className="relative aspect-[4/5] max-w-md">
-              <div className="absolute inset-0 bg-gradient-to-br from-(--deep) via-(--panel) to-(--steel) border border-(--color-border)">
+              <div className="absolute inset-0 overflow-hidden border border-(--color-border) bg-(--deep)">
+                <Image
+                  src={aboutImageUrl}
+                  alt={aboutContent?.title ?? t('title')}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 32rem, 100vw"
+                  priority={false}
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-(--deep)/55 via-transparent to-(--deep)/20" />
                 <div className="absolute inset-4 border border-(--color-border) opacity-40" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-6xl font-bold text-(--cyan) opacity-10 font-[family-name:var(--font-display)]">ENS</div>
-                  </div>
-                </div>
               </div>
               {/* ISO badge */}
               <div className="absolute -bottom-6 -right-6 border border-(--cyan) bg-(--deep) px-4 py-3 text-center min-w-24">

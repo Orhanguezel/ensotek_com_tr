@@ -141,6 +141,8 @@ export interface AboutContent {
   feature2?: string;
   feature3?: string;
   feature4?: string;
+  image_url?: string;
+  storage_asset_id?: string;
 }
 
 export interface GlobalReachStats {

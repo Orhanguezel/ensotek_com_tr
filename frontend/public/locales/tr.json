@@ -76,32 +76,24 @@
     "towerTypes": {
       "label": "Kule Tipleri",
       "title": "Soğutma Kulesi Çeşitleri",
-      "subtitle": "Her endüstriyel uygulama için özel tasarlanmış soğutma kulesi çözümleri.",
+      "subtitle": "Ensotek ürün yapısına uygun açık tip ve kapalı tip soğutma kulesi çözümleri ile temel çalışma prensipleri.",
       "type": {
         "tag": "Seri",
+        "openCircuit": {
+          "title": "Açık Tip Soğutma Kulesi",
+          "description": "Suyun bir kısmını buharlaştırarak ısıyı atmosfere atan klasik evaporatif soğutma çözümüdür. Ensotek'te karşı akış ve çapraz akış prensiplerinde uygulanır."
+        },
+        "closedCircuit": {
+          "title": "Kapalı Tip Soğutma Kulesi",
+          "description": "Proses akışkanı kapalı devrede serpantin içinde dolaşır; dış ortamla doğrudan temas etmez. Su kalitesinin korunması gereken uygulamalar için uygundur."
+        },
         "counterflow": {
           "title": "Counterflow (Karşı Akış)",
-          "description": "Su yukarıdan aşağı, hava aşağıdan yukarı akar. Yüksek termal verimlilik, kompakt boyut."
+          "description": "Açık tip kulelerde su yukarıdan aşağı, hava aşağıdan yukarı hareket eder. Kompakt yapı ve yüksek termal verimlilik sunar."
         },
         "crossflow": {
           "title": "Crossflow (Çapraz Akış)",
-          "description": "Su dikey, hava yatay akar. Kolay bakım, düşük fan gücü tüketimi."
-        },
-        "inducedDraft": {
-          "title": "Induced Draft (Emişli)",
-          "description": "Fan üstte konumlandırılmış, nemlendirme daha az. Gürültü düzeyi düşük."
-        },
-        "forcedDraft": {
-          "title": "Forced Draft (Zorlamalı)",
-          "description": "Fan alt konumda, bakımı kolay. Enerji açısından verimli çalışma."
-        },
-        "closedCircuit": {
-          "title": "Kapalı Devre",
-          "description": "Proses suyu temiz kalır, kirletici ile temas olmaz. Hassas endüstriler için ideal."
-        },
-        "naturalDraft": {
-          "title": "Natural Draft (Doğal Çekiş)",
-          "description": "Hiperbolik veya silindirik baca formlu. Büyük kapasiteli santraller için uygundur."
+          "description": "Açık tip kulelerde su dikey, hava yatay yönde ilerler. Bakım erişimi kolaydır ve geniş hava giriş alanı sağlar."
         }
       }
     },
@@ -129,19 +121,19 @@
     "techSpecs": {
       "label": "Teknik Özellikler",
       "title": "Karşılaştırma Tablosu",
-      "subtitle": "Farklı kule tipleri arasında teknik karşılaştırma.",
+      "subtitle": "Ensotek ürün yapısına ve genel çalışma prensiplerine göre hazırlanmış karşılaştırma özeti.",
       "col": {
         "parameter": "Parametre",
         "counterflow": "Counterflow",
         "crossflow": "Crossflow",
         "closedCircuit": "Kapalı Devre"
       },
-      "row1": { "param": "Termal Verimlilik", "counterflow": "Yüksek", "crossflow": "Orta-Yüksek", "closedCircuit": "Orta" },
-      "row2": { "param": "Yerleşim Alanı", "counterflow": "Kompakt", "crossflow": "Geniş", "closedCircuit": "Orta" },
-      "row3": { "param": "Bakım Kolaylığı", "counterflow": "Orta", "crossflow": "Kolay", "closedCircuit": "Kolay" },
-      "row4": { "param": "Su Kalitesi", "counterflow": "Standart", "crossflow": "Standart", "closedCircuit": "Çok Yüksek" },
-      "row5": { "param": "Enerji Tüketimi", "counterflow": "Düşük", "crossflow": "Çok Düşük", "closedCircuit": "Orta" },
-      "row6": { "param": "Kapasite Aralığı", "counterflow": "50-5000 TR", "crossflow": "100-8000 TR", "closedCircuit": "50-3000 TR" }
+      "row1": { "param": "Akış Prensibi", "counterflow": "Su aşağı, hava yukarı hareket eder", "crossflow": "Su aşağı, hava yatay hareket eder", "closedCircuit": "Proses akışkanı serpantin içinde kapalı devrede dolaşır" },
+      "row2": { "param": "Ürün Tipi", "counterflow": "Açık tip evaporatif kule", "crossflow": "Açık tip evaporatif kule", "closedCircuit": "Kapalı tip soğutma kulesi" },
+      "row3": { "param": "Su ile Hava Teması", "counterflow": "Doğrudan temas vardır", "crossflow": "Doğrudan temas vardır", "closedCircuit": "Proses akışkanı dış ortamla doğrudan temas etmez" },
+      "row4": { "param": "Su Kalitesini Koruma", "counterflow": "Standart sistem suyu uygulamaları için uygundur", "crossflow": "Standart sistem suyu uygulamaları için uygundur", "closedCircuit": "Akışkan temizliğinin korunması gereken uygulamalar için uygundur" },
+      "row5": { "param": "Öne Çıkan Avantaj", "counterflow": "Kompakt yapı ve yüksek termal verim", "crossflow": "Kolay bakım erişimi ve geniş hava giriş alanı", "closedCircuit": "Kirlenme riskini azaltan kapalı devre çalışma" },
+      "row6": { "param": "Yaygın Kullanım", "counterflow": "Endüstriyel açık tip kule uygulamaları", "crossflow": "Bakım erişiminin önemli olduğu açık tip uygulamalar", "closedCircuit": "Proses akışkanının korunmasının kritik olduğu sistemler" }
     },
     "industries": {
       "label": "Sektörler",

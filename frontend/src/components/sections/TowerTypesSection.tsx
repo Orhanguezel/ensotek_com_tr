@@ -3,12 +3,10 @@ import { Reveal } from '@/components/motion/Reveal';
 import { SectionHeader } from '@/components/patterns/SectionHeader';
 
 const TYPES = [
+  { key: 'openCircuit', code: 'OT' },
+  { key: 'closedCircuit', code: 'KT' },
   { key: 'counterflow', code: 'CF' },
   { key: 'crossflow', code: 'XF' },
-  { key: 'inducedDraft', code: 'ID' },
-  { key: 'forcedDraft', code: 'FD' },
-  { key: 'closedCircuit', code: 'CL' },
-  { key: 'naturalDraft', code: 'ND' },
 ];
 
 export function TowerTypesSection() {
@@ -26,7 +24,7 @@ export function TowerTypesSection() {
           />
         </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-(--color-border)">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-0.5 bg-(--color-border)">
           {TYPES.map((type, i) => (
             <Reveal key={type.key} delay={i * 80}>
               <div className="bg-(--void) hover:bg-(--panel) transition-all duration-300 p-8 group cursor-default">
