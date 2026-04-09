@@ -40,13 +40,13 @@ export function Header() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-18 items-center justify-between">
           {/* Logo */}
-          <Link href="/" locale={locale} className="flex items-center gap-3 group">
+          <Link href="/" locale={locale} className="flex items-center group">
             <Image
               src="/logo.png"
               alt="Ensotek"
-              width={140}
-              height={40}
-              className="h-9 w-auto object-contain brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+              width={180}
+              height={56}
+              className="h-14 w-auto object-contain brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
               priority
             />
           </Link>
