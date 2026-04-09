@@ -145,6 +145,127 @@ ON DUPLICATE KEY UPDATE
   `updated_at` = CURRENT_TIMESTAMP(3);
 
 -- =============================================================
+-- SITE SETTINGS — Dinamik Bölüm İçerikleri (Admin Panelden Düzenlenebilir)
+-- =============================================================
+
+INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
+
+  -- Hero Stats
+  (UUID(), 'hero_stats', 'tr', '{"years":"39+","towers":"3000+","countries":"40+"}', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'hero_stats', 'en', '{"years":"39+","towers":"3000+","countries":"40+"}', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'hero_stats', 'de', '{"years":"39+","towers":"3000+","countries":"40+"}', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+
+  -- About Content
+  (UUID(), 'about_content', 'tr', JSON_OBJECT(
+    'label',       'Hakkımızda',
+    'title',       '39 Yıllık Endüstriyel Deneyim',
+    'description', 'Ensotek, 1986 yılından bu yana ISO 9001 belgeli üretici olarak 3.000''den fazla soğutma kulesi kurulumu tamamlamış, İstanbul ve Ankara fabrikalarıyla Türkiye''nin en büyük soğutma kulesi üretim tesisini işletmektedir.',
+    'feature1',    'ISO 9001:2015 kalite yönetim sistemi sertifikasyonu',
+    'feature2',    'İstanbul ofisi ve Ankara fabrikasıyla tam entegre üretim kapasitesi',
+    'feature3',    '40''tan fazla ülkede proje deneyimi ve teknik destek',
+    'feature4',    '7/24 servis ve bakım desteği'
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'about_content', 'en', JSON_OBJECT(
+    'label',       'About Us',
+    'title',       '39 Years of Industrial Excellence',
+    'description', 'Ensotek has been ISO 9001 certified since 1986 and has completed over 3,000 cooling tower installations. Operating Turkey''s largest cooling tower production facility with offices in Istanbul and a factory in Ankara.',
+    'feature1',    'ISO 9001:2015 quality management system certification',
+    'feature2',    'Fully integrated production capacity with Istanbul office and Ankara factory',
+    'feature3',    'Project experience and technical support in 40+ countries',
+    'feature4',    '24/7 service and maintenance support'
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'about_content', 'de', JSON_OBJECT(
+    'label',       'Über uns',
+    'title',       '39 Jahre industrielle Exzellenz',
+    'description', 'Ensotek ist seit 1986 ISO 9001-zertifiziert und hat über 3.000 Kühltürme installiert. Mit Büro in Istanbul und Fabrik in Ankara betreibt Ensotek die größte Kühlturmproduktionsanlage der Türkei.',
+    'feature1',    'ISO 9001:2015 Qualitätsmanagementsystem-Zertifizierung',
+    'feature2',    'Vollintegrierte Produktionskapazität mit Istanbul-Büro und Ankara-Fabrik',
+    'feature3',    'Projekterfahrung und technischer Support in 40+ Ländern',
+    'feature4',    '24/7 Service und Wartungsunterstützung'
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+
+  -- Global Reach Stats
+  (UUID(), 'global_reach_stats', 'tr', JSON_OBJECT(
+    'countries_count', '40+',
+    'projects_value',  '3000+',
+    'projects_label',  'Tamamlanan Proje',
+    'experience_value','39+',
+    'experience_label','Yıl Deneyim',
+    'capacity_value',  '500+',
+    'capacity_label',  'MW Soğutma Kapasitesi'
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'global_reach_stats', 'en', JSON_OBJECT(
+    'countries_count', '40+',
+    'projects_value',  '3000+',
+    'projects_label',  'Completed Projects',
+    'experience_value','39+',
+    'experience_label','Years Experience',
+    'capacity_value',  '500+',
+    'capacity_label',  'MW Cooling Capacity'
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'global_reach_stats', 'de', JSON_OBJECT(
+    'countries_count', '40+',
+    'projects_value',  '3000+',
+    'projects_label',  'Abgeschlossene Projekte',
+    'experience_value','39+',
+    'experience_label','Jahre Erfahrung',
+    'capacity_value',  '500+',
+    'capacity_label',  'MW Kühlkapazität'
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+
+  -- Testimonials
+  (UUID(), 'testimonial_featured', 'tr', JSON_OBJECT(
+    'quote',   'Ensotek''in soğutma kulesi sistemleri, tesisimizde beklentilerimizin çok ötesinde performans gösterdi. Teknik ekibin kurulum ve bakım desteği mükemmeldi. 39 yıllık deneyimleri gerçekten hissediliyor.',
+    'author',  'Ahmet Yılmaz',
+    'company', 'Teknik Direktör, Enerji A.Ş.'
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'testimonial_featured', 'en', JSON_OBJECT(
+    'quote',   'Ensotek''s cooling tower systems performed far beyond expectations at our facility. The technical team''s installation and maintenance support was excellent. Their 39 years of experience truly shows.',
+    'author',  'Ahmet Yilmaz',
+    'company', 'Technical Director, Energy Corp.'
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'testimonial_featured', 'de', JSON_OBJECT(
+    'quote',   'Die Kühltürme von Ensotek haben in unserer Anlage weit über Erwartungen performt. Die technische Unterstützung beim Einbau und bei der Wartung war hervorragend.',
+    'author',  'Ahmet Yilmaz',
+    'company', 'Technischer Direktor, Energy AG'
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+
+  -- FAQ Items
+  (UUID(), 'faq_items', 'tr', JSON_ARRAY(
+    JSON_OBJECT('question','Legionella riski nasıl yönetilir?','answer','Soğutma kulelerinde Legionella riski; biyosit dozajlaması, düzenli bakım ve su analiziyle minimize edilir. Ensotek, TSE ve REHVA standartlarına uygun bakım programları sunar.'),
+    JSON_OBJECT('question','Hangi kule tipi projem için doğru?','answer','Kapasite, mevcut alan, su kalitesi ve bütçe gereksinimlerine göre ücretsiz teknik danışmanlık sunuyoruz. Uzman ekibimiz en uygun çözümü belirler.'),
+    JSON_OBJECT('question','CTP gövdenin avantajları nelerdir?','answer','Cam elyaf takviyeli polyester (CTP) korozyona dayanıklı, hafif ve uzun ömürlüdür. Metal gövdelere kıyasla %40 daha uzun servis ömrü sunar ve boya gerektirmez.'),
+    JSON_OBJECT('question','Kapasite nasıl hesaplanır?','answer','Soğutma kapasitesi; proses yükü, giriş/çıkış sıcaklıkları ve yaklaşım değerlerine göre termodinamik hesaplamayla belirlenir. Ücretsiz hesaplama için ekibimizle iletişime geçin.'),
+    JSON_OBJECT('question','Bakım ne sıklıkta yapılmalıdır?','answer','Mevsimlik bakım ve yılda 1-2 tam bakım önerilir. Kritik tesisler için sürekli izleme sistemleri kurulabilir.'),
+    JSON_OBJECT('question','Kiralık soğutma kulesi hizmeti var mı?','answer','Evet, geçici veya mevsimsel ihtiyaçlar için kiralık soğutma kulesi sistemleri sunuyoruz. Kurulum, devreye alma ve bakım hizmetleri dahildir.'),
+    JSON_OBJECT('question','Ankara fabrikası hakkında bilgi verir misiniz?','answer','2021 yılında faaliyete geçen Ankara (Kahramankazan) fabrikamız, Türkiye''nin en büyük soğutma kulesi üretim tesisidir. Modern CNC ve kompozit üretim ekipmanlarıyla donatılmıştır.')
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+
+  (UUID(), 'faq_items', 'en', JSON_ARRAY(
+    JSON_OBJECT('question','How is Legionella risk managed?','answer','Legionella risk is minimized in cooling towers through biocide dosing, regular maintenance and water analysis. Ensotek provides maintenance programs compliant with TSE and REHVA standards.'),
+    JSON_OBJECT('question','Which tower type is right for my project?','answer','We offer free technical consultancy based on capacity, available space, water quality and budget requirements. Our expert team determines the most suitable solution.'),
+    JSON_OBJECT('question','What are the advantages of FRP body?','answer','Fiberglass reinforced polyester (FRP) is corrosion-resistant, lightweight and long-lasting. It offers 40% longer service life compared to metal bodies and requires no painting.'),
+    JSON_OBJECT('question','How is capacity calculated?','answer','Cooling capacity is determined by thermodynamic calculation based on process load, inlet/outlet temperatures and approach values. Contact our team for a free calculation.'),
+    JSON_OBJECT('question','How often should maintenance be performed?','answer','Seasonal maintenance and 1-2 full maintenance per year is recommended. Continuous monitoring systems can be installed for critical facilities.'),
+    JSON_OBJECT('question','Is rental cooling tower service available?','answer','Yes, we offer rental cooling tower systems for temporary or seasonal needs. Installation, commissioning and maintenance services are included.'),
+    JSON_OBJECT('question','Tell me about the Ankara factory.','answer','Our Ankara (Kahramankazan) factory, commissioned in 2021, is Turkey''s largest cooling tower production facility, equipped with modern CNC and composite manufacturing equipment.')
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+
+  (UUID(), 'faq_items', 'de', JSON_ARRAY(
+    JSON_OBJECT('question','Wie wird das Legionella-Risiko gemanagt?','answer','Das Legionella-Risiko in Kühltürmen wird durch Biozid-Dosierung, regelmäßige Wartung und Wasseranalyse minimiert. Ensotek bietet Wartungsprogramme nach TSE- und REHVA-Standards.'),
+    JSON_OBJECT('question','Welcher Kühlturmtyp ist für mein Projekt geeignet?','answer','Wir bieten kostenlose technische Beratung basierend auf Kapazität, verfügbarem Platz, Wasserqualität und Budgetanforderungen an. Unser Expertenteam ermittelt die beste Lösung.'),
+    JSON_OBJECT('question','Was sind die Vorteile des FRP-Gehäuses?','answer','Glasfaserverstärkter Kunststoff (FRP) ist korrosionsbeständig, leicht und langlebig. Er bietet 40% längere Standzeit im Vergleich zu Metallgehäusen und benötigt keine Lackierung.'),
+    JSON_OBJECT('question','Wie wird die Kapazität berechnet?','answer','Die Kühlkapazität wird durch thermodynamische Berechnung auf Basis von Prozesslast, Ein-/Austrittstemperaturen und Annäherungswerten bestimmt. Kontaktieren Sie uns für eine kostenlose Berechnung.'),
+    JSON_OBJECT('question','Wie oft sollte gewartet werden?','answer','Saisonale Wartung und 1-2 Vollwartungen pro Jahr werden empfohlen. Für kritische Anlagen können kontinuierliche Überwachungssysteme installiert werden.'),
+    JSON_OBJECT('question','Gibt es einen Mietkühlturm-Service?','answer','Ja, wir bieten Mietkühlturmsysteme für temporäre oder saisonale Bedürfnisse an. Installation, Inbetriebnahme und Wartungsleistungen sind inbegriffen.'),
+    JSON_OBJECT('question','Erzählen Sie mir über die Ankara-Fabrik.','answer','Unsere 2021 in Betrieb genommene Fabrik in Ankara (Kahramankazan) ist die größte Kühlturmproduktionsanlage der Türkei, ausgestattet mit modernen CNC- und Verbundwerkstoff-Fertigungsanlagen.')
+  ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+
+ON DUPLICATE KEY UPDATE
+  `value`      = VALUES(`value`),
+  `updated_at` = CURRENT_TIMESTAMP(3);
+
+-- =============================================================
 -- CATEGORIES — Ürün kategorileri
 -- =============================================================
 

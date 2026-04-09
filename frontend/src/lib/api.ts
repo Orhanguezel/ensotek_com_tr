@@ -126,3 +126,40 @@ export interface ApiListResponse<T> {
   page?: number;
   limit?: number;
 }
+
+export interface HeroStats {
+  years?: string;
+  towers?: string;
+  countries?: string;
+}
+
+export interface AboutContent {
+  label?: string;
+  title?: string;
+  description?: string;
+  feature1?: string;
+  feature2?: string;
+  feature3?: string;
+  feature4?: string;
+}
+
+export interface GlobalReachStats {
+  countries_count?: string;
+  projects_value?: string;
+  projects_label?: string;
+  experience_value?: string;
+  experience_label?: string;
+  capacity_value?: string;
+  capacity_label?: string;
+}
+
+export interface FeaturedTestimonial {
+  quote?: string;
+  author?: string;
+  company?: string;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}

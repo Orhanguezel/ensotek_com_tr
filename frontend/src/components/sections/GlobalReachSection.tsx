@@ -1,5 +1,10 @@
 import { useTranslations } from 'next-intl';
 import { Reveal } from '@/components/motion/Reveal';
+import type { GlobalReachStats } from '@/lib/api';
+
+interface Props {
+  globalReachStats?: GlobalReachStats;
+}
 
 const MAP_DOTS = [
   { top: '30%', left: '15%' },
@@ -12,7 +17,7 @@ const MAP_DOTS = [
   { top: '45%', left: '82%' },
 ];
 
-export function GlobalReachSection() {
+export function GlobalReachSection({ globalReachStats }: Props) {
   const t = useTranslations('home.globalReach');
 
   return (
@@ -43,7 +48,7 @@ export function GlobalReachSection() {
             ))}
             {/* Overlay stat */}
             <div className="absolute bottom-6 right-6 border border-(--cyan) bg-(--deep) px-6 py-4 text-right">
-              <div className="text-3xl font-bold text-(--cyan) font-[family-name:var(--font-display)]">40+</div>
+              <div className="text-3xl font-bold text-(--cyan) font-[family-name:var(--font-display)]">{globalReachStats?.countries_count ?? '40+'}</div>
               <div className="text-xs text-(--mist) tracking-wider uppercase mt-1">{t('countriesServed')}</div>
             </div>
           </div>
@@ -52,13 +57,17 @@ export function GlobalReachSection() {
         {/* Stats row */}
         <Reveal delay={200}>
           <div className="grid grid-cols-3 gap-0.5 bg-(--color-border) mt-0.5">
-            {['projects', 'experience', 'capacity'].map((stat) => (
-              <div key={stat} className="bg-(--void) px-6 py-6 text-center">
+            {[
+              { value: globalReachStats?.projects_value    ?? t('stat.projects.value'),    label: globalReachStats?.projects_label    ?? t('stat.projects.label') },
+              { value: globalReachStats?.experience_value  ?? t('stat.experience.value'),  label: globalReachStats?.experience_label  ?? t('stat.experience.label') },
+              { value: globalReachStats?.capacity_value    ?? t('stat.capacity.value'),    label: globalReachStats?.capacity_label    ?? t('stat.capacity.label') },
+            ].map((stat, i) => (
+              <div key={i} className="bg-(--void) px-6 py-6 text-center">
                 <div className="text-2xl font-bold text-(--cyan) font-[family-name:var(--font-display)] mb-1">
-                  {t(`stat.${stat}.value`)}
+                  {stat.value}
                 </div>
                 <div className="text-xs text-(--silver) tracking-wider uppercase">
-                  {t(`stat.${stat}.label`)}
+                  {stat.label}
                 </div>
               </div>
             ))}

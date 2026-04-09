@@ -1,7 +1,12 @@
 import { useTranslations } from 'next-intl';
 import { Reveal } from '@/components/motion/Reveal';
+import type { FeaturedTestimonial } from '@/lib/api';
 
-export function TestimonialSection() {
+interface Props {
+  testimonial?: FeaturedTestimonial;
+}
+
+export function TestimonialSection({ testimonial }: Props) {
   const t = useTranslations('home.testimonial');
 
   return (
@@ -17,14 +22,14 @@ export function TestimonialSection() {
             </div>
             <blockquote className="relative z-10">
               <p className="text-xl lg:text-2xl font-[family-name:var(--font-serif)] italic text-(--light) leading-relaxed mb-8">
-                {t('quote')}
+                {testimonial?.quote ?? t('quote')}
               </p>
               <footer>
                 <cite className="not-italic">
                   <div className="text-sm font-semibold text-(--cyan) tracking-wider uppercase font-[family-name:var(--font-display)]">
-                    {t('author')}
+                    {testimonial?.author ?? t('author')}
                   </div>
-                  <div className="text-xs text-(--silver) mt-1">{t('company')}</div>
+                  <div className="text-xs text-(--silver) mt-1">{testimonial?.company ?? t('company')}</div>
                 </cite>
               </footer>
             </blockquote>

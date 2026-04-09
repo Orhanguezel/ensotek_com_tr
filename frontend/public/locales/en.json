@@ -35,7 +35,7 @@
       "line1": "Industrial",
       "line2": "Cooling",
       "line3": "Systems",
-      "subtitle": "25+ years of expertise in counterflow, crossflow and closed-circuit cooling tower systems. ISO 9001 certified manufacturing.",
+      "subtitle": "39+ years of expertise in open circuit, closed circuit and evaporative cooling systems. Turkey's largest cooling tower production facility. ISO 9001 certified.",
       "cta1": "Explore Products",
       "cta2": "Get a Quote",
       "stat": {
@@ -56,10 +56,10 @@
     },
     "about": {
       "label": "About Us",
-      "title": "25 Years of Industrial Excellence",
-      "description": "Ensotek is an ISO 9001 certified manufacturer and system integrator that has completed over 3,000 cooling tower installations worldwide.",
+      "title": "39 Years of Industrial Excellence",
+      "description": "Ensotek has been ISO 9001 certified since 1986 and has completed over 3,000 cooling tower installations. Operating Turkey's largest cooling tower production facility with offices in Istanbul and a factory in Ankara.",
       "feature1": "ISO 9001:2015 quality management system certification",
-      "feature2": "Domestic production with competitive pricing and fast delivery",
+      "feature2": "Fully integrated production capacity with Istanbul office and Ankara factory",
       "feature3": "Project experience and technical support in 40+ countries",
       "feature4": "24/7 service and maintenance support",
       "isoCert": "Certified"
@@ -175,12 +175,12 @@
       "countriesServed": "Countries Served",
       "stat": {
         "projects": { "value": "3000+", "label": "Completed Projects" },
-        "experience": { "value": "25+", "label": "Years Experience" },
+        "experience": { "value": "39+", "label": "Years Experience" },
         "capacity": { "value": "500+", "label": "MW Cooling Capacity" }
       }
     },
     "testimonial": {
-      "quote": "Ensotek's cooling tower systems performed far beyond expectations at our facility. The technical team's installation and maintenance support was excellent.",
+      "quote": "Ensotek's cooling tower systems performed far beyond expectations at our facility. The technical team's installation and maintenance support was excellent. Their 39 years of experience truly shows.",
       "author": "Ahmet Yilmaz",
       "company": "Technical Director, Energy Corp."
     },

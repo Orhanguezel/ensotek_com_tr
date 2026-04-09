@@ -2,12 +2,17 @@ import { useTranslations } from 'next-intl';
 import { Reveal } from '@/components/motion/Reveal';
 import { SectionHeader } from '@/components/patterns/SectionHeader';
 import { CheckCircle } from 'lucide-react';
+import type { AboutContent } from '@/lib/api';
 
-const FEATURES_COUNT = 4;
+interface Props {
+  aboutContent?: AboutContent;
+}
 
-export function AboutSection() {
+export function AboutSection({ aboutContent }: Props) {
   const t = useTranslations('home.about');
-  const features = Array.from({ length: FEATURES_COUNT }, (_, i) => t(`feature${i + 1}`));
+  const features = aboutContent
+    ? [aboutContent.feature1, aboutContent.feature2, aboutContent.feature3, aboutContent.feature4].filter(Boolean) as string[]
+    : Array.from({ length: 4 }, (_, i) => t(`feature${i + 1}`));
 
   return (
     <section className="section-py" id="about">
@@ -35,9 +40,9 @@ export function AboutSection() {
           {/* Text side */}
           <Reveal delay={150}>
             <SectionHeader
-              label={t('label')}
-              title={t('title')}
-              description={t('description')}
+              label={aboutContent?.label ?? t('label')}
+              title={aboutContent?.title ?? t('title')}
+              description={aboutContent?.description ?? t('description')}
             />
             <ul className="mt-8 space-y-3">
               {features.map((f, i) => (

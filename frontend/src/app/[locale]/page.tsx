@@ -5,7 +5,7 @@ import { hasLocale } from '@/i18n/locales';
 import { fetchActiveLocales } from '@/i18n/server';
 import { notFound } from 'next/navigation';
 import { API_BASE_URL, SITE_URL } from '@/lib/utils';
-import type { Product, ContactInfo } from '@/lib/api';
+import type { Product, ContactInfo, HeroStats, AboutContent, GlobalReachStats, FeaturedTestimonial, FaqItem } from '@/lib/api';
 
 import { HeroSection } from '@/components/sections/HeroSection';
 import { MarqueeBar } from '@/components/sections/MarqueeBar';
@@ -72,20 +72,27 @@ async function fetchFeaturedProducts(locale: string): Promise<Product[]> {
   }
 }
 
-async function fetchContactInfo(locale: string): Promise<ContactInfo> {
+async function fetchSetting<T>(key: string, locale: string, fallback: T): Promise<T> {
   try {
     const res = await fetch(
-      `${API_BASE_URL}/site_settings/contact_info?locale=${locale}`,
+      `${API_BASE_URL}/site_settings/${key}?locale=${locale}`,
       { next: { revalidate: 3600 } },
     );
-    if (!res.ok) return {};
+    if (!res.ok) return fallback;
     const dto = await res.json();
     const raw = dto?.value;
-    return (typeof raw === 'string' ? JSON.parse(raw) : raw) ?? {};
+    return (typeof raw === 'string' ? JSON.parse(raw) : raw) ?? fallback;
   } catch {
-    return {};
+    return fallback;
   }
 }
+
+const fetchContactInfo = (locale: string) => fetchSetting<ContactInfo>('contact_info', locale, {});
+const fetchHeroStats = (locale: string) => fetchSetting<HeroStats>('hero_stats', locale, {});
+const fetchAboutContent = (locale: string) => fetchSetting<AboutContent>('about_content', locale, {});
+const fetchGlobalReachStats = (locale: string) => fetchSetting<GlobalReachStats>('global_reach_stats', locale, {});
+const fetchTestimonial = (locale: string) => fetchSetting<FeaturedTestimonial>('testimonial_featured', locale, {});
+const fetchFaqItems = (locale: string) => fetchSetting<FaqItem[]>('faq_items', locale, []);
 
 export default async function HomePage({
   params,
@@ -96,27 +103,32 @@ export default async function HomePage({
   if (!hasLocale(locale)) notFound();
   setRequestLocale(locale);
 
-  const [products, contactInfo] = await Promise.all([
+  const [products, contactInfo, heroStats, aboutContent, globalReachStats, testimonial, faqItems] = await Promise.all([
     fetchFeaturedProducts(locale),
     fetchContactInfo(locale),
+    fetchHeroStats(locale),
+    fetchAboutContent(locale),
+    fetchGlobalReachStats(locale),
+    fetchTestimonial(locale),
+    fetchFaqItems(locale),
   ]);
 
   return (
     <>
-      <HeroSection />
+      <HeroSection heroStats={heroStats} />
       <MarqueeBar />
-      <AboutSection />
+      <AboutSection aboutContent={aboutContent} />
       <HowItWorksSection />
       <TowerTypesSection />
       <ProductsSection products={products} />
       <TechnicalSpecsSection />
       <IndustriesSection />
       <AdvantagesSection />
-      <GlobalReachSection />
-      <TestimonialSection />
+      <GlobalReachSection globalReachStats={globalReachStats} />
+      <TestimonialSection testimonial={testimonial} />
       <CtaSection phone={contactInfo.phone} />
       <ContactSection contactInfo={contactInfo} />
-      <FaqSection />
+      <FaqSection faqItems={faqItems} />
     </>
   );
 }

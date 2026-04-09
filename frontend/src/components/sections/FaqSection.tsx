@@ -1,11 +1,23 @@
 import { useTranslations } from 'next-intl';
 import { Reveal } from '@/components/motion/Reveal';
 import { SectionHeader } from '@/components/patterns/SectionHeader';
+import type { FaqItem } from '@/lib/api';
 
-const FAQ_COUNT = 5;
+interface Props {
+  faqItems?: FaqItem[];
+}
 
-export function FaqSection() {
+const FALLBACK_COUNT = 5;
+
+export function FaqSection({ faqItems }: Props) {
   const t = useTranslations('home.faq');
+
+  const items: FaqItem[] = faqItems && faqItems.length > 0
+    ? faqItems
+    : Array.from({ length: FALLBACK_COUNT }, (_, i) => ({
+        question: t(`faq${i + 1}.question`),
+        answer:   t(`faq${i + 1}.answer`),
+      }));
 
   return (
     <section className="section-py" id="faq">
@@ -20,17 +32,17 @@ export function FaqSection() {
         </Reveal>
 
         <div className="space-y-0 border-t border-(--color-border)">
-          {Array.from({ length: FAQ_COUNT }, (_, i) => (
+          {items.map((item, i) => (
             <Reveal key={i} delay={i * 80}>
               <details className="faq-item group">
                 <summary>
-                  <span>{t(`faq${i + 1}.question`)}</span>
+                  <span>{item.question}</span>
                   <span className="text-(--silver) group-open:rotate-45 transition-transform duration-200 text-xl leading-none select-none">
                     +
                   </span>
                 </summary>
                 <div className="faq-content">
-                  {t(`faq${i + 1}.answer`)}
+                  {item.answer}
                 </div>
               </details>
             </Reveal>

@@ -35,7 +35,7 @@
       "line1": "Endüstriyel",
       "line2": "Soğutma",
       "line3": "Sistemleri",
-      "subtitle": "Counterflow, crossflow ve kapalı devre soğutma kulesi sistemlerinde 25+ yıllık uzmanlık. ISO 9001 sertifikalı üretim.",
+      "subtitle": "Açık devre, kapalı devre ve evaporatif soğutma sistemlerinde 39+ yıllık uzmanlık. Türkiye'nin en büyük soğutma kulesi üretim tesisi. ISO 9001 sertifikalı.",
       "cta1": "Ürünleri İncele",
       "cta2": "Teklif Al",
       "stat": {
@@ -56,10 +56,10 @@
     },
     "about": {
       "label": "Hakkımızda",
-      "title": "25 Yıllık Endüstriyel Mükemmellik",
-      "description": "Ensotek, dünya genelinde 3000'den fazla soğutma kulesi kurulumu gerçekleştirmiş, ISO 9001 sertifikalı bir üretici ve sistem entegratörüdür.",
-      "feature1": "ISO 9001:2015 kalite yönetim sistemi sertifikası",
-      "feature2": "Yerli üretim ile rekabetçi fiyat ve hızlı teslimat",
+      "title": "39 Yıllık Endüstriyel Deneyim",
+      "description": "Ensotek, 1986 yılından bu yana ISO 9001 belgeli üretici olarak 3.000'den fazla soğutma kulesi kurulumu tamamlamış, Türkiye'nin en büyük soğutma kulesi üretim tesisini işletmektedir.",
+      "feature1": "ISO 9001:2015 kalite yönetim sistemi sertifikasyonu",
+      "feature2": "İstanbul ofisi ve Ankara fabrikasıyla tam entegre üretim kapasitesi",
       "feature3": "40+ ülkede proje deneyimi ve teknik destek",
       "feature4": "7/24 servis ve bakım hizmetleri",
       "isoCert": "Sertifikalı"
@@ -175,12 +175,12 @@
       "countriesServed": "Ülkede Proje",
       "stat": {
         "projects": { "value": "3000+", "label": "Tamamlanan Proje" },
-        "experience": { "value": "25+", "label": "Yıl Deneyim" },
+        "experience": { "value": "39+", "label": "Yıl Deneyim" },
         "capacity": { "value": "500+", "label": "MW Soğutma Kapasitesi" }
       }
     },
     "testimonial": {
-      "quote": "Ensotek'in soğutma kulesi sistemleri, tesisimizde beklentilerin çok üzerinde performans gösterdi. Teknik ekibin kurulum ve bakım desteği mükemmeldi.",
+      "quote": "Ensotek'in soğutma kulesi sistemleri, tesisimizde beklentilerin çok üzerinde performans gösterdi. Teknik ekibin kurulum ve bakım desteği mükemmeldi. 39 yıllık deneyimleri gerçekten hissediliyor.",
       "author": "Ahmet Yılmaz",
       "company": "Teknik Müdür, Enerji A.Ş."
     },

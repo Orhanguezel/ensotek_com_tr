@@ -2,16 +2,21 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import type { HeroStats } from '@/lib/api';
 
-const STATS = [
-  { key: 'years', value: '25+' },
-  { key: 'towers', value: '3000+' },
-  { key: 'countries', value: '40+' },
-];
+interface Props {
+  heroStats?: HeroStats;
+}
 
-export function HeroSection() {
+export function HeroSection({ heroStats }: Props) {
   const t = useTranslations('home.hero');
   const locale = useLocale();
+
+  const STATS = [
+    { key: 'years',     value: heroStats?.years     ?? '39+' },
+    { key: 'towers',    value: heroStats?.towers    ?? '3000+' },
+    { key: 'countries', value: heroStats?.countries ?? '40+' },
+  ];
 
   return (
     <section className="hero" id="hero">
