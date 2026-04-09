@@ -10,6 +10,8 @@ import { THEME_TEMPLATE, THEME_INTENT } from '@/theme/templates';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ClientShell } from '@/components/layout/ClientShell';
+import { API_BASE_URL } from '@/lib/utils';
+import type { ContactInfo } from '@/lib/api';
 import '@/styles/globals.css';
 
 const fontDisplay = Oswald({
@@ -44,8 +46,36 @@ export const metadata: Metadata = {
     default: 'Ensotek — Endüstriyel Soğutma Kulesi Sistemleri',
     template: '%s | Ensotek',
   },
-  description: 'Counterflow, Crossflow ve Kapalı Devre soğutma kuleleri. ISO 9001 sertifikalı, 25+ yıl deneyim.',
+  description: 'Açık devre, kapalı devre ve evaporatif soğutma kuleleri. ISO 9001 sertifikalı, 39+ yıl deneyim. Türkiye\'nin en büyük soğutma kulesi üretim tesisi.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/ensotek_icon_192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/ensotek_icon_512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'apple-touch-icon', url: '/ensotek-apple-icon-512.png' },
+    ],
+  },
 };
+
+async function fetchContactInfo(locale: string): Promise<ContactInfo> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/site_settings/contact_info?locale=${locale}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return {};
+    const dto = await res.json();
+    const raw = dto?.value;
+    return (typeof raw === 'string' ? JSON.parse(raw) : raw) ?? {};
+  } catch {
+    return {};
+  }
+}
 
 export default async function LocaleLayout({
   children,
@@ -60,7 +90,10 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
-  const messages = getLocaleMessages(locale);
+  const [messages, contactInfo] = await Promise.all([
+    Promise.resolve(getLocaleMessages(locale)),
+    fetchContactInfo(locale),
+  ]);
 
   return (
     <html
@@ -79,7 +112,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
           <main>{children}</main>
-          <Footer />
+          <Footer contactInfo={contactInfo} />
           <ClientShell />
         </NextIntlClientProvider>
       </body>

@@ -6,6 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 
 const NAV_LINKS = [
   { key: 'about', href: '#about' },
@@ -40,21 +41,14 @@ export function Header() {
         <div className="flex h-18 items-center justify-between">
           {/* Logo */}
           <Link href="/" locale={locale} className="flex items-center gap-3 group">
-            <div className="relative size-9 border border-(--cyan) flex items-center justify-center">
-              <span
-                className="absolute inset-1 bg-(--cyan) opacity-20 group-hover:opacity-30 transition-opacity"
-                aria-hidden="true"
-              />
-              <span className="text-(--cyan) font-bold text-sm font-[family-name:var(--font-display)]">E</span>
-            </div>
-            <div className="leading-none">
-              <span className="block text-sm font-bold tracking-[3px] text-(--white) uppercase font-[family-name:var(--font-display)]">
-                ENSOTEK
-              </span>
-              <span className="block text-xs tracking-[2px] text-(--cyan) uppercase font-[family-name:var(--font-display)]">
-                Cooling
-              </span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Ensotek"
+              width={140}
+              height={40}
+              className="h-9 w-auto object-contain brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}

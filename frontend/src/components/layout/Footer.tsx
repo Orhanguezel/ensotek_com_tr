@@ -1,11 +1,22 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
+import Image from 'next/image';
+import type { ContactInfo } from '@/lib/api';
 
-export function Footer() {
+interface Props {
+  contactInfo?: ContactInfo;
+}
+
+export function Footer({ contactInfo }: Props) {
   const t = useTranslations('footer');
   const locale = useLocale();
   const year = new Date().getFullYear();
+
+  const address = contactInfo?.address ?? t('address');
+  const phone   = contactInfo?.phone   ?? t('phone');
+  const phone2  = contactInfo?.phone_2;
+  const email   = contactInfo?.email   ?? t('email');
 
   return (
     <footer className="footer-et">
@@ -13,14 +24,16 @@ export function Footer() {
         <div className="footer-top-et">
           {/* Brand column */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="size-9 border border-(--cyan) flex items-center justify-center">
-                <span className="text-(--cyan) font-bold text-sm font-[family-name:var(--font-display)]">E</span>
-              </div>
-              <div className="leading-none">
-                <span className="block text-sm font-bold tracking-[3px] text-(--white) uppercase font-[family-name:var(--font-display)]">ENSOTEK</span>
-                <span className="block text-xs tracking-[2px] text-(--cyan) uppercase font-[family-name:var(--font-display)]">Cooling Systems</span>
-              </div>
+            <div className="mb-6">
+              <Link href="/" locale={locale}>
+                <Image
+                  src="/logo.png"
+                  alt="Ensotek"
+                  width={160}
+                  height={46}
+                  className="h-10 w-auto object-contain brightness-0 invert"
+                />
+              </Link>
             </div>
             <p className="text-sm text-(--mist) leading-relaxed max-w-xs">
               {t('description')}
@@ -55,12 +68,15 @@ export function Footer() {
           <div>
             <h3 className="text-xs tracking-[3px] uppercase text-(--cyan) mb-4 font-[family-name:var(--font-display)]">{t('contactTitle')}</h3>
             <ul className="space-y-3 text-sm text-(--silver)">
-              <li>{t('address')}</li>
+              <li>{address}</li>
               <li>
-                <a href={`tel:${t('phone')}`} className="hover:text-(--cyan) transition-colors">{t('phone')}</a>
+                <a href={`tel:${phone.replace(/\s/g, '')}`} className="hover:text-(--cyan) transition-colors">{phone}</a>
+                {phone2 && (
+                  <> / <a href={`tel:${phone2.replace(/\s/g, '')}`} className="hover:text-(--cyan) transition-colors">{phone2}</a></>
+                )}
               </li>
               <li>
-                <a href={`mailto:${t('email')}`} className="hover:text-(--cyan) transition-colors">{t('email')}</a>
+                <a href={`mailto:${email}`} className="hover:text-(--cyan) transition-colors">{email}</a>
               </li>
             </ul>
           </div>

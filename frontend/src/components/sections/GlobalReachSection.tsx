@@ -34,6 +34,11 @@ export function GlobalReachSection({ globalReachStats }: Props) {
         {/* Stylized world map */}
         <Reveal delay={100}>
           <div className="relative h-64 lg:h-96 border border-(--color-border) bg-(--deep) overflow-hidden">
+            <div
+              className="absolute inset-x-8 inset-y-8 opacity-[0.2] bg-center bg-no-repeat bg-contain"
+              aria-hidden="true"
+              style={{ backgroundImage: "url('/world-map.svg')" }}
+            />
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-[12rem] font-bold text-(--cyan) opacity-5 font-[family-name:var(--font-display)] select-none">
                 WORLD
