@@ -1,0 +1,298 @@
+{
+  "nav": {
+    "about": "About",
+    "howItWorks": "How It Works",
+    "types": "Tower Types",
+    "products": "Products",
+    "gallery": "Gallery",
+    "references": "References",
+    "contact": "Contact",
+    "contactCta": "Get a Quote"
+  },
+  "footer": {
+    "description": "Ensotek has been manufacturing counterflow, crossflow and closed-circuit cooling tower systems for over 25 years.",
+    "products": "Products",
+    "company": "Company",
+    "gallery": "Gallery",
+    "references": "References",
+    "contact": "Contact",
+    "contactTitle": "Contact",
+    "address": "Istanbul, Turkey",
+    "phone": "+90 212 123 45 67",
+    "email": "info@ensotek.com.tr",
+    "rights": "All rights reserved.",
+    "certification": "ISO 9001:2015 Certified",
+    "product": {
+      "counterflow": "Counterflow Cooling Tower",
+      "crossflow": "Crossflow Cooling Tower",
+      "closedCircuit": "Closed Circuit Cooling Tower",
+      "industrialFan": "Industrial Fan Systems"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "Industrial Cooling Solutions",
+      "line1": "Industrial",
+      "line2": "Cooling",
+      "line3": "Systems",
+      "subtitle": "25+ years of expertise in counterflow, crossflow and closed-circuit cooling tower systems. ISO 9001 certified manufacturing.",
+      "cta1": "Explore Products",
+      "cta2": "Get a Quote",
+      "stat": {
+        "years": "Years Experience",
+        "towers": "Towers Installed",
+        "countries": "Countries Served"
+      }
+    },
+    "marquee": {
+      "item1": "Counterflow Cooling Towers",
+      "item2": "Crossflow Cooling Towers",
+      "item3": "Closed Circuit Systems",
+      "item4": "FRP Tower Structures",
+      "item5": "Industrial Fan Systems",
+      "item6": "Legionella Control",
+      "item7": "HVAC Integration",
+      "item8": "Service & Maintenance"
+    },
+    "about": {
+      "label": "About Us",
+      "title": "25 Years of Industrial Excellence",
+      "description": "Ensotek is an ISO 9001 certified manufacturer and system integrator that has completed over 3,000 cooling tower installations worldwide.",
+      "feature1": "ISO 9001:2015 quality management system certification",
+      "feature2": "Domestic production with competitive pricing and fast delivery",
+      "feature3": "Project experience and technical support in 40+ countries",
+      "feature4": "24/7 service and maintenance support",
+      "isoCert": "Certified"
+    },
+    "howItWorks": {
+      "label": "How It Works",
+      "title": "The Cooling Process",
+      "subtitle": "Understand the working principle of industrial cooling towers in 4 steps.",
+      "step1": { "title": "Hot Water Inlet", "description": "Hot water returning from the system is fed into the tower from the top or side inlet." },
+      "step2": { "title": "Air Contact", "description": "Water contacts air in counterflow or crossflow principle as it passes through the fill media." },
+      "step3": { "title": "Evaporative Cooling", "description": "A small portion of the water evaporates, carrying large amounts of heat energy to the atmosphere." },
+      "step4": { "title": "Cooled Water", "description": "The cooled water collects in the basin and is fed back to the system, repeating the cycle." }
+    },
+    "towerTypes": {
+      "label": "Tower Types",
+      "title": "Cooling Tower Types",
+      "subtitle": "Cooling tower solutions specially designed for every industrial application.",
+      "type": {
+        "tag": "Series",
+        "counterflow": {
+          "title": "Counterflow",
+          "description": "Water flows downward, air flows upward. High thermal efficiency, compact footprint."
+        },
+        "crossflow": {
+          "title": "Crossflow",
+          "description": "Water flows vertically, air flows horizontally. Easy maintenance, low fan power consumption."
+        },
+        "inducedDraft": {
+          "title": "Induced Draft",
+          "description": "Fan positioned at top, less recirculation. Low noise levels."
+        },
+        "forcedDraft": {
+          "title": "Forced Draft",
+          "description": "Fan at bottom position, easy maintenance. Energy efficient operation."
+        },
+        "closedCircuit": {
+          "title": "Closed Circuit",
+          "description": "Process fluid remains clean, no contact with contaminants. Ideal for sensitive industries."
+        },
+        "naturalDraft": {
+          "title": "Natural Draft",
+          "description": "Hyperbolic or cylindrical chimney form. Suitable for large capacity power plants."
+        }
+      }
+    },
+    "products": {
+      "label": "Our Products",
+      "title": "Cooling Tower Systems",
+      "subtitle": "High-performance cooling solutions tailored to your industrial needs.",
+      "seeAll": "All Products",
+      "details": "Details",
+      "fallback": {
+        "counterflow": {
+          "title": "Counterflow Series",
+          "description": "FRP body, high-efficiency fill, easy-to-maintain modular structure."
+        },
+        "crossflow": {
+          "title": "Crossflow Series",
+          "description": "Wide air intake area, low fan power, long-lasting materials."
+        },
+        "closedCircuit": {
+          "title": "Closed Circuit Series",
+          "description": "Isolates process water from outside, prevents contamination, extends equipment life."
+        }
+      }
+    },
+    "techSpecs": {
+      "label": "Technical Specs",
+      "title": "Comparison Table",
+      "subtitle": "Technical comparison between different tower types.",
+      "col": {
+        "parameter": "Parameter",
+        "counterflow": "Counterflow",
+        "crossflow": "Crossflow",
+        "closedCircuit": "Closed Circuit"
+      },
+      "row1": { "param": "Thermal Efficiency", "counterflow": "High", "crossflow": "Medium-High", "closedCircuit": "Medium" },
+      "row2": { "param": "Footprint", "counterflow": "Compact", "crossflow": "Wide", "closedCircuit": "Medium" },
+      "row3": { "param": "Maintenance Ease", "counterflow": "Medium", "crossflow": "Easy", "closedCircuit": "Easy" },
+      "row4": { "param": "Water Quality", "counterflow": "Standard", "crossflow": "Standard", "closedCircuit": "Very High" },
+      "row5": { "param": "Energy Consumption", "counterflow": "Low", "crossflow": "Very Low", "closedCircuit": "Medium" },
+      "row6": { "param": "Capacity Range", "counterflow": "50-5000 TR", "crossflow": "100-8000 TR", "closedCircuit": "50-3000 TR" }
+    },
+    "industries": {
+      "label": "Industries",
+      "title": "Industries We Serve",
+      "subtitle": "We provide cooling solutions across a wide industrial spectrum.",
+      "industry": {
+        "hvac": { "title": "HVAC & Air Conditioning", "description": "Building and facility climate control systems" },
+        "power": { "title": "Power Plants", "description": "Thermal and nuclear power plant cooling" },
+        "petrochemical": { "title": "Petrochemical", "description": "Refinery and chemical processing facilities" },
+        "food": { "title": "Food & Beverage", "description": "Food processing and cold chain applications" },
+        "pharma": { "title": "Pharma & Healthcare", "description": "GMP-compliant precision cooling systems" },
+        "steel": { "title": "Metal & Steel", "description": "High-capacity process cooling" },
+        "textile": { "title": "Textile", "description": "Production line cooling and humidity control" },
+        "chemical": { "title": "Chemical", "description": "Reactor and process cooling applications" }
+      }
+    },
+    "advantages": {
+      "label": "Our Advantages",
+      "title": "Why Choose Ensotek?",
+      "subtitle": "Core values that set us apart from the competition.",
+      "advantage1": { "title": "Domestic Production", "description": "Manufacturing in Turkey, short lead times and cost advantage." },
+      "advantage2": { "title": "ISO 9001 Quality", "description": "Production and testing processes to international quality standards." },
+      "advantage3": { "title": "24/7 Technical Support", "description": "Uninterrupted breakdown and maintenance support from our expert team." },
+      "advantage4": { "title": "Custom Engineering", "description": "Individual engineering calculations and design for each project." },
+      "advantage5": { "title": "FRP Technology", "description": "Long-lasting, corrosion-resistant structure with fiberglass reinforced polyester." },
+      "advantage6": { "title": "Energy Efficiency", "description": "Low operating costs with high-efficiency fan and fill systems." }
+    },
+    "globalReach": {
+      "label": "Global Reach",
+      "title": "Projects Worldwide",
+      "countriesServed": "Countries Served",
+      "stat": {
+        "projects": { "value": "3000+", "label": "Completed Projects" },
+        "experience": { "value": "25+", "label": "Years Experience" },
+        "capacity": { "value": "500+", "label": "MW Cooling Capacity" }
+      }
+    },
+    "testimonial": {
+      "quote": "Ensotek's cooling tower systems performed far beyond expectations at our facility. The technical team's installation and maintenance support was excellent.",
+      "author": "Ahmet Yilmaz",
+      "company": "Technical Director, Energy Corp."
+    },
+    "cta": {
+      "label": "Get Started",
+      "title": "Get a Quote for Your Project",
+      "description": "Benefit from our free technical consultancy and quotation service for your cooling needs.",
+      "cta1": "Quote Form",
+      "cta2": "Call Now"
+    },
+    "contact": {
+      "label": "Contact",
+      "title": "Get in Touch",
+      "subtitle": "Reach our expert team for technical questions and projects.",
+      "info": {
+        "address": { "label": "Address", "value": "Organized Industrial Zone, Istanbul" },
+        "phone": { "label": "Phone", "value": "+90 212 123 45 67" },
+        "email": { "label": "Email", "value": "info@ensotek.com.tr" }
+      },
+      "field": {
+        "name": "Full Name *",
+        "company": "Company Name",
+        "email": "Email *",
+        "phone": "Phone",
+        "message": "Your Message *"
+      },
+      "submit": "Send",
+      "sending": "Sending...",
+      "required": "This field is required",
+      "error": "Message could not be sent. Please try again.",
+      "successTitle": "Message Received",
+      "successMessage": "We will get back to you as soon as possible."
+    },
+    "faq": {
+      "label": "FAQ",
+      "title": "Frequently Asked Questions",
+      "faq1": {
+        "question": "How is Legionella risk managed?",
+        "answer": "Legionella risk is minimized in cooling towers through biocide dosing, regular maintenance and water analysis. Ensotek provides maintenance programs compliant with TSE and REHVA standards."
+      },
+      "faq2": {
+        "question": "Which tower type is right for my project?",
+        "answer": "We offer free technical consultancy based on capacity, available space, water quality and budget requirements. Our expert team determines the most suitable solution."
+      },
+      "faq3": {
+        "question": "What are the advantages of FRP body?",
+        "answer": "Fiberglass reinforced polyester (FRP) is corrosion-resistant, lightweight and long-lasting. It offers 40% longer service life compared to metal bodies."
+      },
+      "faq4": {
+        "question": "How is capacity calculated?",
+        "answer": "Cooling capacity is determined by thermodynamic calculation based on process load, inlet/outlet temperatures and approach values. Contact our team for a free calculation."
+      },
+      "faq5": {
+        "question": "How often should maintenance be performed?",
+        "answer": "Seasonal maintenance and 1-2 full maintenance per year is recommended. Continuous monitoring systems can be installed for critical facilities."
+      }
+    }
+  },
+  "products": {
+    "label": "Product Catalog",
+    "title": "Cooling Tower Systems",
+    "subtitle": "Explore all our industrial cooling tower models.",
+    "details": "Details",
+    "empty": "No products added yet.",
+    "backToList": "All Products",
+    "detailLabel": "Product Detail"
+  },
+  "gallery": {
+    "label": "Gallery",
+    "title": "Project Gallery",
+    "subtitle": "Images from completed projects.",
+    "viewGallery": "View Gallery",
+    "empty": "No gallery added yet.",
+    "backToList": "All Galleries",
+    "detailLabel": "Gallery"
+  },
+  "references": {
+    "label": "References",
+    "title": "Our Customer References",
+    "subtitle": "Projects completed worldwide.",
+    "empty": "No references added yet."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "seeAll": "See All",
+    "back": "Back"
+  },
+  "errors": {
+    "notFound": "Page not found",
+    "serverError": "Server error"
+  },
+  "seo": {
+    "home": {
+      "title": "Ensotek — Industrial Cooling Tower Systems",
+      "description": "Counterflow, crossflow and closed-circuit cooling tower systems. ISO 9001 certified, 25+ years experience, 40+ countries."
+    },
+    "products": {
+      "title": "Cooling Tower Products — Ensotek",
+      "description": "Ensotek cooling tower product catalog. Counterflow, crossflow and closed-circuit models."
+    },
+    "gallery": {
+      "title": "Project Gallery — Ensotek",
+      "description": "Ensotek completed projects and installation galleries."
+    },
+    "references": {
+      "title": "References — Ensotek",
+      "description": "Ensotek customer references and completed projects."
+    },
+    "contact": {
+      "title": "Contact — Ensotek",
+      "description": "Contact Ensotek for your cooling tower projects."
+    }
+  }
+}
