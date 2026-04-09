@@ -641,4 +641,370 @@ ON DUPLICATE KEY UPDATE
   `meta_description` = VALUES(`meta_description`),
   `updated_at`       = CURRENT_TIMESTAMP(3);
 
+-- =============================================================
+-- SPARE PARTS CATEGORY
+-- =============================================================
+
+INSERT INTO `categories`
+  (`id`, `module_key`, `is_active`, `is_featured`, `display_order`, `created_at`, `updated_at`)
+VALUES
+  ('aaaa1001-1111-4111-8111-aaaaaaaa1001', 'sparepart', 1, 0, 50, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+ON DUPLICATE KEY UPDATE `is_active` = VALUES(`is_active`), `updated_at` = CURRENT_TIMESTAMP(3);
+
+INSERT INTO `category_i18n` (`category_id`, `locale`, `name`, `slug`, `description`, `created_at`, `updated_at`) VALUES
+  ('aaaa1001-1111-4111-8111-aaaaaaaa1001', 'tr', 'SOĞUTMA KULESİ YEDEK PARÇALARI', 'sogutma-kulesi-yedek-parcalari', NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('aaaa1001-1111-4111-8111-aaaaaaaa1001', 'en', 'COOLING TOWER SPARE PARTS',       'cooling-tower-spare-parts',      NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('aaaa1001-1111-4111-8111-aaaaaaaa1001', 'de', 'ERSATZTEILE FÜR KÜHLTÜRME',       'ersatzteile-fuer-kuehltuerme',   NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+ON DUPLICATE KEY UPDATE `name` = VALUES(`name`), `updated_at` = CURRENT_TIMESTAMP(3);
+
+-- =============================================================
+-- SPARE PARTS SUB-CATEGORIES
+-- =============================================================
+
+INSERT INTO `sub_categories`
+  (`id`, `category_id`, `is_active`, `is_featured`, `display_order`, `created_at`, `updated_at`)
+VALUES
+  ('bbbb1001-1111-4111-8111-bbbbbbbb1001', 'aaaa1001-1111-4111-8111-aaaaaaaa1001', 1, 0, 10, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1002-1111-4111-8111-bbbbbbbb1002', 'aaaa1001-1111-4111-8111-aaaaaaaa1001', 1, 0, 20, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1003-1111-4111-8111-bbbbbbbb1003', 'aaaa1001-1111-4111-8111-aaaaaaaa1001', 1, 0, 30, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1004-1111-4111-8111-bbbbbbbb1004', 'aaaa1001-1111-4111-8111-aaaaaaaa1001', 1, 0, 40, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+ON DUPLICATE KEY UPDATE `is_active` = VALUES(`is_active`), `updated_at` = CURRENT_TIMESTAMP(3);
+
+INSERT INTO `sub_category_i18n` (`sub_category_id`, `locale`, `name`, `slug`, `description`, `created_at`, `updated_at`) VALUES
+  ('bbbb1001-1111-4111-8111-bbbbbbbb1001', 'tr', 'Kule Ana Bileşenleri',      'kule-ana-bilesenleri',       NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1002-1111-4111-8111-bbbbbbbb1002', 'tr', 'Yedek Parçalar ve Aksesuar','yedek-parcalar-ve-aksesuar', NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1003-1111-4111-8111-bbbbbbbb1003', 'tr', 'Dolgu Malzemeleri',         'dolgu-malzemeleri',          NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1004-1111-4111-8111-bbbbbbbb1004', 'tr', 'Fan ve Motor Grubu',        'fan-ve-motor-grubu',         NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1001-1111-4111-8111-bbbbbbbb1001', 'en', 'Tower Main Components',     'tower-main-components',      NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1002-1111-4111-8111-bbbbbbbb1002', 'en', 'Spare Parts & Accessories', 'spare-parts-accessories',    NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1003-1111-4111-8111-bbbbbbbb1003', 'en', 'Fill Media',                'fill-media',                 NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1004-1111-4111-8111-bbbbbbbb1004', 'en', 'Fan & Motor Group',         'fan-motor-group',            NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1001-1111-4111-8111-bbbbbbbb1001', 'de', 'Turm-Hauptkomponenten',     'turm-hauptkomponenten',      NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1002-1111-4111-8111-bbbbbbbb1002', 'de', 'Ersatzteile & Zubehör',     'ersatzteile-zubehoer',       NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1003-1111-4111-8111-bbbbbbbb1003', 'de', 'Füllkörper / Füllmaterial', 'fuellkoerper-fuellmaterial', NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('bbbb1004-1111-4111-8111-bbbbbbbb1004', 'de', 'Ventilator- & Motorgruppe', 'ventilator-motorgruppe',     NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+ON DUPLICATE KEY UPDATE `name` = VALUES(`name`), `updated_at` = CURRENT_TIMESTAMP(3);
+
+-- =============================================================
+-- SPARE PARTS (5 ürün)
+-- =============================================================
+
+INSERT INTO `products` (
+  `id`, `item_type`, `category_id`, `sub_category_id`,
+  `price`, `image_url`, `storage_asset_id`, `images`, `storage_image_ids`,
+  `is_active`, `is_featured`, `order_num`, `product_code`,
+  `stock_quantity`, `rating`, `review_count`, `created_at`, `updated_at`
+) VALUES
+-- SP-01: Motor ve Redüktör
+(
+  'bbbb1501-2222-4222-8222-bbbbbbbb1501', 'sparepart',
+  'aaaa1001-1111-4111-8111-aaaaaaaa1001', 'bbbb1004-1111-4111-8111-bbbbbbbb1004',
+  0.00,
+  'https://www.ensotek.de/uploads/material/ensotek-sogutma-kulesi-motor-fan-grubu-mekanik-250x250-1.jpg',
+  NULL,
+  JSON_ARRAY(
+    'https://www.ensotek.de/uploads/material/ensotek-sogutma-kulesi-motor-fan-grubu-mekanik-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/ensotek-sogutma-kulesi-reduktorlu-motor-fan-grubu-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/44-250x250-1.jpg'
+  ),
+  JSON_ARRAY(), 1, 1, 1501, 'SP-MOTOR-REDUKTOR', 0, 5.00, 0,
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+-- SP-03: Aksiyal Fan
+(
+  'bbbb1503-2222-4222-8222-bbbbbbbb1503', 'sparepart',
+  'aaaa1001-1111-4111-8111-aaaaaaaa1001', 'bbbb1004-1111-4111-8111-bbbbbbbb1004',
+  0.00,
+  'https://www.ensotek.de/uploads/material/fan-1220-250x250-1.jpg',
+  NULL,
+  JSON_ARRAY(
+    'https://www.ensotek.de/uploads/material/fan-1220-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/fan-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/aluminyum-fan-2-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/4-kanatli-sac-kule-fani-250x250-1.jpg'
+  ),
+  JSON_ARRAY(), 1, 1, 1503, 'SP-FAN', 0, 5.00, 0,
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+-- SP-05: Su Dağıtım Sistemi
+(
+  'bbbb1505-2222-4222-8222-bbbbbbbb1505', 'sparepart',
+  'aaaa1001-1111-4111-8111-aaaaaaaa1001', 'bbbb1001-1111-4111-8111-bbbbbbbb1001',
+  0.00,
+  'https://www.ensotek.de/uploads/material/su-dagitim-sistemi-250x250-1.jpg',
+  NULL,
+  JSON_ARRAY(
+    'https://www.ensotek.de/uploads/material/su-dagitim-sistemi-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/pvc-kole-ve-pvc-flans-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/su-dagitim-uygulamasi-250x250-1.jpg'
+  ),
+  JSON_ARRAY(), 1, 1, 1505, 'SP-WATER-DISTRIBUTION', 0, 5.00, 0,
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+-- SP-09: PVC Film Fill
+(
+  'bbbb1509-2222-4222-8222-bbbbbbbb1509', 'sparepart',
+  'aaaa1001-1111-4111-8111-aaaaaaaa1001', 'bbbb1003-1111-4111-8111-bbbbbbbb1003',
+  0.00,
+  'https://www.ensotek.de/uploads/material/pvc-cf-12-petek-dolgu_1-250x250-1.jpg',
+  NULL,
+  JSON_ARRAY(
+    'https://www.ensotek.de/uploads/material/pvc-cf-12-petek-dolgu_1-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/pvc-cf-19-petek-dolgu-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/pvc-cf-30-petek-dolgu-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/pvc-cf-m-sogutma-kulesi-dolgusu-250x250-1.jpg',
+    'https://www.ensotek.de/uploads/material/pvc-cf-o-sogutma-kulesi-dolgusu_1-250x250-1.jpg'
+  ),
+  JSON_ARRAY(), 1, 1, 1509, 'SP-PVC-FILM-FILL', 0, 5.00, 0,
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+-- SP-13: Hava Giriş Panjuru
+(
+  'bbbb1513-2222-4222-8222-bbbbbbbb1513', 'sparepart',
+  'aaaa1001-1111-4111-8111-aaaaaaaa1001', 'bbbb1001-1111-4111-8111-bbbbbbbb1001',
+  0.00,
+  'https://www.ensotek.de/uploads/material/hava-giris-panjuru2-250x250-1.jpg',
+  NULL,
+  JSON_ARRAY('https://www.ensotek.de/uploads/material/hava-giris-panjuru2-250x250-1.jpg'),
+  JSON_ARRAY(), 1, 1, 1513, 'SP-AIR-INLET-LOUVERS', 0, 5.00, 0,
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+)
+ON DUPLICATE KEY UPDATE
+  `image_url`   = VALUES(`image_url`),
+  `images`      = VALUES(`images`),
+  `is_active`   = VALUES(`is_active`),
+  `order_num`   = VALUES(`order_num`),
+  `updated_at`  = CURRENT_TIMESTAMP(3);
+
+-- =============================================================
+-- SPARE PARTS I18N — TR
+-- =============================================================
+
+INSERT INTO `product_i18n` (
+  `product_id`, `locale`, `title`, `slug`, `description`,
+  `alt`, `tags`, `specifications`, `meta_title`, `meta_description`,
+  `created_at`, `updated_at`
+) VALUES
+(
+  'bbbb1501-2222-4222-8222-bbbbbbbb1501', 'tr',
+  'Motor ve Redüktör (Fan Grubu)',
+  'motor-ve-reduktor-fan-grubu',
+  'Motor ve redüktör, kulenin çatı bölümünde fan ve fan bacası ile birlikte grup halinde görev yapar. Su soğutma kulesinde en önemli görevi üstlenen ekipmanlardandır. Fan çapı Ø ≤ 1600 mm olan kulelerde yalnız elektrik motoru kullanılabilir; daha büyük modellerde motor ve redüktör birlikte kullanılmaktadır. Fanlarda çevre hızı 52–60 m/s dir. Elektrik motorları ve redüktörler V1 konumunda düşey flanşlı tip olarak kullanılır. Motorlar F sınıfı izolasyon ve IP56 koruma sınıfı ile toz, yağ ve neme karşı korunmaktadır.',
+  'Soğutma kulesi motor ve redüktör yedek parça',
+  JSON_ARRAY('yedek parça','motor','redüktör','fan grubu','soğutma kulesi'),
+  JSON_OBJECT('fanHizi','52–60 m/s','fanCapi','Ø ≤ 1600 mm: yalnız motor | büyük modeller: motor + redüktör','montaj','V1 konumu, düşey flanşlı','izolasyon','F sınıfı','koruma','IP56'),
+  'Motor ve Redüktör | Soğutma Kulesi Yedek Parça | Ensotek',
+  'Soğutma kulesi çatı bölümünde çalışan motor ve redüktör. IP56, F sınıfı izolasyon, 52–60 m/s çevre hızı.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1503-2222-4222-8222-bbbbbbbb1503', 'tr',
+  'Soğutma Kulesi Aksiyal Fan (Lüfter)',
+  'sogutma-kulesi-aksiyal-fan',
+  'Aksiyal fan, kulenin üst kısmındaki fan şaftında yer alır ve havayı kule boyunca hareket ettirerek buharlaşma prensibi ile soğutmayı sağlar. Dış ortamdan panjurlar üzerinden alınan hava, dolgulardan geçer ve fan bacasından atmosfere atılır. Fan kanatları cam elyaf takviyeli PP, CTP (FRP), alüminyum pultruzyon profil veya PP malzemeden üretilebilir. Farklı tip soğutma kulesi fanları temin edilebilir.',
+  'Soğutma kulesi aksiyal fan yedek parça',
+  JSON_ARRAY('yedek parça','fan','aksiyal fan','lüfter','fan grubu','soğutma kulesi'),
+  JSON_OBJECT('konum','Kule üstü fan şaftı / fan bacası bölgesi','kanatMalzemeleri','Cam elyaf takviyeli PP | CTP (FRP) | Alüminyum pultruzyon | PP','baglantiTablasi','Alüminyum pultruzyon veya kataforez kaplı karbon çelik'),
+  'Aksiyal Fan | Soğutma Kulesi Yedek Parça | Ensotek',
+  'Soğutma kulesi aksiyal fan: hava akışını sağlar, dolgulardan geçirip fan bacasından atmosfere atar. PP/CTP/Alüminyum seçenekleri.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1505-2222-4222-8222-bbbbbbbb1505', 'tr',
+  'Su Dağıtım Sistemi',
+  'su-dagitim-sistemi',
+  'Su dağıtım sistemi, kule içinde damlalık (drift eliminator) ile dolgu malzemesi arasında konumlanır ve tesisten gelen sıcak suyun dolgular üzerine eşit şekilde dağıtılmasını sağlar. Su sıcaklığı 55°C nin altındaysa ana boru ve by-pass hattı PVC malzemeden; daha yüksek sıcaklıklarda ise PP veya CTP (FRP) malzemeden uygulanır. Ana boru ve by-pass, sızdırmaz bağlantı ile üretilir; bakımda kolayca sökülüp takılabilir.',
+  'Soğutma kulesi su dağıtım sistemi yedek parça',
+  JSON_ARRAY('yedek parça','su dağıtım','kolektör','by-pass','soğutma kulesi'),
+  JSON_OBJECT('konum','Damlalık ile dolgu arasında','sicaklikEsigi','55°C','malzeme55Alti','PVC','malzeme55Ustu','PP veya CTP (FRP)','baglanti','Sızdırmaz; bakımda kes/ekle gerektirmez'),
+  'Su Dağıtım Sistemi | Soğutma Kulesi Yedek Parça | Ensotek',
+  'Soğutma kulesi su dağıtım sistemi: sıcak suyu dolgulara eşit dağıtır. 55°C altı PVC; yüksek sıcaklıkta PP/CTP.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1509-2222-4222-8222-bbbbbbbb1509', 'tr',
+  'PVC Petek Dolgu (Film Tipi)',
+  'pvc-petek-dolgu-film-tipi',
+  'PVC film tipi petek dolgu, soğutma kulelerinde su ve havanın ısı alışverişi için gerekli ısı transfer yüzeyini oluşturur. Plakalar vakumla şekillendirilir ve paket (bale) haline getirilerek blok olarak kullanılır. Maksimum 55°C sıcaklığa kadar, suyun temiz olduğu proseslerde tercih edilir. CF-12, CF-19, CF-30, CF-M ve CF-O tipleri bulunur.',
+  'Soğutma kulesi PVC petek dolgu yedek parça',
+  JSON_ARRAY('yedek parça','pvc petek dolgu','film dolgu','cf-12','cf-19','cf-30'),
+  JSON_OBJECT('malzeme','PVC','kullanimKosulu','Temiz su; maks. 55°C','tipler','CF-12, CF-19, CF-30, CF-M, CF-O','CF-30','Arıtma tesisleri için','CF-O','Çapraz akışlı kuleler için'),
+  'PVC Petek Dolgu (Film Tipi) | Soğutma Kulesi Yedek Parça | Ensotek',
+  'PVC film tipi petek dolgu: yüksek yüzey alanı ile verimli ısı transferi. Temiz su ve 55°C altı; CF-12/19/30/M/O seçenekleri.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1513-2222-4222-8222-bbbbbbbb1513', 'tr',
+  'Hava Giriş Panjuru',
+  'hava-giris-panjuru',
+  'Hava giriş panjurları, kulenin gövdesinde soğuk su havuzu ile dolgu seviyesi arasında yer alır. Kuleye giren havayı yönlendirerek dolgu yüzeyine homojen dağılımı sağlar, havuzdan sıçrayan su kaybını azaltır ve yosun oluşumunu düşürür. Lameller 1. sınıf PVC den çekme sistemiyle üretilir; minimum hava direnci sağlayan özel forma sahiptir. İstenirse FRP (CTP) malzemeden de üretilebilir.',
+  'Soğutma kulesi hava giriş panjuru yedek parça',
+  JSON_ARRAY('yedek parça','hava giriş panjuru','louver','lamel','soğutma kulesi'),
+  JSON_OBJECT('malzeme','PVC (1. sınıf) / opsiyon: FRP (CTP)','amac','Hava yönlendirme; sıçrama kaybını azaltma; yosun önleme','tasarim','Minimum hava direncili lamel formu','uyumluluk','Yerli ve ithal paket kule tipleri'),
+  'Hava Giriş Panjuru | Soğutma Kulesi Yedek Parça | Ensotek',
+  'Hava giriş panjuru: havayı yönlendirir, su sıçrama kaybını ve yosun oluşumunu azaltır. PVC lamel; opsiyonel FRP.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+)
+ON DUPLICATE KEY UPDATE
+  `title`            = VALUES(`title`),
+  `description`      = VALUES(`description`),
+  `specifications`   = VALUES(`specifications`),
+  `meta_title`       = VALUES(`meta_title`),
+  `meta_description` = VALUES(`meta_description`),
+  `updated_at`       = CURRENT_TIMESTAMP(3);
+
+-- =============================================================
+-- SPARE PARTS I18N — EN
+-- =============================================================
+
+INSERT INTO `product_i18n` (
+  `product_id`, `locale`, `title`, `slug`, `description`,
+  `alt`, `tags`, `specifications`, `meta_title`, `meta_description`,
+  `created_at`, `updated_at`
+) VALUES
+(
+  'bbbb1501-2222-4222-8222-bbbbbbbb1501', 'en',
+  'Motor and Reducer (Fan Group)',
+  'motor-and-reducer-fan-group',
+  'The motor and reducer operate as a group with the fan and fan stack on the tower deck. They are among the most critical components of a water cooling tower. Units with fan diameter Ø ≤ 1600 mm may use only an electric motor; larger units use motor and reducer together. Fan peripheral speed is 52–60 m/s. Motors and reducers are used in V1 vertical flange configuration. Motors are Class F insulated and IP56 protected against dust, oil and moisture.',
+  'Cooling tower motor and reducer spare part',
+  JSON_ARRAY('spare part','motor','reducer','fan group','cooling tower'),
+  JSON_OBJECT('fanSpeed','52–60 m/s','fanDiameterNote','Ø ≤ 1600 mm: motor only | larger: motor + reducer','mounting','V1 vertical flange','insulation','Class F','protection','IP56'),
+  'Motor and Reducer | Cooling Tower Spare Parts | Ensotek',
+  'Motor and reducer group operating with fan and fan stack. IP56, Class F insulation, 52–60 m/s peripheral speed.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1503-2222-4222-8222-bbbbbbbb1503', 'en',
+  'Cooling Tower Axial Fan',
+  'cooling-tower-axial-fan',
+  'The axial fan is installed in the fan shaft at the top of the tower. It drives airflow through the tower to enable evaporative cooling. Air is drawn through louvers, passes through the fill media and is discharged to the atmosphere through the fan stack. Fan blades can be manufactured from glass-fiber reinforced PP, FRP (CTP), aluminum pultrusion profiles or PP. Various cooling tower fan types are available.',
+  'Cooling tower axial fan spare part',
+  JSON_ARRAY('spare part','fan','axial fan','fan group','cooling tower'),
+  JSON_OBJECT('location','Top fan shaft / fan stack area','bladeMaterials','Glass fiber reinforced PP | FRP (CTP) | Aluminum pultrusion | PP','connectionPlate','Aluminum pultrusion or cataphoresis-coated carbon steel'),
+  'Axial Fan | Cooling Tower Spare Parts | Ensotek',
+  'Cooling tower axial fan: drives airflow through louvers and fill media. PP/CTP/Aluminum blade options.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1505-2222-4222-8222-bbbbbbbb1505', 'en',
+  'Water Distribution System',
+  'water-distribution-system',
+  'The water distribution system is located inside the tower between the drift eliminator and the fill media. It ensures uniform distribution of hot water from the plant onto the fills. When water temperature is below 55°C the main pipe and bypass are applied in PVC; for higher temperatures PP or FRP (CTP) is used. The main pipe and bypass are produced with leak-tight connections for easy maintenance without cutting or splicing.',
+  'Cooling tower water distribution system spare part',
+  JSON_ARRAY('spare part','water distribution','collector','bypass','cooling tower'),
+  JSON_OBJECT('location','Between drift eliminator and fill media','temperatureThreshold','55°C','materialBelow55C','PVC','materialAbove55C','PP or FRP (CTP)','connection','Leak-tight; no cutting/splicing for maintenance'),
+  'Water Distribution System | Cooling Tower Spare Parts | Ensotek',
+  'Cooling tower water distribution system: distributes hot water uniformly onto fill media. PVC below 55°C; PP/FRP above 55°C.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1509-2222-4222-8222-bbbbbbbb1509', 'en',
+  'PVC Film Fill',
+  'pvc-film-fill',
+  'PVC film fill provides the heat transfer surface required for water-to-air exchange in cooling towers. Sheets are vacuum-formed and assembled into blocks (bales) for installation. Used in clean-water processes up to 55°C. High surface area yields superior efficiency. Types available: CF-12, CF-19, CF-30, CF-M and CF-O. CF-30 is common in wastewater treatment; CF-O is used in crossflow towers.',
+  'Cooling tower PVC film fill spare part',
+  JSON_ARRAY('spare part','PVC film fill','fill media','CF-12','CF-19','CF-30'),
+  JSON_OBJECT('material','PVC','recommendedProcess','Clean water; up to 55°C','types','CF-12, CF-19, CF-30, CF-M, CF-O','CF-30','Wastewater treatment (biological)','CF-O','Crossflow towers'),
+  'PVC Film Fill | Cooling Tower Spare Parts | Ensotek',
+  'PVC film fill for clean-water processes up to 55°C. Available in CF-12/19/30/M/O types.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1513-2222-4222-8222-bbbbbbbb1513', 'en',
+  'Air Inlet Louvers',
+  'air-inlet-louvers',
+  'Air inlet louvers are installed on the tower casing between the cold-water basin and the fill level. They direct incoming air for uniform distribution across the fill, reduce splash water losses from the basin, and limit sunlight to reduce algae formation. Louvers are manufactured from first-grade PVC with a special low-resistance profile. FRP option available on request. Suitable for packaged tower types.',
+  'Cooling tower air inlet louvers spare part',
+  JSON_ARRAY('spare part','air inlet louvers','louver','splash loss','cooling tower'),
+  JSON_OBJECT('material','First-grade PVC / optional: FRP','purpose','Air guidance; reduce splash loss; reduce algae','design','Special low-resistance louver profile','compatibility','Packaged tower types'),
+  'Air Inlet Louvers | Cooling Tower Spare Parts | Ensotek',
+  'Air inlet louvers guide airflow, reduce splash losses and help limit algae growth. PVC standard; optional FRP.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+)
+ON DUPLICATE KEY UPDATE
+  `title`            = VALUES(`title`),
+  `description`      = VALUES(`description`),
+  `specifications`   = VALUES(`specifications`),
+  `meta_title`       = VALUES(`meta_title`),
+  `meta_description` = VALUES(`meta_description`),
+  `updated_at`       = CURRENT_TIMESTAMP(3);
+
+-- =============================================================
+-- SPARE PARTS I18N — DE
+-- =============================================================
+
+INSERT INTO `product_i18n` (
+  `product_id`, `locale`, `title`, `slug`, `description`,
+  `alt`, `tags`, `specifications`, `meta_title`, `meta_description`,
+  `created_at`, `updated_at`
+) VALUES
+(
+  'bbbb1501-2222-4222-8222-bbbbbbbb1501', 'de',
+  'Motor und Getriebe (Lüftergruppe)',
+  'motor-und-getriebe-lueftergruppe',
+  'Motor und Getriebe arbeiten an der Turmspitze gemeinsam mit Ventilator und Ventilatorstapel. Sie übernehmen eine zentrale Aufgabe im Kühlturm. Türme mit Ventilatordurchmesser Ø ≤ 1600 mm werden nur mit Elektromotor verwendet; größere Anlagen mit Motor und Getriebe. Umfangsgeschwindigkeit: 52–60 m/s. Einbau in V1-Position als vertikale Flanschausführung. Schutzart IP56, Isolationsklasse F gegen Staub, Öl und Feuchtigkeit.',
+  'Kühlturm Motor und Getriebe Ersatzteil',
+  JSON_ARRAY('ersatzteil','motor','getriebe','lueftergruppe','kuehlturm'),
+  JSON_OBJECT('umfangsgeschwindigkeit','52–60 m/s','durchmesserHinweis','Ø ≤ 1600 mm: nur Motor | größer: Motor + Getriebe','montage','V1 vertikale Flanschausführung','isolation','Klasse F','schutzart','IP56'),
+  'Motor und Getriebe | Kühlturm Ersatzteile | Ensotek',
+  'Motor- und Getriebeeinheit für Kühltürme: IP56, Klasse F, 52–60 m/s Umfangsgeschwindigkeit.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1503-2222-4222-8222-bbbbbbbb1503', 'de',
+  'Axialventilator (Lüfter) für Kühltürme',
+  'axialventilator-fuer-kuehltuerme',
+  'Der Axialventilator befindet sich im Lüfterschacht oben auf dem Turm. Er sorgt dafür, dass die Luft durch den Turm strömt und damit die Verdunstungskühlung wirksam wird. Luft wird über Jalousien angesaugt, strömt durch die Füllkörper und wird über den Lüfterkamin ausgestoßen. Flügel werden aus glasfaserverstärktem PP, FRP (CTP), Aluminium-Pultrusionsprofil oder PP gefertigt.',
+  'Axialventilator für Kühltürme Ersatzteil',
+  JSON_ARRAY('ersatzteil','axialventilator','luefter','lueftergruppe','kuehlturm'),
+  JSON_OBJECT('einbauort','Lüfterschacht oben am Turm','fluegelMaterial','Glasfaserverstärktes PP | FRP (CTP) | Aluminium-Pultrusionsprofil | PP','verbindung','Aluminium-Pultrusionsprofil oder kataphoretisch beschichteter Kohlenstoffstahl'),
+  'Axialventilator | Kühlturm Ersatzteile | Ensotek',
+  'Axialventilator für Kühltürme: führt Luft durch Füllkörper und Lüfterkamin. Mehrere Materialoptionen.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1505-2222-4222-8222-bbbbbbbb1505', 'de',
+  'Wasserverteilungssystem',
+  'wasserverteilungssystem',
+  'Das Wasserverteilungssystem befindet sich im Turm zwischen Tropfenabscheider und Füllkörpern. Es sorgt für die gleichmäßige Verteilung von heißem Wasser auf die Füllungen. Unter 55°C bestehen Hauptrohr und Bypass aus PVC; bei höheren Temperaturen aus PP oder FRP (CTP). Dichtende Verbindungen ermöglichen einfache Montage/Demontage ohne Schneiden.',
+  'Wasserverteilungssystem für Kühltürme Ersatzteil',
+  JSON_ARRAY('ersatzteil','wasserverteilung','sammler','bypass','kuehlturm'),
+  JSON_OBJECT('einbauort','Zwischen Tropfenabscheider und Füllkörpern','temperaturSchwelle','55°C','materialUnter55C','PVC','materialUeber55C','PP oder FRP (CTP)','verbindung','Dichtend; ohne Schneiden montierbar'),
+  'Wasserverteilungssystem | Kühlturm Ersatzteile | Ensotek',
+  'Wasserverteilungssystem: gleichmäßige Verteilung auf Füllkörper. PVC unter 55°C, PP/FRP darüber.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1509-2222-4222-8222-bbbbbbbb1509', 'de',
+  'PVC Folienfüllung (Filmfüllung)',
+  'pvc-folienfuellung-filmfuellung',
+  'Die PVC-Folienfüllung bildet die Wärmeübertragungsfläche im Kühlturm. Die Folienplatten werden im Vakuum geformt und zu Blöcken zusammengefügt. Einsatz in Prozessen mit sauberem Wasser bis 55°C. Typen: CF-12, CF-19, CF-30, CF-M und CF-O. CF-30 für Kläranlagen; CF-O für Querstromkühltürme.',
+  'Kühlturm PVC Folienfüllung Ersatzteil',
+  JSON_ARRAY('ersatzteil','pvc folienfuellung','filmfuellung','cf-12','cf-19','cf-30'),
+  JSON_OBJECT('material','PVC','einsatz','Sauberes Wasser; bis 55°C','typen','CF-12, CF-19, CF-30, CF-M, CF-O','CF-30','Kläranlagen (biologisch)','CF-O','Querstromkühltürme'),
+  'PVC Folienfüllung | Kühlturm Ersatzteile | Ensotek',
+  'PVC Filmfüllung für sauberes Wasser bis 55°C. Typen CF-12/19/30/M/O verfügbar.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'bbbb1513-2222-4222-8222-bbbbbbbb1513', 'de',
+  'Lufteinlasslamellen',
+  'lufteinlasslamellen',
+  'Lufteinlasslamellen befinden sich am Turmkörper zwischen Kaltwasserbecken und Füllhöhe. Sie führen die einströmende Luft gleichmäßig über den Füllkörper, reduzieren Spritzwasserverluste und begrenzen Sonnenlicht zur Verringerung der Algenbildung. Lamellen aus PVC (1. Klasse) mit minimalem Luftwiderstand; optional FRP. Geeignet für Paketkühltürme.',
+  'Lufteinlasslamellen für Kühltürme Ersatzteil',
+  JSON_ARRAY('ersatzteil','lufteinlasslamellen','louver','spritzwasser','kuehlturm'),
+  JSON_OBJECT('material','PVC (1. Klasse) / optional: FRP','zweck','Luftführung; Spritzwasser reduzieren; Algen verringern','design','Lamellenprofil mit minimalem Luftwiderstand','kompatibilitaet','Paketkühltürme'),
+  'Lufteinlasslamellen | Kühlturm Ersatzteile | Ensotek',
+  'Lufteinlasslamellen: Luftführung, Spritzwasserverluste und Algenbildung reduzieren. PVC Standard, optional FRP.',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+)
+ON DUPLICATE KEY UPDATE
+  `title`            = VALUES(`title`),
+  `description`      = VALUES(`description`),
+  `specifications`   = VALUES(`specifications`),
+  `meta_title`       = VALUES(`meta_title`),
+  `meta_description` = VALUES(`meta_description`),
+  `updated_at`       = CURRENT_TIMESTAMP(3);
+
 SET FOREIGN_KEY_CHECKS = 1;

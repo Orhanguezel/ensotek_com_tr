@@ -246,7 +246,10 @@
     "details": "Detaylar",
     "empty": "Henüz ürün eklenmemiş.",
     "backToList": "Tüm Ürünler",
-    "detailLabel": "Ürün Detayı"
+    "detailLabel": "Ürün Detayı",
+    "sparePartsLabel": "Yedek Parçalar",
+    "sparePartsTitle": "Yedek Parça Kataloğu",
+    "sparePartsSubtitle": "Soğutma kulesi sistemleri için orijinal yedek parçalar."
   },
   "gallery": {
     "label": "Galeri",

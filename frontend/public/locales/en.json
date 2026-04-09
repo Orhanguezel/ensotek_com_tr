@@ -246,7 +246,10 @@
     "details": "Details",
     "empty": "No products added yet.",
     "backToList": "All Products",
-    "detailLabel": "Product Detail"
+    "detailLabel": "Product Detail",
+    "sparePartsLabel": "Spare Parts",
+    "sparePartsTitle": "Spare Parts Catalog",
+    "sparePartsSubtitle": "Original spare parts for cooling tower systems."
   },
   "gallery": {
     "label": "Gallery",

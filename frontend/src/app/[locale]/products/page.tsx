@@ -29,10 +29,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-async function fetchProducts(locale: string): Promise<Product[]> {
+async function fetchProductsByType(locale: string, itemType: string): Promise<Product[]> {
   try {
     const res = await fetch(
-      `${API_BASE_URL}/products?item_type=cooling_tower&is_active=1&locale=${locale}`,
+      `${API_BASE_URL}/products?item_type=${itemType}&is_active=1&locale=${locale}`,
       { next: { revalidate: 3600 } },
     );
     if (!res.ok) return [];
@@ -43,18 +43,51 @@ async function fetchProducts(locale: string): Promise<Product[]> {
   }
 }
 
+function ProductGrid({ products, locale, detailsLabel }: { products: Product[]; locale: string; detailsLabel: string }) {
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-(--color-border)">
+      {products.map((product, i) => (
+        <Reveal key={product.id} delay={i * 80}>
+          <div className="product-card-et group h-full">
+            <div className="h-48 bg-gradient-to-br from-(--panel) to-(--steel)" />
+            <div className="p-6 flex flex-col flex-1">
+              <h2 className="text-lg font-semibold text-(--white) mb-2 font-[family-name:var(--font-display)] uppercase tracking-wide group-hover:text-(--cyan) transition-colors">
+                {product.title}
+              </h2>
+              <p className="text-sm text-(--mist) leading-relaxed flex-1 mb-4">
+                {product.summary ?? product.description ?? ''}
+              </p>
+              <Link
+                href={`/products/${product.slug}`}
+                locale={locale}
+                className="text-xs text-(--cyan) hover:text-(--cyan-glow) transition-colors inline-flex items-center gap-2 uppercase tracking-wider"
+              >
+                {detailsLabel} <ArrowRight size={12} />
+              </Link>
+            </div>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
 export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!hasLocale(locale)) notFound();
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'products' });
-  const products = await fetchProducts(locale);
+  const [coolingTowers, spareParts] = await Promise.all([
+    fetchProductsByType(locale, 'product'),
+    fetchProductsByType(locale, 'sparepart'),
+  ]);
 
   return (
     <div className="pt-24">
       <div className="section-py">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {/* Cooling Towers Section */}
           <Reveal>
             <SectionHeader
               label={t('label')}
@@ -64,32 +97,24 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
             />
           </Reveal>
 
-          {products.length === 0 ? (
+          {coolingTowers.length === 0 ? (
             <p className="text-(--mist) text-center py-16">{t('empty')}</p>
           ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-(--color-border)">
-              {products.map((product, i) => (
-                <Reveal key={product.id} delay={i * 80}>
-                  <div className="product-card-et group h-full">
-                    <div className="h-48 bg-gradient-to-br from-(--panel) to-(--steel)" />
-                    <div className="p-6 flex flex-col flex-1">
-                      <h2 className="text-lg font-semibold text-(--white) mb-2 font-[family-name:var(--font-display)] uppercase tracking-wide group-hover:text-(--cyan) transition-colors">
-                        {product.title}
-                      </h2>
-                      <p className="text-sm text-(--mist) leading-relaxed flex-1 mb-4">
-                        {product.summary ?? product.description ?? ''}
-                      </p>
-                      <Link
-                        href={`/products/${product.slug}`}
-                        locale={locale}
-                        className="text-xs text-(--cyan) hover:text-(--cyan-glow) transition-colors inline-flex items-center gap-2 uppercase tracking-wider"
-                      >
-                        {t('details')} <ArrowRight size={12} />
-                      </Link>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
+            <ProductGrid products={coolingTowers} locale={locale} detailsLabel={t('details')} />
+          )}
+
+          {/* Spare Parts Section */}
+          {spareParts.length > 0 && (
+            <div className="mt-24">
+              <Reveal>
+                <SectionHeader
+                  label={t('sparePartsLabel')}
+                  title={t('sparePartsTitle')}
+                  description={t('sparePartsSubtitle')}
+                  className="mb-16"
+                />
+              </Reveal>
+              <ProductGrid products={spareParts} locale={locale} detailsLabel={t('details')} />
             </div>
           )}
         </div>
