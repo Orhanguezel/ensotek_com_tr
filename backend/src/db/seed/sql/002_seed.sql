@@ -155,15 +155,15 @@ INSERT INTO `storage_assets` (
 ) VALUES (
   'c9d7df58-8aa5-4f1f-9e3f-2ebea7ac1001',
   NULL,
-  'cooling-tower-about.jpg',
+  'kap.jpg',
   'uploads',
-  'cooling-tower-about.jpg',
+  'kap.jpg',
   'about',
   'image/jpeg',
   9094,
   270,
   300,
-  'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321365/products/cover/closed-circuit-cooling-tower-1-250x250-1.png',
+  '/uploads/kap.jpg',
   NULL,
   'local',
   NULL,
@@ -207,7 +207,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
     'feature2',    'İstanbul ofisi ve Ankara fabrikasıyla tam entegre üretim kapasitesi',
     'feature3',    '40''tan fazla ülkede proje deneyimi ve teknik destek',
     'feature4',    '7/24 servis ve bakım desteği',
-    'image_url',   'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321365/products/cover/closed-circuit-cooling-tower-1-250x250-1.png',
+    'image_url',   '/uploads/kap.jpg',
     'storage_asset_id', 'c9d7df58-8aa5-4f1f-9e3f-2ebea7ac1001'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'about_content', 'en', JSON_OBJECT(
@@ -218,7 +218,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
     'feature2',    'Fully integrated production capacity with Istanbul office and Ankara factory',
     'feature3',    'Project experience and technical support in 40+ countries',
     'feature4',    '24/7 service and maintenance support',
-    'image_url',   'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321365/products/cover/closed-circuit-cooling-tower-1-250x250-1.png',
+    'image_url',   '/uploads/kap.jpg',
     'storage_asset_id', 'c9d7df58-8aa5-4f1f-9e3f-2ebea7ac1001'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'about_content', 'de', JSON_OBJECT(
@@ -229,7 +229,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
     'feature2',    'Vollintegrierte Produktionskapazität mit Istanbul-Büro und Ankara-Fabrik',
     'feature3',    'Projekterfahrung und technischer Support in 40+ Ländern',
     'feature4',    '24/7 Service und Wartungsunterstützung',
-    'image_url',   'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321365/products/cover/closed-circuit-cooling-tower-1-250x250-1.png',
+    'image_url',   '/uploads/kap.jpg',
     'storage_asset_id', 'c9d7df58-8aa5-4f1f-9e3f-2ebea7ac1001'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
 
@@ -407,7 +407,7 @@ INSERT INTO `products` (
   'aaaa0003-1111-4111-8111-aaaaaaaa0003',
   'bbbb0201-1111-4111-8111-bbbbbbbb0201',
   0.00,
-  'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321365/products/cover/closed-circuit-cooling-tower-1-250x250-1.png',
+  '/uploads/kap.jpg',
   NULL,
   JSON_ARRAY(
     'https://www.ensotek.de/uploads/material/closed-circuit-cooling-tower-1-250x250-1.jpg',

@@ -11,7 +11,7 @@ interface Props {
 
 export function AboutSection({ aboutContent }: Props) {
   const t = useTranslations('home.about');
-  const aboutImageUrl = aboutContent?.image_url ?? 'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321365/products/cover/closed-circuit-cooling-tower-1-250x250-1.png';
+  const aboutImageUrl = aboutContent?.image_url ?? '/uploads/kap.jpg';
   const features = aboutContent
     ? [aboutContent.feature1, aboutContent.feature2, aboutContent.feature3, aboutContent.feature4].filter(Boolean) as string[]
     : Array.from({ length: 4 }, (_, i) => t(`feature${i + 1}`));
