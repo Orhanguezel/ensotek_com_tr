@@ -29,9 +29,9 @@ export function Footer({ contactInfo }: Props) {
                 <Image
                   src="/logo.png"
                   alt="Ensotek"
-                  width={160}
-                  height={46}
-                  className="h-10 w-auto object-contain brightness-0 invert"
+                  width={176}
+                  height={67}
+                  className="h-14 w-auto object-contain brightness-0 invert"
                 />
               </Link>
             </div>

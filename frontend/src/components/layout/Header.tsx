@@ -44,9 +44,9 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="Ensotek"
-              width={180}
-              height={56}
-              className="h-14 w-auto object-contain brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+              width={176}
+              height={67}
+              className="h-16.75 w-auto object-contain brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
               priority
             />
           </Link>
