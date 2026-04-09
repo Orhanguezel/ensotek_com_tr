@@ -88,12 +88,12 @@ export function Footer({ contactInfo }: Props) {
             © {year} Ensotek. {t('rights')}
           </p>
           <a
-            href="https://guzelwebdesign.com"
+            href="https://guezelwebdesign.com"
             target="_blank"
             rel="noreferrer"
             className="text-xs text-(--silver) hover:text-(--cyan) transition-colors"
           >
-            GWD | guzelwebdesign.com
+            GWD | guezelwebdesign.com
           </a>
         </div>
       </div>
