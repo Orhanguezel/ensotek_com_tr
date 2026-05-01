@@ -1,0 +1,21 @@
+{
+  "name": "ensotek-com-tr-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "backend",
+    "admin_panel",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "bun run --cwd backend dev",
+    "build:backend": "bun run --cwd backend build",
+    "dev:admin": "bun run --cwd admin_panel dev",
+    "build:admin": "bun run --cwd admin_panel build",
+    "dev:frontend": "bun run --cwd frontend dev",
+    "build:frontend": "bun run --cwd frontend build",
+    "build:all": "bun run --cwd backend build && bun run --cwd frontend build && bun run --cwd admin_panel build",
+    "db:seed": "bun run --cwd backend db:seed"
+  }
+}
