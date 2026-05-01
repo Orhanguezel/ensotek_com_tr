@@ -1,0 +1,62 @@
+/* ============================================================
+   Brand Logo — Ekosistem Ortak CSS
+   Kaynak: @ensotek/shared-config/brand-logo.css
+
+   Upload tarafı image-trim.ts ile zaten logo'nun etrafındaki
+   beyaz/şeffaf padding'i kırptı. Bu CSS ikinci katman savunma:
+   - Eski yüklenmiş (kırpılmamış) logolar için margin telafisi
+   - Sayfa boyutlarına göre responsive yükseklik
+   - Header / footer / hero kullanımları için tek sınıf
+
+   Her projenin globals.css'i:
+     @import '@ensotek/shared-config/brand-logo.css';
+
+   HTML:
+     <a class="eco-brand" href="/">
+       <img src="/logo.png" alt="..." class="eco-brand-logo" />
+     </a>
+
+   Varyantlar:
+     .eco-brand-logo           → default header (44px)
+     .eco-brand-logo--md       → 64px (geniş header)
+     .eco-brand-logo--lg       → 96px (hero)
+     .eco-brand-logo--footer   → 140px
+   ============================================================ */
+
+.eco-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 0;                 /* img satır yüksekliğinin fazlalığını kes */
+  color: inherit;
+}
+
+.eco-brand-logo {
+  display: block;
+  height: 44px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;            /* backend'de trim edildi — contain güvenli */
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+
+.eco-brand-logo--md { height: 64px; max-width: 280px; }
+.eco-brand-logo--lg { height: 96px; max-width: 360px; }
+.eco-brand-logo--footer { height: 140px; max-width: 420px; }
+
+/* Fallback: eski yüklenmiş (trim edilmemiş) logolar için ek kırpma.
+   İhtiyaç duyan proje attribute ekler: <img data-untrimmed="true">
+   Burada negatif margin ile görsel padding absorbe edilir. */
+.eco-brand-logo[data-untrimmed="true"] {
+  object-fit: cover;
+  margin-block: -12%;
+}
+
+@media (max-width: 640px) {
+  .eco-brand-logo { height: 36px; max-width: 160px; }
+  .eco-brand-logo--md { height: 48px; }
+  .eco-brand-logo--lg { height: 64px; }
+  .eco-brand-logo--footer { height: 96px; }
+}

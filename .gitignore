@@ -38,3 +38,6 @@ uploads/
 
 # TypeScript cache
 *.tsbuildinfo
+
+# PM2 production config — VPS-managed
+backend/ecosystem.config.cjs
