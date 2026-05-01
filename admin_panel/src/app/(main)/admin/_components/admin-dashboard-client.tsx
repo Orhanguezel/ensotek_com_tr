@@ -12,14 +12,14 @@ import * as React from "react";
 
 import Link from "next/link";
 
-import { RefreshCcw } from "lucide-react";
+import { Plus, RefreshCcw } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import { useAdminUiCopy } from "@/app/(main)/admin/_components/common/useAdminUiCopy";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Button, buttonVariants } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Skeleton } from "@ensotek/shared-ui/admin/ui/skeleton";
 import { useGetDashboardSummaryAdminQuery } from "@/integrations/hooks";
 import type { DashboardSummaryItem } from "@/integrations/shared";
 
@@ -54,6 +54,14 @@ const ROUTE_MAP: Record<string, string> = {
   chat: "/admin/chat",
   telegram: "/admin/telegram",
 };
+
+const QUICK_CREATE_ACTIONS = [
+  { key: "product", href: "/admin/products/new", labelKey: "admin.dashboard.quick.product", fallback: "+ Yeni ürün" },
+  { key: "reference", href: "/admin/references/new", labelKey: "admin.dashboard.quick.reference", fallback: "+ Yeni referans" },
+  { key: "blog", href: "/admin/custompage/new?module=blog", labelKey: "admin.dashboard.quick.blog", fallback: "+ Yeni blog yazısı" },
+  { key: "testimonial", href: "/admin/reviews/new", labelKey: "admin.dashboard.quick.testimonial", fallback: "+ Yeni testimonial" },
+  { key: "project", href: "/admin/projects/new", labelKey: "admin.dashboard.quick.project", fallback: "+ Yeni proje" },
+];
 
 function getErrMessage(err: unknown): string {
   const anyErr = err as any;
@@ -108,17 +116,42 @@ export default function AdminDashboardClient() {
   }, [q.data, copy.nav?.items, page, t, dashboardMeta]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-1">
-          <h1 className="font-semibold text-lg">{dashboardMeta?.title || page?.title || t("admin.dashboard.title")}</h1>
-          <p className="text-muted-foreground text-sm">{page?.subtitle || t("admin.dashboard.subtitle")}</p>
+          <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-primary text-xs font-semibold tracking-wider uppercase [html[data-theme-preset=premium]_&]:flex">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
+            </span>
+            Premium Experience
+          </div>
+          <h1 className="font-bold text-2xl tracking-tight [html[data-theme-preset=premium]_&]:font-fraunces">
+            {dashboardMeta?.title || page?.title || t("admin.dashboard.title")}
+          </h1>
+          <p className="text-muted-foreground text-sm">
+            {page?.subtitle || t("admin.dashboard.subtitle")}
+          </p>
         </div>
 
         <Button type="button" variant="outline" size="sm" onClick={() => q.refetch()} disabled={q.isFetching}>
           <RefreshCcw className={`mr-2 size-4${q.isFetching ? "animate-spin" : ""}`} />
           {copy.common?.actions?.refresh || t("admin.common.refresh")}
         </Button>
+      </div>
+
+      <div className="flex flex-wrap gap-3">
+        {QUICK_CREATE_ACTIONS.map((action) => (
+          <Link
+            key={action.key}
+            href={action.href}
+            prefetch={false}
+            className={buttonVariants({ variant: "premium", size: "sm", className: "rounded-full px-6" })}
+          >
+            <Plus className="mr-2 size-4" />
+            {t(action.labelKey as any, undefined, action.fallback)}
+          </Link>
+        ))}
       </div>
 
       {/* Loading skeleton */}

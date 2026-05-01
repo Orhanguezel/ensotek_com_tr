@@ -1,6 +1,6 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
 import { COLOR_TOKEN_LABELS, type ColorTokens, THEME_COLOR_HEX_PLACEHOLDER } from "@/integrations/shared";
 
 export type ColorFieldProps = {

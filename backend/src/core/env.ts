@@ -27,7 +27,7 @@ const STORAGE_DRIVER = (RAW_STORAGE_DRIVER === 'local' ? 'local' : 'cloudinary')
 
 export const env = {
   NODE_ENV: process.env.NODE_ENV ?? 'development',
-  PORT: toInt(process.env.PORT, 8087),
+  PORT: toInt(process.env.PORT, 8088),
 
   STORAGE_DRIVER,
   LOCAL_STORAGE_ROOT: process.env.LOCAL_STORAGE_ROOT || '',

@@ -9,14 +9,14 @@ import { AlertCircle, FileText, Link2, Loader2, Upload } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Checkbox } from "@ensotek/shared-ui/admin/ui/checkbox";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import { useImportSqlFileMutation, useImportSqlTextMutation, useImportSqlUrlMutation } from "@/integrations/hooks";
 
 import { askConfirm } from "../shared/confirm";

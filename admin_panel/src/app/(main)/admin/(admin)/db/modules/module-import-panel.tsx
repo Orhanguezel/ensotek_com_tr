@@ -6,13 +6,13 @@ import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent } from "@ensotek/shared-ui/admin/ui/card";
+import { Checkbox } from "@ensotek/shared-ui/admin/ui/checkbox";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import { useImportModuleSqlMutation } from "@/integrations/hooks";
 
 import { askConfirm } from "../shared/confirm";

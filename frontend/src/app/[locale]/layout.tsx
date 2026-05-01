@@ -1,67 +1,65 @@
 import type { Metadata } from 'next';
-import { Oswald, Playfair_Display, Barlow } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { getLocaleMessages, hasLocale } from '@/i18n/locales';
+import { AVAILABLE_LOCALES, FALLBACK_LOCALE, getLocaleMessages, hasLocale } from '@/i18n/locales';
 import { fetchActiveLocales } from '@/i18n/server';
-import { ThemeBootScript } from '@/scripts/theme-boot';
-import { THEME_TEMPLATE, THEME_INTENT } from '@/theme/templates';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ClientShell } from '@/components/layout/ClientShell';
-import { API_BASE_URL } from '@/lib/utils';
+import { API_BASE_URL, SITE_URL } from '@/lib/utils';
 import type { ContactInfo } from '@/lib/api';
-import '@/styles/globals.css';
-
-const fontDisplay = Oswald({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const fontSerif = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-serif',
-  display: 'swap',
-});
-
-const fontSans = Barlow({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-sans',
-  display: 'swap',
-});
 
 export async function generateStaticParams() {
   const locales = await fetchActiveLocales();
   return locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Ensotek — Endüstriyel Soğutma Kulesi Sistemleri',
-    template: '%s | Ensotek',
-  },
-  description: 'Açık devre, kapalı devre ve evaporatif soğutma kuleleri. ISO 9001 sertifikalı, 39+ yıl deneyim. Türkiye\'nin en büyük soğutma kulesi üretim tesisi.',
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/ensotek_icon_192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/ensotek_icon_512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { rel: 'apple-touch-icon', url: '/ensotek-apple-icon-512.png' },
-    ],
-  },
-};
+function buildLanguageAlternates(pathname: string): Record<string, string> {
+  const path = pathname === '/' ? '' : pathname;
+  const map: Record<string, string> = {};
+  for (const locale of AVAILABLE_LOCALES) {
+    map[locale] = `${SITE_URL}/${locale}${path}`;
+  }
+  map['x-default'] = `${SITE_URL}/${FALLBACK_LOCALE}${path}`;
+  return map;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const safeLocale = hasLocale(locale) ? locale : FALLBACK_LOCALE;
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: 'Ensotek — Endüstriyel Soğutma Kulesi Sistemleri',
+      template: '%s — Ensotek',
+    },
+    description: 'Açık devre, kapalı devre ve evaporatif soğutma kuleleri. ISO 9001 sertifikalı, 40+ yıl deneyim. Türkiye\'nin en büyük soğutma kulesi üretim tesisi.',
+    alternates: {
+      canonical: `${SITE_URL}/${safeLocale}`,
+      languages: buildLanguageAlternates('/'),
+    },
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/favicon.svg', type: 'image/svg+xml' },
+        { url: '/ensotek_icon_192.png', sizes: '192x192', type: 'image/png' },
+        { url: '/ensotek_icon_512.png', sizes: '512x512', type: 'image/png' },
+      ],
+      apple: [
+        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
+      other: [
+        { rel: 'apple-touch-icon', url: '/ensotek-apple-icon-512.png' },
+      ],
+    },
+  };
+}
 
 async function fetchContactInfo(locale: string): Promise<ContactInfo> {
   try {
@@ -94,28 +92,75 @@ export default async function LocaleLayout({
     Promise.resolve(getLocaleMessages(locale)),
     fetchContactInfo(locale),
   ]);
+  const orgSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#org`,
+        name: 'Ensotek',
+        legalName: 'ENSOTEK Su Soğutma Kuleleri ve Teknolojileri Mühendislik San. Tic. Ltd. Şti.',
+        url: SITE_URL,
+        logo: `${SITE_URL}/ensotek_icon_512.png`,
+        description:
+          'Endüstriyel soğutma kuleleri, CTP/FRP kule üretimi, mühendislik, montaj, bakım ve modernizasyon hizmetleri.',
+        foundingDate: '1985',
+        telephone: contactInfo.phone || '+90 212 613 33 01',
+        email: contactInfo.email || 'ensotek@ensotek.com.tr',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress:
+            contactInfo.address || 'Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41',
+          addressLocality: contactInfo.city || 'Esenler / İstanbul',
+          addressCountry: contactInfo.country || 'TR',
+        },
+        numberOfEmployees: { '@type': 'QuantitativeValue', minValue: 50, maxValue: 200 },
+        sameAs: [
+          'https://www.linkedin.com/company/ensotek-su-so-utma-kuleleri-ltd-ti-/',
+          'https://www.youtube.com/@ensotek',
+          'https://www.instagram.com/ensotek/',
+          'https://www.facebook.com/ensotek',
+        ],
+        knowsAbout: [
+          'Soğutma kulesi',
+          'CTP soğutma kulesi',
+          'FRP cooling tower',
+          'Kapalı devre soğutma',
+          'Endüstriyel proses soğutma',
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        name: 'Ensotek Türkiye',
+        url: SITE_URL,
+        publisher: { '@id': `${SITE_URL}/#org` },
+        inLanguage: ['tr', 'en'],
+      },
+    ],
+  };
 
   return (
-    <html
-      lang={locale}
-      data-theme-mode="dark"
-      data-theme-preset="default"
-      data-theme-template={THEME_TEMPLATE}
-      data-theme-intent={THEME_INTENT}
-      className={`${fontDisplay.variable} ${fontSerif.variable} ${fontSans.variable}`}
-      suppressHydrationWarning
-    >
-      <head>
-        <ThemeBootScript />
-      </head>
-      <body suppressHydrationWarning>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          <main>{children}</main>
-          <Footer contactInfo={contactInfo} />
-          <ClientShell />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.setAttribute('lang', ${JSON.stringify(locale)});`,
+        }}
+      />
+      <script
+        id="jsonld-org-website"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema).replace(/</g, '\\u003c') }}
+      />
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <Header />
+        <main>{children}</main>
+        <Footer contactInfo={contactInfo} />
+        <ClientShell
+          whatsappNumber={contactInfo.phone_2 || contactInfo.phone}
+          whatsappMessage="Merhaba, Ensotek soğutma kulesi çözümleri hakkında bilgi almak istiyorum."
+        />
+      </NextIntlClientProvider>
+    </>
   );
 }

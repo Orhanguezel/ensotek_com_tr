@@ -13,7 +13,7 @@ export function HeroSection({ heroStats }: Props) {
   const locale = useLocale();
 
   const STATS = [
-    { key: 'years',     value: heroStats?.years     ?? '39+' },
+    { key: 'years',     value: heroStats?.years     ?? '40+' },
     { key: 'towers',    value: heroStats?.towers    ?? '3000+' },
     { key: 'countries', value: heroStats?.countries ?? '40+' },
   ];

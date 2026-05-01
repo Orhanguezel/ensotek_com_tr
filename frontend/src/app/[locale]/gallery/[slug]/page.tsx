@@ -1,18 +1,20 @@
 import type { Metadata } from 'next';
-import { setRequestLocale } from 'next-intl/server';
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { hasLocale } from '@/i18n/locales';
 import { notFound } from 'next/navigation';
 import { API_BASE_URL, SITE_URL, resolvePublicAssetUrl } from '@/lib/utils';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
-import type { Gallery } from '@/lib/api';
+import type { Gallery, GalleryImage } from '@/lib/api';
+import { SectionHeader } from '@/components/patterns/SectionHeader';
+import { Reveal } from '@/components/motion/Reveal';
+import { GalleryGrid } from '@/components/gallery/GalleryGrid';
 
 async function fetchGallery(slug: string, locale: string): Promise<Gallery | null> {
   try {
     const res = await fetch(
-      `${API_BASE_URL}/gallery/by-slug/${encodeURIComponent(slug)}?locale=${locale}`,
-      { next: { revalidate: 3600 } },
+      `${API_BASE_URL}/galleries/${encodeURIComponent(slug)}?locale=${locale}`,
+      { cache: 'no-store' },
     );
     if (!res.ok) return null;
     return res.json();
@@ -27,10 +29,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!gallery) return {};
   return {
     title: gallery.meta_title ?? gallery.title,
-    description: gallery.meta_description ?? gallery.summary ?? undefined,
+    description: gallery.meta_description ?? gallery.description ?? gallery.summary ?? undefined,
     alternates: {
       canonical: `${SITE_URL}/${locale}/gallery/${slug}`,
-      languages: { tr: `${SITE_URL}/tr/gallery/${slug}`, en: `${SITE_URL}/en/gallery/${slug}`, 'x-default': `${SITE_URL}/tr/gallery/${slug}` },
+      languages: {
+        tr: `${SITE_URL}/tr/galeri/${slug}`,
+        en: `${SITE_URL}/en/gallery/${slug}`,
+        'x-default': `${SITE_URL}/tr/galeri/${slug}`,
+      },
     },
   };
 }
@@ -47,31 +53,37 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 
   if (!gallery) notFound();
 
+  const imageUrls = (gallery.images ?? [])
+    .map((img: GalleryImage) => resolvePublicAssetUrl(img.image_url ?? img.url ?? null))
+    .filter((v): v is string => Boolean(v));
+
   return (
     <div className="pt-24">
       <div className="section-py">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <Link href="/gallery" locale={locale} className="inline-flex items-center gap-2 text-xs text-(--silver) hover:text-(--cyan) transition-colors uppercase tracking-wider mb-10">
-            <ArrowLeft size={14} /> {t('backToList')}
-          </Link>
-          <span className="section-label-et">{t('detailLabel')}</span>
-          <h1 className="section-title-et">{gallery.title}</h1>
-          {gallery.summary && <p className="section-subtitle-et mb-10">{gallery.summary}</p>}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <Link
+              href="/gallery"
+              locale={locale}
+              className="mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-wider text-(--color-text-muted) transition-colors hover:text-(--color-accent)"
+            >
+              <ArrowLeft size={14} /> {t('backToList')}
+            </Link>
+          </Reveal>
 
-          {gallery.images && gallery.images.length > 0 && (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-(--color-border)">
-              {gallery.images.map((img) => (
-                <div key={img.id} className="aspect-video relative overflow-hidden bg-(--panel)">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={resolvePublicAssetUrl(img.url) ?? ''}
-                    alt={img.alt ?? gallery.title}
-                    className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
+          <Reveal delay={60}>
+            <SectionHeader
+              label={t('label')}
+              title={gallery.title}
+              description={gallery.description ?? gallery.summary ?? undefined}
+              className="mb-16"
+            />
+          </Reveal>
+
+          {imageUrls.length > 0 && (
+            <Reveal delay={120}>
+              <GalleryGrid images={imageUrls} alt={gallery.title} />
+            </Reveal>
           )}
         </div>
       </div>

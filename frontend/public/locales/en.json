@@ -4,18 +4,22 @@
     "howItWorks": "How It Works",
     "types": "Tower Types",
     "products": "Products",
+    "blog": "Knowledge Base",
     "gallery": "Gallery",
     "references": "References",
     "contact": "Contact",
-    "contactCta": "Get a Quote"
+    "contactCta": "Get a Quote",
+    "catalogCta": "Catalog"
   },
   "footer": {
-    "description": "Ensotek has been manufacturing open circuit, closed circuit and evaporative cooling tower systems for over 39 years. Turkey's largest cooling tower manufacturer.",
+    "description": "Ensotek has been manufacturing open circuit, closed circuit and evaporative cooling tower systems for over 40 years. Turkey's largest cooling tower manufacturer.",
     "products": "Products",
     "company": "Company",
     "gallery": "Gallery",
     "references": "References",
+    "blog": "Knowledge Base",
     "contact": "Contact",
+    "groupCompanies": "Group Companies: MOE Kompozit",
     "contactTitle": "Contact",
     "address": "Istanbul, Turkey",
     "phone": "+90 212 613 33 01",
@@ -35,7 +39,7 @@
       "line1": "Industrial",
       "line2": "Cooling",
       "line3": "Systems",
-      "subtitle": "39+ years of expertise in open circuit, closed circuit and evaporative cooling systems. Turkey's largest cooling tower production facility. ISO 9001 certified.",
+      "subtitle": "40+ years of expertise in open circuit, closed circuit and evaporative cooling systems. Turkey's largest cooling tower production facility. ISO 9001 certified.",
       "cta1": "Explore Products",
       "cta2": "Get a Quote",
       "stat": {
@@ -56,7 +60,7 @@
     },
     "about": {
       "label": "About Us",
-      "title": "39 Years of Industrial Excellence",
+      "title": "40 Years of Industrial Excellence",
       "description": "Ensotek has been ISO 9001 certified since 1986 and has completed over 3,000 cooling tower installations. Operating Turkey's largest cooling tower production facility with offices in Istanbul and a factory in Ankara.",
       "feature1": "ISO 9001:2015 quality management system certification",
       "feature2": "Fully integrated production capacity with Istanbul office and Ankara factory",
@@ -167,12 +171,12 @@
       "countriesServed": "Countries Served",
       "stat": {
         "projects": { "value": "3000+", "label": "Completed Projects" },
-        "experience": { "value": "39+", "label": "Years Experience" },
+        "experience": { "value": "40+", "label": "Years Experience" },
         "capacity": { "value": "500+", "label": "MW Cooling Capacity" }
       }
     },
     "testimonial": {
-      "quote": "Ensotek's cooling tower systems performed far beyond expectations at our facility. The technical team's installation and maintenance support was excellent. Their 39 years of experience truly shows.",
+      "quote": "Ensotek's cooling tower systems performed far beyond expectations at our facility. The technical team's installation and maintenance support was excellent. Their 40 years of experience truly shows.",
       "author": "Ahmet Yilmaz",
       "company": "Technical Director, Energy Corp."
     },
@@ -258,6 +262,15 @@
     "subtitle": "Projects completed worldwide.",
     "empty": "No references added yet."
   },
+  "blog": {
+    "label": "Knowledge Base",
+    "title": "Cooling Tower Knowledge Base",
+    "subtitle": "Engineering notes on selection, maintenance, water treatment and material technology.",
+    "articleLabel": "Technical Article",
+    "readMore": "Read",
+    "backToList": "All Articles",
+    "empty": "No articles added yet."
+  },
   "common": {
     "loading": "Loading...",
     "error": "An error occurred",
@@ -284,6 +297,10 @@
     "references": {
       "title": "References — Ensotek",
       "description": "Ensotek customer references and completed projects."
+    },
+    "blog": {
+      "title": "Knowledge Base — Ensotek",
+      "description": "Cooling tower selection, Legionella prevention, CTP/FRP body and industrial maintenance guides."
     },
     "contact": {
       "title": "Contact — Ensotek",

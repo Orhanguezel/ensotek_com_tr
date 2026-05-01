@@ -15,8 +15,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent } from "@ensotek/shared-ui/admin/ui/card";
 import { useCreateSliderAdminMutation, useUpdateSliderAdminMutation } from "@/integrations/hooks";
 import type { SliderAdminDto } from "@/integrations/shared";
 

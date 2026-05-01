@@ -316,6 +316,7 @@
         "passwordLabel": "Şifre",
         "passwordPlaceholder": "••••••••",
         "rememberMe": "30 gün boyunca beni hatırla",
+        "forgotPassword": "Şifremi unuttum",
         "loginButton": "Giriş Yap",
         "loggingIn": "Giriş yapılıyor...",
         "loginSuccess": "Başarıyla giriş yapıldı.",
@@ -413,7 +414,18 @@
         "metaDescription": "Meta Açıklama",
         "tags": "Etiketler"
       },
-      "delete": "Delete"
+      "delete": "Sil",
+      "passive": "Pasif",
+      "all": "Tümü",
+      "category": "Kategori",
+      "subcategory": "Alt Kategori",
+      "language": "Dil",
+      "featured": "Öne Çıkan",
+      "order": "Sıra",
+      "published": "Yayın",
+      "viewsShort": "Görünt.",
+      "downloads": "İndirme",
+      "date": "Tarih"
     },
     "slider": {
       "header": {
@@ -799,7 +811,7 @@
         "themePresetPlaceholder": "Ön ayar",
         "fonts": "Yazı Tipleri",
         "fontsPlaceholder": "Yazı tipi seç",
-        "language": "Dil",
+        "language": "Arayüz Dili",
         "themeMode": "Tema Modu",
         "pageLayout": "Sayfa Düzeni",
         "navbarBehavior": "Navbar Davranışı",
@@ -823,7 +835,6 @@
           "icon": "İkon",
           "offcanvas": "Dışarıdan"
         },
-        "language": "Arayüz Dili",
         "languagePlaceholder": "Dil seçin"
       },
       "groups": {

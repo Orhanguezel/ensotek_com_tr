@@ -15,6 +15,7 @@ import { toast } from "sonner";
 
 import { type AdminLocaleOption, AdminLocaleSelect } from "@/app/(main)/admin/_components/common/AdminLocaleSelect";
 import { useAdminLocales } from "@/app/(main)/admin/_components/common/useAdminLocales";
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import { useAdminUiCopy } from "@/app/(main)/admin/_components/common/useAdminUiCopy";
 import {
   AlertDialog,
@@ -26,12 +27,12 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
 import {
   useCreateSkillCounterAdminMutation,
   useListSkillCountersAdminQuery,
@@ -61,6 +62,7 @@ function getErrMsg(e: unknown): string {
 
 export default function AdminSkillCounterDetailClient({ id }: { id: string }) {
   const router = useRouter();
+  const t = useAdminT();
   const { copy } = useAdminUiCopy();
   const page = copy.pages?.skills ?? {};
   const _common = copy.common;
@@ -289,9 +291,9 @@ export default function AdminSkillCounterDetailClient({ id }: { id: string }) {
                   />
                   <Label htmlFor="is_active" className="cursor-pointer text-sm">
                     {formData.is_active ? (
-                      <Badge variant="default">Aktif</Badge>
+                      <Badge variant="default">{t("common.active")}</Badge>
                     ) : (
-                      <Badge variant="secondary">Pasif</Badge>
+                      <Badge variant="secondary">{t("common.passive")}</Badge>
                     )}
                   </Label>
                 </div>
@@ -450,8 +452,8 @@ export default function AdminSkillCounterDetailClient({ id }: { id: string }) {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>İptal</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDeleteConfirm}>Sil</AlertDialogAction>
+            <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteConfirm}>{t("common.delete")}</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

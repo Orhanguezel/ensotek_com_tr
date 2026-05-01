@@ -1,0 +1,43 @@
+# Ensotek Turkiye - Endustriyel Sogutma Kuleleri
+> 39+ yil deneyim, 3000+ kurulum ve 40+ ulkede satis. Turkiye merkezli endustriyel sogutma kulesi ureticisi ve servis saglayicisi.
+
+## Hakkimizda
+Ensotek, 1985'ten bu yana endustriyel sogutma kulesi sektorunde uretim, muhendislik, montaj ve servis hizmetleri verir. Istanbul ofisi ve Ankara uretim altyapisi ile enerji, celik, petrokimya, cimento, gida, ilac, otomotiv, tekstil ve veri merkezi sektorlerine hizmet sunar.
+
+## Urun Kategorileri
+- CTP / FRP sogutma kuleleri: acik devre, counterflow ve crossflow tasarimlar.
+- Kapali devre sogutma kuleleri: proses akiskanini dis ortamdan ayiran sistemler.
+- Beton sogutma kuleleri: buyuk kapasite enerji ve agir sanayi uygulamalari.
+- Hibrit ve kuru sogutma kuleleri: su tasarrufu odakli cozumler.
+- Yedek parcalar: sprey nozulu, drift eliminatoru, dolgu, fan kanadi, su dagitim sistemi.
+- SCADA sistemleri: uzaktan izleme, performans takibi ve enerji optimizasyonu.
+
+## Hizmetler
+- Muhendislik ve boyutlandirma.
+- Bakim, kontrol, temizlik ve dezenfeksiyon.
+- Modernizasyon, rehabilitasyon ve retrofit.
+- 7/24 teknik destek ve acil servis.
+
+## Sertifikalar
+ISO 9001:2015, ISO 14001:2015, ISO 45001:2018, CE, EAC ve CTI uyeligi.
+
+## Iletisim
+- Website: https://www.ensotek.com.tr
+- Telefon: +90 212 613 33 01
+- WhatsApp: +90 531 880 31 51
+- E-posta: ensotek@ensotek.com.tr, export@ensotek.com.tr
+- Adres: Oruc Reis Mah. Tekstilkent Sit. A17 Blok No:41, 34235 Esenler / Istanbul
+
+## Kardes Markalar
+- MOE Kompozit: https://karbonkompozit.com.tr
+- Ensotek Almanya: https://www.ensotek.de
+- Kuhlturm: https://kuhlturm.com
+
+## Dokumantasyon Hiyerarsisi
+- /tr/urunler: urun katalogu.
+- /tr/referanslar: musteri referanslari.
+- /tr/galeri: proje ve urun gorselleri.
+- /tr/iletisim: iletisim ve teklif formu.
+
+## Anahtar Teknik Konular
+Sogutma kulesi secimi, CTP vs beton, FRP cooling tower, Legionella onleme, kapasite hesaplama, yas termometre sicakligi, drift eliminator, dolgu malzemesi, blowdown, makeup water, enerji verimliligi, modernizasyon, retrofit, 7/24 acil servis.

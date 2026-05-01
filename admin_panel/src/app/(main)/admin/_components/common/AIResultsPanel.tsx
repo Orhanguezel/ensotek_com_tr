@@ -6,7 +6,7 @@
 
 import { X } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
 
 import type { LocaleContent } from "./useAIContentAssist";
 

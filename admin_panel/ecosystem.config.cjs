@@ -1,15 +1,15 @@
 // =============================================================
-// Ensotek - admin_panel PM2 config
-// cwd: /var/www/Ensotek/admin_panel (source + build live here)
+// Ensotek - ensotek_com_tr/admin_panel PM2 config
+// cwd: /var/www/Ensotek/ensotek_com_tr/admin_panel (source + build live here)
 // =============================================================
 
 module.exports = {
   apps: [
     {
-      name: 'ensotek-admin-panel',
-      cwd: '/var/www/Ensotek/admin_panel',
+      name: 'ensotek-com-tr-admin-panel',
+      cwd: '/var/www/Ensotek/ensotek_com_tr/admin_panel',
       script: '/usr/local/bin/bun',
-      args: 'run start -- -p 3022 -H 127.0.0.1',
+      args: 'run start -- -p 3024 -H 127.0.0.1',
       exec_mode: 'fork',
       instances: 1,
       watch: false,
@@ -22,7 +22,7 @@ module.exports = {
       listen_timeout: 10000,
       env: {
         NODE_ENV: 'production',
-        PORT: '3022',
+        PORT: '3024',
         HOSTNAME: '127.0.0.1',
         NEXT_TELEMETRY_DISABLED: '1',
       },

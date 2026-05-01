@@ -3,15 +3,18 @@ import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { hasLocale } from '@/i18n/locales';
 import { notFound } from 'next/navigation';
-import { API_BASE_URL, SITE_URL } from '@/lib/utils';
+import { API_BASE_URL, SITE_URL, resolvePublicAssetUrl } from '@/lib/utils';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
 import type { Product } from '@/lib/api';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { DatasheetRequestButton } from '@/components/products/DatasheetRequestButton';
+import { ProductGallery } from '@/components/products/ProductGallery';
 
-async function fetchProduct(slug: string, locale: string): Promise<Product | null> {
+async function fetchByItemType(slug: string, locale: string, itemType: 'product' | 'sparepart'): Promise<Product | null> {
   try {
     const res = await fetch(
-      `${API_BASE_URL}/products/by-slug/${encodeURIComponent(slug)}?item_type=cooling_tower&locale=${locale}`,
+      `${API_BASE_URL}/products/by-slug/${encodeURIComponent(slug)}?item_type=${itemType}&locale=${locale}`,
       { next: { revalidate: 3600 } },
     );
     if (!res.ok) return null;
@@ -19,6 +22,32 @@ async function fetchProduct(slug: string, locale: string): Promise<Product | nul
   } catch {
     return null;
   }
+}
+
+async function fetchProduct(slug: string, locale: string): Promise<Product | null> {
+  const product = await fetchByItemType(slug, locale, 'product');
+  if (product) return product;
+  return fetchByItemType(slug, locale, 'sparepart');
+}
+
+function jsonLdProduct(product: Product, locale: string, slug: string) {
+  const image = product.image_url
+    ? product.image_url.startsWith('http')
+      ? product.image_url
+      : `${SITE_URL}${product.image_url.startsWith('/') ? '' : '/'}${product.image_url}`
+    : undefined;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.title,
+    description: product.meta_description ?? product.summary ?? product.description ?? undefined,
+    image,
+    url: `${SITE_URL}/${locale}/products/${slug}`,
+    brand: { '@type': 'Brand', name: 'Ensotek' },
+    manufacturer: { '@type': 'Organization', name: 'Ensotek' },
+    category: 'Endüstriyel soğutma kulesi',
+  };
 }
 
 export async function generateMetadata({
@@ -58,11 +87,33 @@ export default async function ProductDetailPage({
   ]);
 
   if (!product) notFound();
+  const productSchema = jsonLdProduct(product, locale, slug);
+  const hasSpecs = product.specifications && Object.keys(product.specifications).length > 0;
+
+  const heroImage = resolvePublicAssetUrl(product.image_url);
+  const galleryThumbs = (product.images ?? [])
+    .map((img) => resolvePublicAssetUrl(img))
+    .filter((v): v is string => Boolean(v) && v !== heroImage);
+  const fallbackHero = !heroImage ? galleryThumbs[0] : undefined;
+  const cover = heroImage ?? fallbackHero;
+  const thumbs = heroImage ? galleryThumbs : galleryThumbs.slice(1);
 
   return (
     <div className="pt-24">
+      <script
+        id={`jsonld-product-${slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema).replace(/</g, '\\u003c') }}
+      />
       <div className="section-py">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { label: locale === 'tr' ? 'Ana Sayfa' : 'Home', href: '/' },
+              { label: t('backToList'), href: '/products' },
+              { label: product.title, href: { pathname: '/products/[slug]', params: { slug } } },
+            ]}
+          />
           <Link
             href="/products"
             locale={locale}
@@ -76,11 +127,32 @@ export default async function ProductDetailPage({
           {product.summary && (
             <p className="section-subtitle-et mb-8">{product.summary}</p>
           )}
+
+          {cover && (
+            <ProductGallery hero={cover} thumbs={thumbs} alt={product.alt ?? product.title} />
+          )}
+
+          <div className="mb-10 flex flex-wrap gap-3">
+            <DatasheetRequestButton locale={locale} productTitle={product.title} productSlug={slug} />
+          </div>
           {product.content && (
             <div
               className="prose prose-invert max-w-none text-(--mist)"
               dangerouslySetInnerHTML={{ __html: product.content }}
             />
+          )}
+          {hasSpecs && (
+            <div className="mt-12 border border-(--color-border)">
+              {Object.entries(product.specifications!).slice(0, 12).map(([key, value], index) => (
+                <div
+                  key={key}
+                  className={`grid gap-3 border-b border-(--color-border) px-5 py-4 last:border-b-0 md:grid-cols-[220px_1fr] ${index % 2 === 0 ? 'bg-(--panel)' : 'bg-transparent'}`}
+                >
+                  <div className="text-xs font-semibold uppercase tracking-wider text-(--cyan)">{key}</div>
+                  <div className="text-sm text-(--mist)">{value}</div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
       </div>

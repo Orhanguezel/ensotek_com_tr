@@ -16,14 +16,14 @@ import { toast } from "sonner";
 import { type AdminLocaleOption, AdminLocaleSelect } from "@/app/(main)/admin/_components/common/AdminLocaleSelect";
 import { useAdminLocales } from "@/app/(main)/admin/_components/common/useAdminLocales";
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader } from "@ensotek/shared-ui/admin/ui/card";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ensotek/shared-ui/admin/ui/select";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@ensotek/shared-ui/admin/ui/table";
 import {
   useDeleteProductAdminMutation,
   useListProductCategoriesAdminQuery,

@@ -27,7 +27,7 @@ export function TowerTypesSection() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-0.5 bg-(--color-border)">
           {TYPES.map((type, i) => (
             <Reveal key={type.key} delay={i * 80}>
-              <div className="bg-(--void) hover:bg-(--panel) transition-all duration-300 p-8 group cursor-default">
+              <div className="flex h-full min-h-[340px] flex-col bg-(--void) p-8 transition-all duration-300 group cursor-default hover:bg-(--panel) lg:min-h-[380px]">
                 <div className="flex items-start justify-between mb-6">
                   <div className="border border-(--cyan) w-14 h-14 flex items-center justify-center">
                     <span className="text-sm font-bold text-(--cyan) font-[family-name:var(--font-display)] tracking-wider">

@@ -43,6 +43,14 @@ export const THEME_PRESET_OPTIONS = [
       dark: "oklch(0.64 0.17 36.44)",
     },
   },
+  {
+    label: "Premium",
+    value: "premium",
+    primary: {
+      light: "#e8a598",
+      dark: "#e8a598",
+    },
+  },
 ] as const;
 
 export const THEME_PRESET_VALUES = THEME_PRESET_OPTIONS.map((p) => p.value);

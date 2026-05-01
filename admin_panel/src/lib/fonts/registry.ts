@@ -11,6 +11,7 @@ import {
   Plus_Jakarta_Sans,
   Poppins,
   Roboto,
+  Fraunces,
 } from "next/font/google";
 
 const inter = Inter({
@@ -77,6 +78,11 @@ const greatVibes = Great_Vibes({
   variable: "--font-great-vibes",
 });
 
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+});
+
 export const fontRegistry = {
   inter: {
     label: "Inter",
@@ -125,6 +131,10 @@ export const fontRegistry = {
   greatVibes: {
     label: "Great Vibes",
     font: greatVibes,
+  },
+  fraunces: {
+    label: "Fraunces",
+    font: fraunces,
   },
 } as const;
 

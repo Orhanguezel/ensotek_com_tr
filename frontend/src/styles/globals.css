@@ -103,6 +103,7 @@ html[data-theme-mode='light'] .header-shell-scrolled {
 /* --- RESET & BASE --- */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--navbar-h, 96px) + 24px);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -305,7 +306,7 @@ body {
 
 /* --- FOOTER --- */
 .footer-et {
-  background: var(--deep);
+  background: var(--color-bg-secondary);
   padding: 3.5rem 0 5rem;
   border-top: 1px solid var(--color-border);
 }
@@ -339,6 +340,26 @@ body {
     justify-content: space-between;
     text-align: left;
   }
+}
+
+.footer-socials-et {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer-socials-et a {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.footer-socials-et a:hover,
+.footer-socials-et a:focus-visible {
+  color: var(--color-accent);
 }
 
 /* --- REVEAL ANIMATIONS --- */
@@ -383,23 +404,107 @@ body {
   justify-content: space-between;
   font-family: var(--font-display), sans-serif;
   font-size: 1.1rem;
-  color: var(--light);
+  color: var(--color-text-primary);
   border-bottom: 1px solid var(--color-border);
   transition: color 0.3s ease;
 }
 
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
 .faq-item summary:hover {
-  color: var(--cyan);
+  color: var(--color-accent);
 }
 
 .faq-item[open] summary {
-  color: var(--cyan);
+  color: var(--color-accent);
 }
 
 .faq-item[open] .faq-content {
   padding: 1.5rem 0;
-  color: var(--mist);
+  color: var(--color-text-secondary);
   line-height: 1.8;
+}
+
+/* --- THEMED PROSE (token-based, works in light & dark) --- */
+.prose-themed {
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  font-size: 0.95rem;
+  max-width: none;
+}
+
+.prose-themed > * + * {
+  margin-top: 1em;
+}
+
+.prose-themed p {
+  color: var(--color-text-secondary);
+}
+
+.prose-themed h1,
+.prose-themed h2,
+.prose-themed h3,
+.prose-themed h4 {
+  color: var(--color-text-primary);
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose-themed h2 { font-size: 1.5rem; }
+.prose-themed h3 { font-size: 1.25rem; }
+
+.prose-themed strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.prose-themed a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  text-underline-offset: 3px;
+}
+
+.prose-themed a:hover {
+  color: var(--cyan-glow);
+  text-decoration-color: var(--color-accent);
+}
+
+.prose-themed ul,
+.prose-themed ol {
+  padding-left: 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+.prose-themed ul { list-style: disc; }
+.prose-themed ol { list-style: decimal; }
+
+.prose-themed li::marker {
+  color: var(--color-accent);
+}
+
+.prose-themed li + li {
+  margin-top: 0.4em;
+}
+
+.prose-themed code {
+  background: var(--color-bg-panel);
+  color: var(--color-text-primary);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.prose-themed blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--color-text-muted);
 }
 
 /* --- CUSTOM SCROLLBAR --- */

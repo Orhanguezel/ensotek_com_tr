@@ -7,9 +7,9 @@ import type React from "react";
 import { useMemo, useState } from "react";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ensotek/shared-ui/admin/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
 
 import { ModuleExportPanel } from "./module-export-panel";
 import { ModuleImportPanel } from "./module-import-panel";

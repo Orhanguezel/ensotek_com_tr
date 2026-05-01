@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@ensotek/shared-ui/admin/ui/card";
 import { useStatusQuery } from "@/integrations/hooks";
 
 export type AdminDbAuthGateProps = {

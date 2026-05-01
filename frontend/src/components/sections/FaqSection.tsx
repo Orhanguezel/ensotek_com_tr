@@ -37,7 +37,7 @@ export function FaqSection({ faqItems }: Props) {
               <details className="faq-item group">
                 <summary>
                   <span>{item.question}</span>
-                  <span className="text-(--silver) group-open:rotate-45 transition-transform duration-200 text-xl leading-none select-none">
+                  <span className="text-(--color-text-muted) group-open:rotate-45 group-open:text-(--color-accent) transition-all duration-200 text-xl leading-none select-none">
                     +
                   </span>
                 </summary>

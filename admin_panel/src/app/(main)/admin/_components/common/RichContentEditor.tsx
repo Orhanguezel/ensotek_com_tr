@@ -29,12 +29,12 @@ import {
   Underline,
 } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader } from "@ensotek/shared-ui/admin/ui/card";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import { cn } from "@/lib/utils";
 
 export type RichContentEditorProps = {

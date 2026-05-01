@@ -4,9 +4,9 @@ import * as React from "react";
 
 import { toast } from "sonner";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
 import { useAdminTranslations } from "@/i18n";
 import { getSiteSettingsSmtpErrorMessage, type SiteSettingsSmtpTestResult } from "@/integrations/shared";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";

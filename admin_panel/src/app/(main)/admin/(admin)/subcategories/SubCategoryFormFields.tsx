@@ -5,6 +5,7 @@
 
 import type React from "react";
 
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import type { CategoryOption, LocaleOption } from "./SubCategoriesHeader";
 
 export type SubCategoryFormStateLike = {
@@ -44,11 +45,13 @@ export const SubCategoryFormFields: React.FC<SubCategoryFormFieldsProps> = ({
   onNameChange,
   onSlugChange,
 }) => {
+  const t = useAdminT();
+
   return (
     <div className="row g-2">
       {/* Dil */}
       <div className="col-md-4">
-        <label className="form-label small">Dil</label>
+        <label className="form-label small">{t("common.language")}</label>
         <select
           className="form-select form-select-sm"
           value={formState.locale}
@@ -65,7 +68,7 @@ export const SubCategoryFormFields: React.FC<SubCategoryFormFieldsProps> = ({
 
       {/* Üst kategori */}
       <div className="col-md-8">
-        <label className="form-label small">Üst Kategori (category_id)</label>
+        <label className="form-label small">{t("common.category")} (category_id)</label>
         <select
           className="form-select form-select-sm"
           value={formState.category_id}
@@ -142,7 +145,7 @@ export const SubCategoryFormFields: React.FC<SubCategoryFormFieldsProps> = ({
               disabled={disabled}
             />
             <label className="form-check-label" htmlFor="subcat-active">
-              Aktif
+              {t("common.active")}
             </label>
           </div>
           <div className="form-check form-switch">

@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import path from 'node:path';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
@@ -6,10 +7,17 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'standalone',
+  turbopack: {
+    root: path.resolve(process.cwd(), '../..'),
+  },
 
   async redirects() {
     return [
       { source: '/', destination: '/tr', permanent: false },
+      { source: '/tr/products/:path*', destination: '/tr/urunler/:path*', permanent: true },
+      { source: '/tr/references/:path*', destination: '/tr/referanslar/:path*', permanent: true },
+      { source: '/tr/contact', destination: '/tr/iletisim', permanent: true },
+      { source: '/tr/gallery/:path*', destination: '/tr/galeri/:path*', permanent: true },
     ];
   },
 
@@ -17,10 +25,14 @@ const nextConfig: NextConfig = {
     const backendBase = (
       process.env.BACKEND_INTERNAL_URL ||
       process.env.BACKEND_URL ||
-      'http://127.0.0.1:8087'
+      'http://127.0.0.1:8088'
     ).replace(/\/api\/?$/, '');
 
     return [
+      { source: '/tr/urunler/:path*', destination: '/tr/products/:path*' },
+      { source: '/tr/referanslar/:path*', destination: '/tr/references/:path*' },
+      { source: '/tr/iletisim', destination: '/tr/contact' },
+      { source: '/tr/galeri/:path*', destination: '/tr/gallery/:path*' },
       { source: '/uploads/:path*', destination: `${backendBase}/uploads/:path*` },
       { source: '/media/:path*',   destination: `${backendBase}/media/:path*` },
       { source: '/storage/:path*', destination: `${backendBase}/storage/:path*` },
@@ -35,8 +47,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'res.cloudinary.com' },
       { protocol: 'https', hostname: 'ensotek.com.tr' },
       { protocol: 'https', hostname: 'www.ensotek.com.tr' },
-      { protocol: 'http' as const, hostname: 'localhost', port: '8087' },
-      { protocol: 'http' as const, hostname: '127.0.0.1', port: '8087' },
+      { protocol: 'http' as const, hostname: 'localhost', port: '8088' },
+      { protocol: 'http' as const, hostname: '127.0.0.1', port: '8088' },
     ],
   },
 

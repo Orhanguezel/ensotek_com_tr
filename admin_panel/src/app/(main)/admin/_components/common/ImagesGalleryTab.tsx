@@ -7,8 +7,8 @@
 
 import { ImageOff, Trash2 } from "lucide-react";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
 
 import { AdminImageUploadField } from "./AdminImageUploadField";
 

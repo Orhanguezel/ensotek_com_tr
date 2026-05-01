@@ -16,14 +16,14 @@ import { toast } from "sonner";
 import { type AdminLocaleOption, AdminLocaleSelect } from "@/app/(main)/admin/_components/common/AdminLocaleSelect";
 import { useAdminLocales } from "@/app/(main)/admin/_components/common/useAdminLocales";
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader } from "@ensotek/shared-ui/admin/ui/card";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ensotek/shared-ui/admin/ui/select";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@ensotek/shared-ui/admin/ui/table";
 import {
   useListLibraryAdminQuery,
   useRemoveLibraryAdminMutation,
@@ -242,13 +242,13 @@ export default function LibraryListPanel() {
                 <TableHead className="w-[48px]">#</TableHead>
                 <TableHead>Ad / Slug</TableHead>
                 <TableHead className="w-[110px]">Tip</TableHead>
-                <TableHead className="w-[80px] text-center">Aktif</TableHead>
-                <TableHead className="w-[80px] text-center">Yayın</TableHead>
-                <TableHead className="w-[90px] text-center">Öne Çıkan</TableHead>
-                <TableHead className="w-[70px] text-center">Görünt.</TableHead>
-                <TableHead className="w-[70px] text-center">İndirme</TableHead>
-                <TableHead className="w-[60px] text-center">Sıra</TableHead>
-                <TableHead className="w-[110px] text-right">İşlemler</TableHead>
+                <TableHead className="w-[80px] text-center">{t("admin.common.active")}</TableHead>
+                <TableHead className="w-[80px] text-center">{t("admin.common.published", undefined, "Yayın")}</TableHead>
+                <TableHead className="w-[90px] text-center">{t("admin.common.featured")}</TableHead>
+                <TableHead className="w-[70px] text-center">{t("admin.common.viewsShort", undefined, "Görünt.")}</TableHead>
+                <TableHead className="w-[70px] text-center">{t("admin.common.downloads", undefined, "İndirme")}</TableHead>
+                <TableHead className="w-[60px] text-center">{t("admin.common.order")}</TableHead>
+                <TableHead className="w-[110px] text-right">{t("admin.common.actions")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

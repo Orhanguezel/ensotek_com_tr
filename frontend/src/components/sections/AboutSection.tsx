@@ -1,8 +1,9 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Reveal } from '@/components/motion/Reveal';
 import { SectionHeader } from '@/components/patterns/SectionHeader';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import type { AboutContent } from '@/lib/api';
+import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 
 export function AboutSection({ aboutContent }: Props) {
   const t = useTranslations('home.about');
+  const locale = useLocale();
   const aboutImageUrl = aboutContent?.image_url ?? '/uploads/kap.jpg';
   const features = aboutContent
     ? [aboutContent.feature1, aboutContent.feature2, aboutContent.feature3, aboutContent.feature4].filter(Boolean) as string[]
@@ -58,6 +60,14 @@ export function AboutSection({ aboutContent }: Props) {
                 </li>
               ))}
             </ul>
+            <Link
+              href="/about"
+              locale={locale}
+              className="mt-8 inline-flex items-center gap-2 text-xs text-(--cyan) hover:text-(--cyan-glow) transition-colors uppercase tracking-wider font-medium"
+            >
+              {locale === 'tr' ? 'Detayları gör' : locale === 'de' ? 'Details ansehen' : 'View details'}
+              <ArrowRight size={12} />
+            </Link>
           </Reveal>
         </div>
       </div>

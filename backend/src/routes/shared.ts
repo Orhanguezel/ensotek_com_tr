@@ -1,70 +1,76 @@
 // src/routes/shared.ts
-// @agro/shared-backend modüllerini kullanarak tüm ortak route'ları kaydeder.
+// @ensotek/shared-backend modüllerini kullanarak tüm ortak route'ları kaydeder.
 import type { FastifyInstance } from 'fastify';
 
 // Auth & kullanıcı
-import { registerAuth, registerUserAdmin } from '@agro/shared-backend/modules/auth';
+import { registerAuth, registerUserAdmin } from '@ensotek/shared-backend/modules/auth';
 
 // Dosya depolama
-import { registerStorage, registerStorageAdmin } from '@agro/shared-backend/modules/storage';
+import { registerStorage, registerStorageAdmin } from '@ensotek/shared-backend/modules/storage';
 
 // Kullanıcı profilleri
-import { registerProfiles } from '@agro/shared-backend/modules/profiles';
+import { registerProfiles } from '@ensotek/shared-backend/modules/profiles';
 
 // Site ayarları
-import { registerSiteSettings, registerSiteSettingsAdmin } from '@agro/shared-backend/modules/siteSettings';
+import { registerSiteSettings, registerSiteSettingsAdmin } from '@ensotek/shared-backend/modules/siteSettings';
 
 // Rol yönetimi
-import { registerUserRoles } from '@agro/shared-backend/modules/userRoles';
+import { registerUserRoles } from '@ensotek/shared-backend/modules/userRoles';
 
 // Health check
-import { registerHealth } from '@agro/shared-backend/modules/health';
+import { registerHealth } from '@ensotek/shared-backend/modules/health';
 
 // Bildirimler
-import { registerNotifications } from '@agro/shared-backend/modules/notifications';
+import { registerNotifications } from '@ensotek/shared-backend/modules/notifications';
 
 // Audit log
-import { registerAudit, registerAuditAdmin, registerAuditStream } from '@agro/shared-backend/modules/audit';
+import { registerAudit, registerAuditAdmin, registerAuditStream } from '@ensotek/shared-backend/modules/audit';
 
 // İletişim formu
-import { registerContacts, registerContactsAdmin } from '@agro/shared-backend/modules/contact';
+import { registerContacts, registerContactsAdmin } from '@ensotek/shared-backend/modules/contact';
+import { registerCatalogRequests, registerCatalogRequestsAdmin } from '@ensotek/shared-backend/modules/catalogRequests';
 
 // CMS sayfaları
-import { registerCustomPages, registerCustomPagesAdmin } from '@agro/shared-backend/modules/customPages';
+import { registerCustomPages, registerCustomPagesAdmin } from '@ensotek/shared-backend/modules/customPages';
 
 // Kategoriler & alt kategoriler
-import { registerCategories } from '@agro/shared-backend/modules/categories/router';
-import { registerCategoriesAdmin } from '@agro/shared-backend/modules/categories/admin.routes';
-import { registerSubCategories } from '@agro/shared-backend/modules/subcategories/router';
-import { registerSubCategoriesAdmin } from '@agro/shared-backend/modules/subcategories/admin.routes';
+import { registerCategories } from '@ensotek/shared-backend/modules/categories/router';
+import { registerCategoriesAdmin } from '@ensotek/shared-backend/modules/categories/admin.routes';
+import { registerSubCategories } from '@ensotek/shared-backend/modules/subcategories/router';
+import { registerSubCategoriesAdmin } from '@ensotek/shared-backend/modules/subcategories/admin.routes';
 
-// Tema
-import { registerTheme, registerThemeAdmin } from '@agro/shared-backend/modules/theme';
+// Tema (Project-local)
+import { registerThemeAdmin } from '../modules/theme/admin.routes';
+import { publicGetTheme } from '../modules/theme/admin.controller';
 
 // Telegram entegrasyonu
-import { registerTelegram, registerTelegramAdmin } from '@agro/shared-backend/modules/telegram';
+import { registerTelegram, registerTelegramAdmin } from '@ensotek/shared-backend/modules/telegram';
 
 // Email şablonları (sadece admin)
-import { registerEmailTemplatesAdmin } from '@agro/shared-backend/modules/emailTemplates/admin.routes';
+import { registerEmailTemplatesAdmin } from '@ensotek/shared-backend/modules/emailTemplates/admin.routes';
 
 // Ürünler (sogutma kulesi urunleri)
-import { registerProducts } from '@agro/shared-backend/modules/products/router';
-import { registerProductsAdmin } from '@agro/shared-backend/modules/products/admin.routes';
+import { registerProducts } from '@ensotek/shared-backend/modules/products/router';
+import { registerProductsAdmin } from '@ensotek/shared-backend/modules/products/admin.routes';
 
 // Galeri
-import { registerGallery } from '@agro/shared-backend/modules/gallery/router';
-import { registerGalleryAdmin } from '@agro/shared-backend/modules/gallery/admin.routes';
+import { registerGallery } from '@ensotek/shared-backend/modules/gallery/router';
+import { registerGalleryAdmin } from '@ensotek/shared-backend/modules/gallery/admin.routes';
 
 // Referanslar (proje referanslari)
-import { registerReferences } from '@agro/shared-backend/modules/references/router';
-import { registerReferencesAdmin } from '@agro/shared-backend/modules/references/admin.routes';
+import { registerReferences } from '@ensotek/shared-backend/modules/references/router';
+import { registerReferencesAdmin } from '@ensotek/shared-backend/modules/references/admin.routes';
+
+// Yorumlar / testimonial'lar
+import { registerReviews } from '@ensotek/shared-backend/modules/review/router';
+import { registerReviewsAdmin } from '@ensotek/shared-backend/modules/review/admin.routes';
 
 // Kütüphane (teknik dokumanlar, kataloglar)
-import { registerLibrary } from '@agro/shared-backend/modules/library/router';
-import { registerLibraryAdmin } from '@agro/shared-backend/modules/library/admin.routes';
+import { registerLibrary } from '@ensotek/shared-backend/modules/library/router';
+import { registerLibraryAdmin } from '@ensotek/shared-backend/modules/library/admin.routes';
 
 // Newsletter (sadece admin route'u var, public subscribe endpoint yok)
-import { registerNewsletterAdmin } from '@agro/shared-backend/modules/newsletter/admin.routes';
+import { registerNewsletterAdmin } from '@ensotek/shared-backend/modules/newsletter/admin.routes';
 
 export async function registerSharedPublic(api: FastifyInstance) {
   await registerAuth(api);
@@ -76,14 +82,16 @@ export async function registerSharedPublic(api: FastifyInstance) {
   await registerNotifications(api);
   await registerAudit(api);
   await registerContacts(api);
+  await registerCatalogRequests(api);
   await registerCustomPages(api);
   await registerCategories(api);
   await registerSubCategories(api);
-  await registerTheme(api);
+  await api.get('/theme', publicGetTheme);
   await registerTelegram(api);
   await registerProducts(api);
   await registerGallery(api);
   await registerReferences(api);
+  await registerReviews(api);
   await registerLibrary(api);
 }
 
@@ -93,6 +101,7 @@ export async function registerSharedAdmin(adminApi: FastifyInstance) {
     registerUserAdmin,
     registerStorageAdmin,
     registerContactsAdmin,
+    registerCatalogRequestsAdmin,
     registerCustomPagesAdmin,
     registerCategoriesAdmin,
     registerSubCategoriesAdmin,
@@ -104,12 +113,17 @@ export async function registerSharedAdmin(adminApi: FastifyInstance) {
     registerProductsAdmin,
     registerGalleryAdmin,
     registerReferencesAdmin,
+    registerReviewsAdmin,
     registerLibraryAdmin,
     registerNewsletterAdmin,
+    (await import('../modules/dashboard/admin.routes')).registerDashboardAdmin,
+    (await import('../modules/footerSections/admin.routes')).registerFooterSectionsAdmin,
+    (await import('../modules/faqs/admin.routes')).registerFaqsAdmin,
+    (await import('@ensotek/shared-backend/modules/menuItems/admin.routes')).registerMenuItemsAdmin,
   ]) {
     await adminApi.register(reg);
   }
 
-  const { aiContentAssist } = await import('@agro/shared-backend/modules/ai/content');
+  const { aiContentAssist } = await import('@ensotek/shared-backend/modules/ai/content');
   adminApi.post('/ai/content', aiContentAssist);
 }

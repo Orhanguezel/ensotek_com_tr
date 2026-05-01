@@ -8,11 +8,11 @@
 import React from "react";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription } from "@ensotek/shared-ui/admin/ui/alert";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import { useAdminTranslations } from "@/i18n";
 import { SITE_SETTINGS_SEO_PAGE_CONFIG, toStructuredObjectSeed } from "@/integrations/shared";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";

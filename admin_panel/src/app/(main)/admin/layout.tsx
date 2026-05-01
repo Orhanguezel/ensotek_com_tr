@@ -6,7 +6,7 @@
 import type { ReactNode } from "react";
 
 import { AppSidebar } from "@/app/(main)/admin/_components/sidebar/app-sidebar";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@ensotek/shared-ui/admin/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
@@ -16,11 +16,13 @@ import { AccountSwitcher } from "./_components/sidebar/account-switcher";
 import { AdminFooter } from "./_components/sidebar/admin-footer";
 import { LayoutControls } from "./_components/sidebar/layout-controls";
 import { ThemeSwitcher } from "./_components/sidebar/theme-switcher";
+import { PremiumBackground } from "./_components/premium-background";
 
 export default function Layout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <AdminAuthGate>
       <AdminSettingsProvider>
+        <PremiumBackground />
         {/* Gate inside; when ok, render layout */}
         <SidebarProvider defaultOpen>
           <AppSidebar
@@ -49,6 +51,7 @@ export default function Layout({ children }: Readonly<{ children: ReactNode }>) 
               className={cn(
                 "flex h-12 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12",
                 "[html[data-navbar-style=sticky]_&]:sticky [html[data-navbar-style=sticky]_&]:top-0 [html[data-navbar-style=sticky]_&]:z-50 [html[data-navbar-style=sticky]_&]:overflow-hidden [html[data-navbar-style=sticky]_&]:rounded-t-[inherit] [html[data-navbar-style=sticky]_&]:bg-background/50 [html[data-navbar-style=sticky]_&]:backdrop-blur-md",
+                "[html[data-theme-preset=premium]_&]:glass-panel [html[data-theme-preset=premium]_&]:border-b-primary/10",
               )}
             >
               <div className="flex w-full items-center justify-between px-4 lg:px-6">

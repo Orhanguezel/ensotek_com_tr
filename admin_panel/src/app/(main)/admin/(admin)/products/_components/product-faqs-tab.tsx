@@ -12,13 +12,14 @@ import { FileJson, Plus, RefreshCw, Save, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { AdminJsonEditor } from "@/app/(main)/admin/_components/common/AdminJsonEditor";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@ensotek/shared-ui/admin/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import {
   useListProductFaqsAdminQuery,
   useReplaceProductFaqsAdminMutation,
@@ -32,6 +33,7 @@ export type ProductFaqsTabProps = {
 };
 
 export function ProductFaqsTab({ productId, locale, disabled }: ProductFaqsTabProps) {
+  const t = useAdminT();
   const [items, setItems] = React.useState<AdminProductFaqCreatePayload[]>([]);
   const [viewMode, setViewMode] = React.useState<"form" | "json">("form");
 
@@ -151,8 +153,8 @@ export function ProductFaqsTab({ productId, locale, disabled }: ProductFaqsTabPr
                   <TableRow>
                     <TableHead className="w-[30%]">Soru</TableHead>
                     <TableHead>Cevap</TableHead>
-                    <TableHead className="w-17.5 text-center">Sıra</TableHead>
-                    <TableHead className="w-17.5 text-center">Aktif</TableHead>
+                    <TableHead className="w-17.5 text-center">{t("common.order")}</TableHead>
+                    <TableHead className="w-17.5 text-center">{t("common.active")}</TableHead>
                     <TableHead className="w-15" />
                   </TableRow>
                 </TableHeader>

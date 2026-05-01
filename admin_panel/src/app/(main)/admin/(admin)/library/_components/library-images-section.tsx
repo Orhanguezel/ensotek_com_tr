@@ -7,10 +7,10 @@ import { CheckCircle2, Copy, Image as ImageIcon, Loader2, Star, Trash2 } from "l
 import { toast } from "sonner";
 
 import { AdminImageUploadField } from "@/app/(main)/admin/_components/common/AdminImageUploadField";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
 import {
   useCreateLibraryImageAdminMutation,
   useListLibraryImagesAdminQuery,
@@ -30,7 +30,7 @@ export type LibraryImagesSectionProps = {
 
 const toStr = (v: unknown) => (v === null || v === undefined ? "" : String(v));
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || "http://localhost:8086";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || "http://localhost:8088";
 
 function resolveUrl(url: string) {
   if (!url) return "";

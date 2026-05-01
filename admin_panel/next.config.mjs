@@ -4,10 +4,11 @@ import path from 'node:path';
 const nextConfig = {
   reactCompiler: true,
   compiler: { removeConsole: process.env.NODE_ENV === 'production' },
+  transpilePackages: ['@ensotek/shared-ui'],
 
   // Workspace root — bun hoisting nedeniyle next paketi üst dizinde çözümlenir
   turbopack: {
-    root: path.resolve(import.meta.dirname, '..'),
+    root: path.resolve(import.meta.dirname, '../..'),
   },
 
   // ✅ Image optimization config
@@ -18,7 +19,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'www.ensotek.de', pathname: '/**' },
       { protocol: 'https', hostname: 'ensotek.de', pathname: '/**' },
       { protocol: 'https', hostname: 'cdn.ensotek.de', pathname: '/**' },
-      { protocol: 'http', hostname: 'localhost', port: '8086', pathname: '/**' },
+      { protocol: 'http', hostname: 'localhost', port: '8088', pathname: '/**' },
       { protocol: 'https', hostname: '**.vercel.app', pathname: '/**' },
     ],
     formats: ['image/avif', 'image/webp'],
@@ -40,7 +41,7 @@ const nextConfig = {
     const apiBase = (
       process.env.PANEL_API_URL ||
       process.env.NEXT_PUBLIC_PANEL_API_URL ||
-      'http://localhost:8086'
+      'http://localhost:8087'
     ).replace(/\/+$/, '');
 
     const csp = [
@@ -48,7 +49,7 @@ const nextConfig = {
       "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.ensotek.de https://ensotek.de https://cdn.ensotek.de",
-      `connect-src 'self' ${apiBase} https: http://127.0.0.1:8086 http://localhost:8086`.trim(),
+      `connect-src 'self' ${apiBase} https: http://127.0.0.1:* http://localhost:* ws://127.0.0.1:* ws://localhost:*`.trim(),
       "font-src 'self' https://fonts.gstatic.com data:",
       "object-src 'none'",
       `frame-src 'self' ${apiBase} https://www.ensotek.de https://ensotek.de`.trim(),
@@ -60,14 +61,24 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        headers: [{ key: 'Content-Security-Policy', value: csp }],
+        headers: [
+          { key: 'Content-Security-Policy', value: csp },
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'Referrer-Policy', value: 'same-origin' },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()',
+          },
+        ],
       },
     ];
   },
 
   async rewrites() {
     const origin =
-      process.env.PANEL_API_URL || process.env.NEXT_PUBLIC_PANEL_API_URL || 'http://localhost:8086';
+      process.env.PANEL_API_URL || process.env.NEXT_PUBLIC_PANEL_API_URL || 'http://localhost:8088';
 
     const base = String(origin).replace(/\/+$/, '');
 

@@ -4,18 +4,22 @@
     "howItWorks": "Nasıl Çalışır",
     "types": "Kule Tipleri",
     "products": "Ürünler",
+    "blog": "Bilgi Bankası",
     "gallery": "Galeri",
     "references": "Referanslar",
     "contact": "İletişim",
-    "contactCta": "Teklif Al"
+    "contactCta": "Teklif Al",
+    "catalogCta": "Katalog"
   },
   "footer": {
-    "description": "Ensotek, 39 yılı aşkın deneyimiyle açık devre, kapalı devre ve evaporatif soğutma kulesi sistemleri üreten, Türkiye'nin en büyük soğutma kulesi üreticisidir.",
+    "description": "Ensotek, 40 yılı aşkın deneyimiyle açık devre, kapalı devre ve evaporatif soğutma kulesi sistemleri üreten, Türkiye'nin en büyük soğutma kulesi üreticisidir.",
     "products": "Ürünler",
     "company": "Kurumsal",
     "gallery": "Galeri",
     "references": "Referanslar",
+    "blog": "Bilgi Bankası",
     "contact": "İletişim",
+    "groupCompanies": "Grup Şirketleri: MOE Kompozit",
     "contactTitle": "İletişim",
     "address": "Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41 34235 Esenler / İstanbul",
     "phone": "+90 212 613 33 01",
@@ -35,7 +39,7 @@
       "line1": "Endüstriyel",
       "line2": "Soğutma",
       "line3": "Sistemleri",
-      "subtitle": "Açık devre, kapalı devre ve evaporatif soğutma sistemlerinde 39+ yıllık uzmanlık. Türkiye'nin en büyük soğutma kulesi üretim tesisi. ISO 9001 sertifikalı.",
+      "subtitle": "Açık devre, kapalı devre ve evaporatif soğutma sistemlerinde 40+ yıllık uzmanlık. Türkiye'nin en büyük soğutma kulesi üretim tesisi. ISO 9001 sertifikalı.",
       "cta1": "Ürünleri İncele",
       "cta2": "Teklif Al",
       "stat": {
@@ -56,7 +60,7 @@
     },
     "about": {
       "label": "Hakkımızda",
-      "title": "39 Yıllık Endüstriyel Deneyim",
+      "title": "40 Yıllık Endüstriyel Deneyim",
       "description": "Ensotek, 1986 yılından bu yana ISO 9001 belgeli üretici olarak 3.000'den fazla soğutma kulesi kurulumu tamamlamış, Türkiye'nin en büyük soğutma kulesi üretim tesisini işletmektedir.",
       "feature1": "ISO 9001:2015 kalite yönetim sistemi sertifikasyonu",
       "feature2": "İstanbul ofisi ve Ankara fabrikasıyla tam entegre üretim kapasitesi",
@@ -167,12 +171,12 @@
       "countriesServed": "Ülkede Proje",
       "stat": {
         "projects": { "value": "3000+", "label": "Tamamlanan Proje" },
-        "experience": { "value": "39+", "label": "Yıl Deneyim" },
+        "experience": { "value": "40+", "label": "Yıl Deneyim" },
         "capacity": { "value": "500+", "label": "MW Soğutma Kapasitesi" }
       }
     },
     "testimonial": {
-      "quote": "Ensotek'in soğutma kulesi sistemleri, tesisimizde beklentilerin çok üzerinde performans gösterdi. Teknik ekibin kurulum ve bakım desteği mükemmeldi. 39 yıllık deneyimleri gerçekten hissediliyor.",
+      "quote": "Ensotek'in soğutma kulesi sistemleri, tesisimizde beklentilerin çok üzerinde performans gösterdi. Teknik ekibin kurulum ve bakım desteği mükemmeldi. 40 yıllık deneyimleri gerçekten hissediliyor.",
       "author": "Ahmet Yılmaz",
       "company": "Teknik Müdür, Enerji A.Ş."
     },
@@ -258,6 +262,15 @@
     "subtitle": "Dünya genelinde tamamlanan projeler.",
     "empty": "Henüz referans eklenmemiş."
   },
+  "blog": {
+    "label": "Bilgi Bankası",
+    "title": "Soğutma Kulesi Bilgi Bankası",
+    "subtitle": "Seçim, bakım, su şartlandırma ve malzeme teknolojisi hakkında mühendislik notları.",
+    "articleLabel": "Teknik Makale",
+    "readMore": "Oku",
+    "backToList": "Tüm Yazılar",
+    "empty": "Henüz içerik eklenmemiş."
+  },
   "common": {
     "loading": "Yükleniyor...",
     "error": "Bir hata oluştu",
@@ -284,6 +297,10 @@
     "references": {
       "title": "Referanslar — Ensotek",
       "description": "Ensotek müşteri referansları ve tamamlanan projeler."
+    },
+    "blog": {
+      "title": "Bilgi Bankası — Ensotek",
+      "description": "Soğutma kulesi seçimi, Legionella önleme, CTP/FRP gövde ve endüstriyel bakım rehberleri."
     },
     "contact": {
       "title": "İletişim — Ensotek",

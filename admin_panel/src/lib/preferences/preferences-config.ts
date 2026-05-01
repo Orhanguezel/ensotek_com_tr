@@ -70,8 +70,8 @@ type PreferencePersistenceConfig = {
  */
 export const PREFERENCE_DEFAULTS: PreferenceValueMap = {
   theme_mode: "light",
-  theme_preset: "default",
-  font: "inter",
+  theme_preset: "premium",
+  font: "outfit",
   content_layout: "centered",
   navbar_style: "sticky",
   sidebar_variant: "inset",

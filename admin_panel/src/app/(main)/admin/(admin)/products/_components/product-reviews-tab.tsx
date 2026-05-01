@@ -11,14 +11,15 @@ import * as React from "react";
 import { Plus, RefreshCw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Textarea } from "@/components/ui/textarea";
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@ensotek/shared-ui/admin/ui/table";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import {
   useCreateProductReviewAdminMutation,
   useDeleteProductReviewAdminMutation,
@@ -41,6 +42,7 @@ const EMPTY_REVIEW: AdminProductReviewCreatePayload = {
 };
 
 export function ProductReviewsTab({ productId, disabled }: ProductReviewsTabProps) {
+  const t = useAdminT();
   const [newReview, setNewReview] = React.useState<AdminProductReviewCreatePayload>({ ...EMPTY_REVIEW });
   const [showForm, setShowForm] = React.useState(false);
 
@@ -146,7 +148,7 @@ export function ProductReviewsTab({ productId, disabled }: ProductReviewsTabProp
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="review_date">Tarih</Label>
+                <Label htmlFor="review_date">{t("common.date")}</Label>
                 <Input
                   id="review_date"
                   type="date"
@@ -202,9 +204,9 @@ export function ProductReviewsTab({ productId, disabled }: ProductReviewsTabProp
                   <TableHead className="w-17.5 text-center">Rating</TableHead>
                   <TableHead className="w-40">Müşteri</TableHead>
                   <TableHead>Yorum</TableHead>
-                  <TableHead className="w-27.5">Tarih</TableHead>
+                  <TableHead className="w-27.5">{t("common.date")}</TableHead>
                   <TableHead className="w-20 text-center">Durum</TableHead>
-                  <TableHead className="w-30 text-right">İşlemler</TableHead>
+                  <TableHead className="w-30 text-right">{t("common.actions")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

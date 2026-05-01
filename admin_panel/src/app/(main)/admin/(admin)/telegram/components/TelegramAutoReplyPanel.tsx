@@ -12,11 +12,11 @@ import { Save } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import { useGetTelegramAutoReplyQuery, useUpdateTelegramAutoReplyMutation } from "@/integrations/hooks";
 import type { TelegramAutoReplyMode, TelegramAutoReplyUpdateBody } from "@/integrations/shared";
 

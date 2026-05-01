@@ -11,9 +11,9 @@ import * as React from "react";
 import { ArrowDown, ArrowUp, Pencil, Trash2 } from "lucide-react";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
 import {
   Pagination,
   PaginationContent,
@@ -23,7 +23,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@ensotek/shared-ui/admin/ui/table";
 import type { ServiceDto } from "@/integrations/shared";
 
 const PAGE_SIZE = 20;

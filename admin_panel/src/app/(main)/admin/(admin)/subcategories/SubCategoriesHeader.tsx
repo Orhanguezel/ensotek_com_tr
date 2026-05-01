@@ -5,6 +5,8 @@
 
 import React from "react";
 
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
+
 export type LocaleOption = {
   value: string;
   label: string;
@@ -62,6 +64,7 @@ export const SubCategoriesHeader: React.FC<SubCategoriesHeaderProps> = ({
   categoriesLoading = false,
   onCreateClick,
 }) => {
+  const t = useAdminT();
   // “Tüm Diller” option’u her zaman tekil olsun
   const localeList = React.useMemo(() => {
     const list = Array.isArray(locales) ? locales : [];
@@ -85,7 +88,7 @@ export const SubCategoriesHeader: React.FC<SubCategoriesHeaderProps> = ({
         <div className="d-flex w-100 w-sm-auto flex-column flex-sm-row gap-2">
           {/* Arama */}
           <div className="input-group input-group-sm">
-            <span className="input-group-text">Ara</span>
+            <span className="input-group-text">{t("common.search")}</span>
             <input
               type="text"
               className="form-control"

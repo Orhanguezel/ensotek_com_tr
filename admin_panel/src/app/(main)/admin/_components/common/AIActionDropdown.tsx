@@ -9,13 +9,13 @@ import type * as React from "react";
 
 import { FileText, Languages, Loader2, Search, Sparkles, Wand2 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@ensotek/shared-ui/admin/ui/dropdown-menu";
 
 import { useAdminT } from "./useAdminT";
 

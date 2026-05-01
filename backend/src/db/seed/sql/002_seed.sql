@@ -89,54 +89,69 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
 
   -- İletişim bilgileri (TR)
   (UUID(), 'contact_info', 'tr', JSON_OBJECT(
-    'company_name',  'ENSOTEK Su Soğutma Kuleleri ve Teknolojileri Mühendislik San.Tic. Ltd. Şti.',
-    'phone',         '+90 212 613 33 01',
-    'phone_2',       '+90 531 880 31 51',
-    'email',         'ensotek@ensotek.com.tr',
-    'email_2',       'export@ensotek.com.tr',
-    'address',       'Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41 34235 Esenler / İstanbul, Türkiye',
-    'city',          'İstanbul',
-    'country',       'Türkiye',
-    'working_hours', 'Pzt-Cum 08:00-18:00',
-    'maps_lat',      '41.0436',
-    'maps_lng',      '28.8820'
+    'company_name',     'ENSOTEK Su Soğutma Kuleleri ve Teknolojileri Mühendislik San.Tic. Ltd. Şti.',
+    'phone',            '+90 531 880 31 51',
+    'phone_2',          '+90 531 880 32 15',
+    'phone_is_whatsapp',     true,
+    'phone_2_is_whatsapp',   true,
+    'email',            'ensotek@ensotek.com.tr',
+    'email_2',          'export@ensotek.com.tr',
+    'address',          'Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41 34235 Esenler / İstanbul, Türkiye',
+    'address_label',    'Merkez',
+    'factory_address',  'Saray Mah., Gimat Cad. No:6A, 06980 Kahramankazan / Ankara, Türkiye',
+    'factory_label',    'Fabrika',
+    'city',             'İstanbul',
+    'country',          'Türkiye',
+    'working_hours',    'Pzt-Cum 08:00-18:00',
+    'maps_lat',         '41.0436',
+    'maps_lng',         '28.8820'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
 
   -- İletişim bilgileri (EN)
   (UUID(), 'contact_info', 'en', JSON_OBJECT(
-    'company_name',  'ENSOTEK Cooling Towers & Technologies Engineering Ltd.',
-    'phone',         '+90 212 613 33 01',
-    'phone_2',       '+90 531 880 31 51',
-    'email',         'ensotek@ensotek.com.tr',
-    'email_2',       'export@ensotek.com.tr',
-    'address',       'Oruçreis District, Tekstilkent Site, A17 Block No:41, 34235 Esenler / Istanbul, Türkiye',
-    'city',          'Istanbul',
-    'country',       'Türkiye',
-    'working_hours', 'Mon-Fri 08:00-18:00',
-    'maps_lat',      '41.0436',
-    'maps_lng',      '28.8820'
+    'company_name',     'ENSOTEK Cooling Towers & Technologies Engineering Ltd.',
+    'phone',            '+90 531 880 31 51',
+    'phone_2',          '+90 531 880 32 15',
+    'phone_is_whatsapp',     true,
+    'phone_2_is_whatsapp',   true,
+    'email',            'ensotek@ensotek.com.tr',
+    'email_2',          'export@ensotek.com.tr',
+    'address',          'Oruçreis District, Tekstilkent Site, A17 Block No:41, 34235 Esenler / Istanbul, Türkiye',
+    'address_label',    'Headquarters',
+    'factory_address',  'Saray District, Gimat St. No:6A, 06980 Kahramankazan / Ankara, Türkiye',
+    'factory_label',    'Factory',
+    'city',             'Istanbul',
+    'country',          'Türkiye',
+    'working_hours',    'Mon-Fri 08:00-18:00',
+    'maps_lat',         '41.0436',
+    'maps_lng',         '28.8820'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
 
   -- İletişim bilgileri (DE)
   (UUID(), 'contact_info', 'de', JSON_OBJECT(
-    'company_name',  'ENSOTEK Kühltürme & Technologien Engineering GmbH (Ltd.)',
-    'phone',         '+90 212 613 33 01',
-    'phone_2',       '+90 531 880 31 51',
-    'email',         'ensotek@ensotek.com.tr',
-    'email_2',       'export@ensotek.com.tr',
-    'address',       'Oruçreis Mah., Tekstilkent Sit., A17 Blok No:41, 34235 Esenler / Istanbul, Türkei',
-    'city',          'Istanbul',
-    'country',       'Türkei',
-    'working_hours', 'Mo-Fr 08:00-18:00',
-    'maps_lat',      '41.0436',
-    'maps_lng',      '28.8820'
+    'company_name',     'ENSOTEK Kühltürme & Technologien Engineering GmbH (Ltd.)',
+    'phone',            '+90 531 880 31 51',
+    'phone_2',          '+90 531 880 32 15',
+    'phone_is_whatsapp',     true,
+    'phone_2_is_whatsapp',   true,
+    'email',            'ensotek@ensotek.com.tr',
+    'email_2',          'export@ensotek.com.tr',
+    'address',          'Oruçreis Mah., Tekstilkent Sit., A17 Blok No:41, 34235 Esenler / Istanbul, Türkei',
+    'address_label',    'Hauptsitz',
+    'factory_address',  'Saray Mah., Gimat Cad. No:6A, 06980 Kahramankazan / Ankara, Türkei',
+    'factory_label',    'Fabrik',
+    'city',             'Istanbul',
+    'country',          'Türkei',
+    'working_hours',    'Mo-Fr 08:00-18:00',
+    'maps_lat',         '41.0436',
+    'maps_lng',         '28.8820'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
 
   -- Eski tekli alanlar (geriye uyumluluk)
   (UUID(), 'contact_email',   '*',  'ensotek@ensotek.com.tr',    CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'contact_email_2', '*',  'export@ensotek.com.tr',     CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
-  (UUID(), 'contact_phone',   '*',  '+90 212 613 33 01',         CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
-  (UUID(), 'contact_phone_2', '*',  '+90 531 880 31 51',         CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'contact_phone',   '*',  '+90 531 880 31 51',         CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'contact_phone_2', '*',  '+90 531 880 32 15',         CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'contact_address', 'tr', 'Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41 34235 Esenler / İstanbul, Türkiye', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'contact_address', 'en', 'Oruçreis District, Tekstilkent Site, A17 Block No:41, 34235 Esenler / Istanbul, Türkiye', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'contact_address', 'de', 'Oruçreis Mah., Tekstilkent Sit., A17 Blok No:41, 34235 Esenler / Istanbul, Türkei', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
@@ -194,14 +209,14 @@ ON DUPLICATE KEY UPDATE
 INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
 
   -- Hero Stats
-  (UUID(), 'hero_stats', 'tr', '{"years":"39+","towers":"3000+","countries":"40+"}', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
-  (UUID(), 'hero_stats', 'en', '{"years":"39+","towers":"3000+","countries":"40+"}', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
-  (UUID(), 'hero_stats', 'de', '{"years":"39+","towers":"3000+","countries":"40+"}', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'hero_stats', 'tr', '{"years":"40+","towers":"3000+","countries":"40+"}', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'hero_stats', 'en', '{"years":"40+","towers":"3000+","countries":"40+"}', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'hero_stats', 'de', '{"years":"40+","towers":"3000+","countries":"40+"}', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
 
   -- About Content
   (UUID(), 'about_content', 'tr', JSON_OBJECT(
     'label',       'Hakkımızda',
-    'title',       '39 Yıllık Endüstriyel Deneyim',
+    'title',       '40 Yıllık Endüstriyel Deneyim',
     'description', 'Ensotek, 1986 yılından bu yana ISO 9001 belgeli üretici olarak 3.000''den fazla soğutma kulesi kurulumu tamamlamış, İstanbul ve Ankara fabrikalarıyla Türkiye''nin en büyük soğutma kulesi üretim tesisini işletmektedir.',
     'feature1',    'ISO 9001:2015 kalite yönetim sistemi sertifikasyonu',
     'feature2',    'İstanbul ofisi ve Ankara fabrikasıyla tam entegre üretim kapasitesi',
@@ -212,7 +227,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'about_content', 'en', JSON_OBJECT(
     'label',       'About Us',
-    'title',       '39 Years of Industrial Excellence',
+    'title',       '40 Years of Industrial Excellence',
     'description', 'Ensotek has been ISO 9001 certified since 1986 and has completed over 3,000 cooling tower installations. Operating Turkey''s largest cooling tower production facility with offices in Istanbul and a factory in Ankara.',
     'feature1',    'ISO 9001:2015 quality management system certification',
     'feature2',    'Fully integrated production capacity with Istanbul office and Ankara factory',
@@ -223,7 +238,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'about_content', 'de', JSON_OBJECT(
     'label',       'Über uns',
-    'title',       '39 Jahre industrielle Exzellenz',
+    'title',       '40 Jahre industrielle Exzellenz',
     'description', 'Ensotek ist seit 1986 ISO 9001-zertifiziert und hat über 3.000 Kühltürme installiert. Mit Büro in Istanbul und Fabrik in Ankara betreibt Ensotek die größte Kühlturmproduktionsanlage der Türkei.',
     'feature1',    'ISO 9001:2015 Qualitätsmanagementsystem-Zertifizierung',
     'feature2',    'Vollintegrierte Produktionskapazität mit Istanbul-Büro und Ankara-Fabrik',
@@ -238,7 +253,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
     'countries_count', '40+',
     'projects_value',  '3000+',
     'projects_label',  'Tamamlanan Proje',
-    'experience_value','39+',
+    'experience_value','40+',
     'experience_label','Yıl Deneyim',
     'capacity_value',  '500+',
     'capacity_label',  'MW Soğutma Kapasitesi'
@@ -247,7 +262,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
     'countries_count', '40+',
     'projects_value',  '3000+',
     'projects_label',  'Completed Projects',
-    'experience_value','39+',
+    'experience_value','40+',
     'experience_label','Years Experience',
     'capacity_value',  '500+',
     'capacity_label',  'MW Cooling Capacity'
@@ -256,7 +271,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
     'countries_count', '40+',
     'projects_value',  '3000+',
     'projects_label',  'Abgeschlossene Projekte',
-    'experience_value','39+',
+    'experience_value','40+',
     'experience_label','Jahre Erfahrung',
     'capacity_value',  '500+',
     'capacity_label',  'MW Kühlkapazität'
@@ -264,12 +279,12 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
 
   -- Testimonials
   (UUID(), 'testimonial_featured', 'tr', JSON_OBJECT(
-    'quote',   'Ensotek''in soğutma kulesi sistemleri, tesisimizde beklentilerimizin çok ötesinde performans gösterdi. Teknik ekibin kurulum ve bakım desteği mükemmeldi. 39 yıllık deneyimleri gerçekten hissediliyor.',
+    'quote',   'Ensotek''in soğutma kulesi sistemleri, tesisimizde beklentilerimizin çok ötesinde performans gösterdi. Teknik ekibin kurulum ve bakım desteği mükemmeldi. 40 yıllık deneyimleri gerçekten hissediliyor.',
     'author',  'Ahmet Yılmaz',
     'company', 'Teknik Direktör, Enerji A.Ş.'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'testimonial_featured', 'en', JSON_OBJECT(
-    'quote',   'Ensotek''s cooling tower systems performed far beyond expectations at our facility. The technical team''s installation and maintenance support was excellent. Their 39 years of experience truly shows.',
+    'quote',   'Ensotek''s cooling tower systems performed far beyond expectations at our facility. The technical team''s installation and maintenance support was excellent. Their 40 years of experience truly shows.',
     'author',  'Ahmet Yilmaz',
     'company', 'Technical Director, Energy Corp.'
   ), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
@@ -1175,6 +1190,75 @@ ON DUPLICATE KEY UPDATE
   `specifications`   = VALUES(`specifications`),
   `meta_title`       = VALUES(`meta_title`),
   `meta_description` = VALUES(`meta_description`),
+  `updated_at`       = CURRENT_TIMESTAMP(3);
+
+-- =============================================================
+-- BLOG — TR SEO/GEO başlangıç yazıları
+-- =============================================================
+
+INSERT INTO `custom_pages`
+  (`id`, `module_key`, `is_published`, `featured`, `display_order`, `order_num`, `images`, `storage_image_ids`, `created_at`, `updated_at`)
+VALUES
+  ('cccc2601-1111-4111-8111-cccccccc2601', 'blog', 1, 1, 10, 10, JSON_ARRAY(), JSON_ARRAY(), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('cccc2602-1111-4111-8111-cccccccc2602', 'blog', 1, 1, 20, 20, JSON_ARRAY(), JSON_ARRAY(), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  ('cccc2603-1111-4111-8111-cccccccc2603', 'blog', 1, 0, 30, 30, JSON_ARRAY(), JSON_ARRAY(), CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+ON DUPLICATE KEY UPDATE
+  `module_key`    = VALUES(`module_key`),
+  `is_published`  = VALUES(`is_published`),
+  `featured`      = VALUES(`featured`),
+  `display_order` = VALUES(`display_order`),
+  `order_num`     = VALUES(`order_num`),
+  `updated_at`    = CURRENT_TIMESTAMP(3);
+
+INSERT INTO `custom_pages_i18n`
+  (`id`, `page_id`, `locale`, `title`, `slug`, `content`, `summary`, `meta_title`, `meta_description`, `tags`, `created_at`, `updated_at`)
+VALUES
+(
+  'cccc2601-2222-4222-8222-cccccccc2601',
+  'cccc2601-1111-4111-8111-cccccccc2601',
+  'tr',
+  'Soğutma Kulesi Seçim Rehberi',
+  'sogutma-kulesi-secim-rehberi',
+  JSON_OBJECT('html', '<p>Soğutma kulesi seçimi yalnızca kapasite hesabıyla tamamlanmaz. Proses suyu sıcaklıkları, yaş termometre değeri, yaklaşım sıcaklığı, saha yerleşimi, ses limiti, su kalitesi ve bakım erişimi birlikte değerlendirilmelidir.</p><h2>Temel seçim kriterleri</h2><p>Açık devre kuleler yüksek evaporatif verim ve ekonomik ilk yatırım sunar. Kapalı devre kuleler proses akışkanını dış ortamdan ayırarak kirlenme riskini azaltır. Hibrit çözümler ise su tüketimi, görünür buhar ve enerji maliyeti arasında daha hassas denge kurmak isteyen tesisler için değerlendirilir.</p><h2>Proje verileri neden önemlidir?</h2><p>Debi, giriş ve çıkış sıcaklıkları, yaş termometre değeri, rakım ve çalışma rejimi doğru verilmediğinde kule kapasitesi sahada beklenen performansı sağlayamayabilir. Ensotek mühendislik ekibi bu verilerle termal seçim, malzeme yapısı ve bakım senaryosunu birlikte analiz eder.</p>'),
+  'Açık devre, kapalı devre ve hibrit soğutma kulesi seçeneklerini proses yükü, su kalitesi, yaklaşım sıcaklığı ve saha koşullarına göre değerlendirin.',
+  'Soğutma Kulesi Seçim Rehberi | Ensotek',
+  'Endüstriyel tesisler için soğutma kulesi seçerken kapasite, yaklaşım sıcaklığı, su kalitesi, bakım ve enerji verimliliği kriterleri.',
+  'soğutma kulesi seçimi, açık devre soğutma kulesi, kapalı devre soğutma kulesi',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'cccc2602-2222-4222-8222-cccccccc2602',
+  'cccc2602-1111-4111-8111-cccccccc2602',
+  'tr',
+  'Soğutma Kulelerinde Legionella Önleme',
+  'sogutma-kulelerinde-legionella-onleme',
+  JSON_OBJECT('html', '<p>Soğutma kuleleri doğru işletilmediğinde biyofilm oluşumu, tortu birikimi ve durgun su bölgeleri mikrobiyolojik riskleri artırabilir. Legionella yönetimi bu nedenle tek seferlik temizlik değil, düzenli izleme ve kayıtlı bakım disiplinidir.</p><h2>Önleyici bakım yaklaşımı</h2><p>Düzenli blöf, filtrasyon, su şartlandırma, biyosid dozajı ve mekanik temizlik birlikte uygulanmalıdır. Damla tutucu, dolgu, havuz ve su dağıtım sistemi periyodik olarak kontrol edilmelidir.</p><h2>İzleme ve kayıt</h2><p>Sıcaklık, iletkenlik, pH, biyosid seviyesi ve mikrobiyolojik analiz sonuçları kayıt altında tutulduğunda riskli trendler erken fark edilir. Ensotek servis yaklaşımı bakım planını tesisin çalışma rejimine göre düzenler.</p>'),
+  'Legionella riskini azaltmak için su şartlandırma, biyosid uygulaması, düzenli temizlik ve bakım kayıtlarının birlikte yürütülmesi gerekir.',
+  'Soğutma Kulelerinde Legionella Önleme | Ensotek',
+  'Soğutma kulelerinde Legionella riskini azaltmak için bakım, temizlik, su şartlandırma ve izleme uygulamaları.',
+  'legionella, soğutma kulesi bakımı, su şartlandırma',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+),
+(
+  'cccc2603-2222-4222-8222-cccccccc2603',
+  'cccc2603-1111-4111-8111-cccccccc2603',
+  'tr',
+  'CTP ve FRP Soğutma Kulesi Gövdeleri Karşılaştırması',
+  'ctp-frp-sogutma-kulesi-govdeleri-karsilastirmasi',
+  JSON_OBJECT('html', '<p>CTP ve FRP terimleri cam elyaf takviyeli polyester kompozit yapıları ifade eder. Soğutma kulesi gövdelerinde bu malzeme grubu korozyon dayanımı ve düşük bakım ihtiyacı nedeniyle yaygın kullanılır.</p><h2>Neden kompozit gövde?</h2><p>Metal yüzeylerde korozyon, boya yenileme ve kimyasal ortam etkisi önemli işletme giderleri oluşturabilir. CTP/FRP gövdeler hafif, modüler ve kimyasal etkilere dayanıklı yapısıyla saha montajını ve uzun dönem işletmeyi kolaylaştırır.</p><h2>Seçimde dikkat edilecekler</h2><p>Reçine tipi, UV dayanımı, bağlantı detayları, servis erişimi ve taşıyıcı yapı tasarımı gövde performansını belirler. Ensotek kule tasarımlarında kompozit üretim deneyimini termal tasarım ve bakım erişimiyle birlikte ele alır.</p>'),
+  'CTP/FRP gövdeler korozyon dayanımı, düşük bakım ihtiyacı ve uzun servis ömrüyle endüstriyel soğutma kulelerinde güçlü bir alternatiftir.',
+  'CTP FRP Soğutma Kulesi Gövde Karşılaştırması | Ensotek',
+  'CTP ve FRP soğutma kulesi gövdelerinin korozyon, bakım, ağırlık ve servis ömrü açısından avantajları.',
+  'ctp soğutma kulesi, frp soğutma kulesi, kompozit gövde',
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+)
+ON DUPLICATE KEY UPDATE
+  `title`            = VALUES(`title`),
+  `content`          = VALUES(`content`),
+  `summary`          = VALUES(`summary`),
+  `meta_title`       = VALUES(`meta_title`),
+  `meta_description` = VALUES(`meta_description`),
+  `tags`             = VALUES(`tags`),
   `updated_at`       = CURRENT_TIMESTAMP(3);
 
 SET FOREIGN_KEY_CHECKS = 1;

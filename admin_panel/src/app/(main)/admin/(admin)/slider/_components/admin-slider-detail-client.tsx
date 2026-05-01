@@ -19,13 +19,14 @@ import RichContentEditor from "@/app/(main)/admin/_components/common/RichContent
 import { type AIAction, AIActionDropdown } from "@/app/(main)/admin/_components/common/AIActionDropdown";
 import { AIResultsPanel } from "@/app/(main)/admin/_components/common/AIResultsPanel";
 import { useAdminLocales } from "@/app/(main)/admin/_components/common/useAdminLocales";
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import { type LocaleContent, useAIContentAssist } from "@/app/(main)/admin/_components/common/useAIContentAssist";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import {
   useCreateSliderAdminMutation,
   useGetSliderAdminQuery,
@@ -42,6 +43,7 @@ type Props = { mode: "create"; id?: string } | { mode: "edit"; id: string };
 
 export default function AdminSliderDetailClient(props: Props) {
   const router = useRouter();
+  const t = useAdminT();
   const sp = useSearchParams();
   const isNew = props.mode === "create";
   const id = isNew ? "" : String(props.id || "");
@@ -319,6 +321,7 @@ export default function AdminSliderDetailClient(props: Props) {
 /* ── Ic Tab'lar: Icerik / Gorsel / SEO ── */
 
 function SliderFormTabs({ f, set, isLoading }: { f: any; set: any; isLoading: boolean }) {
+  const t = useAdminT();
   const [tab, setTab] = React.useState<"content" | "image" | "seo">("content");
 
   return (
@@ -381,7 +384,7 @@ function SliderFormTabs({ f, set, isLoading }: { f: any; set: any; isLoading: bo
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
               <Switch checked={f.is_active} onCheckedChange={(v) => set("is_active", v)} disabled={isLoading} />
-              <Label className="cursor-pointer text-xs">Aktif</Label>
+              <Label className="cursor-pointer text-xs">{t("common.active")}</Label>
             </div>
             <div className="space-y-1.5">
               <Label className="text-xs">Siralama</Label>

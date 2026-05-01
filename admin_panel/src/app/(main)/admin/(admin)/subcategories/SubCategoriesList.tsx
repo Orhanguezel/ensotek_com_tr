@@ -24,6 +24,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import type { CategoryDto, SubCategoryDto } from "@/integrations/shared";
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 
 /* ---------------- Helpers ---------------- */
 
@@ -74,6 +75,7 @@ export const SubCategoriesList: React.FC<SubCategoriesListProps> = ({
   onSaveOrder,
   savingOrder,
 }) => {
+  const t = useAdminT();
   const rows = items ?? [];
   const totalItems = rows.length;
   const hasData = totalItems > 0;
@@ -181,9 +183,9 @@ export const SubCategoriesList: React.FC<SubCategoriesListProps> = ({
           <span className="badge small border border-warning-subtle bg-warning-subtle text-warning">Öne çıkan</span>
         ) : null}
         {(item as any).is_active ? (
-          <span className="badge small border border-success-subtle bg-success-subtle text-success">Aktif</span>
+          <span className="badge small border border-success-subtle bg-success-subtle text-success">{t("common.active")}</span>
         ) : (
-          <span className="badge small border border-secondary-subtle bg-secondary-subtle text-secondary">Pasif</span>
+          <span className="badge small border border-secondary-subtle bg-secondary-subtle text-secondary">{t("common.passive")}</span>
         )}
       </div>
     );
@@ -229,20 +231,20 @@ export const SubCategoriesList: React.FC<SubCategoriesListProps> = ({
               <thead className="table-light">
                 <tr>
                   <th style={{ width: 56 }} />
-                  <th style={{ width: "34%" }}>Alt Kategori</th>
-                  <th style={{ width: "26%" }}>Kategori</th>
-                  <th style={{ width: 120 }}>Dil</th>
+                  <th style={{ width: "34%" }}>{t("common.subcategory")}</th>
+                  <th style={{ width: "26%" }}>{t("common.category")}</th>
+                  <th style={{ width: 120 }}>{t("common.language", undefined, "Dil")}</th>
                   <th className="text-center" style={{ width: 90 }}>
-                    Aktif
+                    {t("common.active")}
                   </th>
                   <th className="text-center" style={{ width: 110 }}>
-                    Öne Çıkan
+                    {t("common.featured", undefined, "Öne Çıkan")}
                   </th>
                   <th className="text-center" style={{ width: 90 }}>
-                    Sıra
+                    {t("common.order", undefined, "Sıra")}
                   </th>
                   <th style={{ width: 170 }} className="text-nowrap text-end">
-                    İşlemler
+                    {t("common.actions")}
                   </th>
                 </tr>
               </thead>
@@ -457,7 +459,7 @@ export const SubCategoriesList: React.FC<SubCategoriesListProps> = ({
                                 disabled={busy}
                                 onChange={(e) => onToggleActive(item, e.target.checked)}
                               />
-                              <label className="form-check-label small">Aktif</label>
+                              <label className="form-check-label small">{t("common.active")}</label>
                             </div>
 
                             <div className="form-check form-switch m-0">

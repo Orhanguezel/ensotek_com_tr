@@ -18,16 +18,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password_hash`        VARCHAR(255)  NOT NULL,
   `full_name`            VARCHAR(255)  DEFAULT NULL,
   `phone`                VARCHAR(50)   DEFAULT NULL,
+  `ecosystem_id`         CHAR(36)      DEFAULT NULL,
   `is_active`            TINYINT(1)    NOT NULL DEFAULT 1,
   `email_verified`       TINYINT(1)    NOT NULL DEFAULT 0,
   `reset_token`          VARCHAR(255)  DEFAULT NULL,
   `reset_token_expires`  DATETIME(3)   DEFAULT NULL,
   `created_at`           DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `updated_at`           DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+  `rules_accepted_at`    DATETIME(3)   DEFAULT NULL,
   `last_sign_in_at`      DATETIME(3)   DEFAULT NULL,
   `role`                 ENUM('admin','moderator','user') NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `users_ecosystem_id_idx` (`ecosystem_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `refresh_tokens` (
@@ -153,15 +156,17 @@ CREATE TABLE IF NOT EXISTS `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `category_i18n` (
-  `category_id` CHAR(36)      NOT NULL,
-  `locale`      VARCHAR(8)    NOT NULL DEFAULT 'tr',
-  `name`        VARCHAR(255)  NOT NULL,
-  `slug`        VARCHAR(255)  NOT NULL,
-  `description` TEXT          DEFAULT NULL,
-  `alt`         VARCHAR(255)  DEFAULT NULL,
-  `i18n_data`   LONGTEXT      DEFAULT NULL,
-  `created_at`  DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-  `updated_at`  DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+  `category_id`      CHAR(36)      NOT NULL,
+  `locale`           VARCHAR(8)    NOT NULL DEFAULT 'tr',
+  `name`             VARCHAR(255)  NOT NULL,
+  `slug`             VARCHAR(255)  NOT NULL,
+  `description`      TEXT          DEFAULT NULL,
+  `alt`              VARCHAR(255)  DEFAULT NULL,
+  `meta_title`       VARCHAR(255)  DEFAULT NULL,
+  `meta_description` VARCHAR(500)  DEFAULT NULL,
+  `i18n_data`        LONGTEXT      DEFAULT NULL,
+  `created_at`       DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  `updated_at`       DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
   PRIMARY KEY (`category_id`, `locale`),
   UNIQUE KEY `category_i18n_locale_slug_uq` (`locale`, `slug`),
   KEY `category_i18n_locale_idx` (`locale`),
@@ -190,14 +195,16 @@ CREATE TABLE IF NOT EXISTS `sub_categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `sub_category_i18n` (
-  `sub_category_id` CHAR(36)       NOT NULL,
-  `locale`          VARCHAR(10)    NOT NULL,
-  `name`            VARCHAR(255)   NOT NULL,
-  `slug`            VARCHAR(255)   NOT NULL,
-  `description`     TEXT           DEFAULT NULL,
-  `alt`             VARCHAR(255)   DEFAULT NULL,
-  `created_at`      DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-  `updated_at`      DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+  `sub_category_id`  CHAR(36)       NOT NULL,
+  `locale`           VARCHAR(10)    NOT NULL,
+  `name`             VARCHAR(255)   NOT NULL,
+  `slug`             VARCHAR(255)   NOT NULL,
+  `description`      TEXT           DEFAULT NULL,
+  `alt`              VARCHAR(255)   DEFAULT NULL,
+  `meta_title`       VARCHAR(255)   DEFAULT NULL,
+  `meta_description` VARCHAR(500)   DEFAULT NULL,
+  `created_at`       DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  `updated_at`       DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
   PRIMARY KEY (`sub_category_id`, `locale`),
   UNIQUE KEY `ux_sub_category_i18n_locale_slug` (`locale`, `slug`),
   CONSTRAINT `fk_sub_category_i18n_sub_category`
@@ -705,6 +712,83 @@ CREATE TABLE IF NOT EXISTS `contact_messages` (
   KEY `idx_contact_created_at` (`created_at`),
   KEY `idx_contact_status` (`status`),
   KEY `idx_contact_resolved` (`is_resolved`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- =============================================================
+-- REVIEWS / TESTIMONIALS
+-- =============================================================
+
+CREATE TABLE IF NOT EXISTS `reviews` (
+  `id`               CHAR(36)      NOT NULL,
+  `target_type`      VARCHAR(50)   NOT NULL,
+  `target_id`        CHAR(36)      NOT NULL,
+  `name`             VARCHAR(255)  NOT NULL,
+  `email`            VARCHAR(255)  NOT NULL,
+  `rating`           TINYINT       NOT NULL,
+  `role`             VARCHAR(255)  DEFAULT NULL,
+  `company`          VARCHAR(255)  DEFAULT NULL,
+  `avatar_url`       VARCHAR(500)  DEFAULT NULL,
+  `logo_url`         VARCHAR(500)  DEFAULT NULL,
+  `profile_href`     VARCHAR(500)  DEFAULT NULL,
+  `is_active`        TINYINT(1)    NOT NULL DEFAULT 1,
+  `is_approved`      TINYINT(1)    NOT NULL DEFAULT 0,
+  `display_order`    INT(11)       NOT NULL DEFAULT 0,
+  `likes_count`      INT(11)       NOT NULL DEFAULT 0,
+  `dislikes_count`   INT(11)       NOT NULL DEFAULT 0,
+  `helpful_count`    INT(11)       NOT NULL DEFAULT 0,
+  `submitted_locale` VARCHAR(8)    NOT NULL DEFAULT 'tr',
+  `created_at`       DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  `updated_at`       DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+  PRIMARY KEY (`id`),
+  KEY `reviews_target_idx` (`target_type`, `target_id`),
+  KEY `reviews_rating_idx` (`rating`),
+  KEY `reviews_approved_active_idx` (`is_approved`, `is_active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `review_i18n` (
+  `id`          CHAR(36)      NOT NULL,
+  `review_id`   CHAR(36)      NOT NULL,
+  `locale`      VARCHAR(8)    NOT NULL,
+  `title`       VARCHAR(255)  DEFAULT NULL,
+  `comment`     TEXT          NOT NULL,
+  `admin_reply` TEXT          DEFAULT NULL,
+  `created_at`  DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  `updated_at`  DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `review_i18n_review_locale_uniq` (`review_id`, `locale`),
+  CONSTRAINT `fk_review_i18n_review`
+    FOREIGN KEY (`review_id`) REFERENCES `reviews`(`id`)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- =============================================================
+-- LEAD CATALOG DOWNLOADS
+-- =============================================================
+
+CREATE TABLE IF NOT EXISTS `lead_catalog_downloads` (
+  `id`                CHAR(36)       NOT NULL,
+  `status`            VARCHAR(32)    NOT NULL DEFAULT 'new',
+  `locale`            VARCHAR(10)    DEFAULT NULL,
+  `country_code`      VARCHAR(10)    DEFAULT NULL,
+  `customer_name`     VARCHAR(255)   NOT NULL,
+  `company_name`      VARCHAR(255)   DEFAULT NULL,
+  `email`             VARCHAR(255)   NOT NULL,
+  `phone`             VARCHAR(64)    DEFAULT NULL,
+  `message`           TEXT           DEFAULT NULL,
+  `catalog_url`       VARCHAR(1000)  DEFAULT NULL,
+  `consent_marketing` TINYINT(1)     NOT NULL DEFAULT 0,
+  `consent_terms`     TINYINT(1)     NOT NULL DEFAULT 0,
+  `admin_notes`       TEXT           DEFAULT NULL,
+  `email_sent_at`     DATETIME(3)    DEFAULT NULL,
+  `ip`                VARCHAR(64)    DEFAULT NULL,
+  `user_agent`        VARCHAR(512)   DEFAULT NULL,
+  `created_at`        DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  `updated_at`        DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+  PRIMARY KEY (`id`),
+  KEY `lead_catalog_status_idx` (`status`),
+  KEY `lead_catalog_locale_idx` (`locale`),
+  KEY `lead_catalog_email_idx` (`email`),
+  KEY `lead_catalog_created_idx` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =============================================================

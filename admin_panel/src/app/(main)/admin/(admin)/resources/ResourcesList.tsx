@@ -11,6 +11,7 @@ import Link from "next/link";
 
 import { toast } from "sonner";
 
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import { useDeleteResourceAdminMutation } from "@/integrations/hooks";
 import type { ResourceAdminListItemDto, ResourceType } from "@/integrations/shared/resources.types";
 
@@ -50,16 +51,18 @@ const typeLabel = (t: ResourceType | string | null | undefined) => {
   }
 };
 
-const statusBadge = (isActive: unknown) => {
+const statusBadge = (isActive: unknown, labels: { active: string; passive: string }) => {
   const active = Number(isActive ?? 0) === 1 || isActive === true;
   return active ? (
-    <span className="badge border border-success-subtle bg-success-subtle text-success">Aktif</span>
+    <span className="badge border border-success-subtle bg-success-subtle text-success">{labels.active}</span>
   ) : (
-    <span className="badge border border-secondary-subtle bg-secondary-subtle text-secondary">Pasif</span>
+    <span className="badge border border-secondary-subtle bg-secondary-subtle text-secondary">{labels.passive}</span>
   );
 };
 
 export const ResourcesList: React.FC<ResourcesListProps> = ({ items, loading }) => {
+  const t = useAdminT();
+  const statusLabels = { active: t("common.active"), passive: t("common.passive") };
   const rows = items ?? [];
   const hasData = rows.length > 0;
 
@@ -100,7 +103,7 @@ export const ResourcesList: React.FC<ResourcesListProps> = ({ items, loading }) 
                 <div className="d-flex justify-content-between gap-3 align-items-start">
                   <div style={{ minWidth: 0 }}>
                     <div className="d-flex flex-wrap gap-2 align-items-center">
-                      {statusBadge((r as any).is_active)}
+                      {statusBadge((r as any).is_active, statusLabels)}
                       <span className="badge border bg-light text-dark">{typeLabel((r as any).type)}</span>
                     </div>
 
@@ -157,7 +160,7 @@ export const ResourcesList: React.FC<ResourcesListProps> = ({ items, loading }) 
               <th className="text-nowrap">Tür</th>
               <th className="text-nowrap">Durum</th>
               <th className="text-nowrap">Güncellendi</th>
-              <th className="text-nowrap text-end">İşlemler</th>
+              <th className="text-nowrap text-end">{t("common.actions")}</th>
             </tr>
           </thead>
 
@@ -176,7 +179,7 @@ export const ResourcesList: React.FC<ResourcesListProps> = ({ items, loading }) 
                   <span className="badge border bg-light text-dark">{typeLabel((r as any).type)}</span>
                 </td>
 
-                <td className="text-nowrap">{statusBadge((r as any).is_active)}</td>
+                <td className="text-nowrap">{statusBadge((r as any).is_active, statusLabels)}</td>
 
                 <td className="small text-nowrap">{formatDate((r as any).updated_at)}</td>
 

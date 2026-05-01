@@ -2,7 +2,7 @@
 
 > Referans mimari: `kompozit/frontend` (Next.js 16, next-intl, Tailwind v4, React Query, Axios)
 > Tasarım referansı: `ensotek-cooling-towers.html` (cyan/blue dark theme)
-> Backend: `http://localhost:8087` (PORT=8087, prefix=`ensotek_com_tr__`)
+> Backend: `http://localhost:8088` (PORT=8088, prefix=`ensotek_com_tr__`)
 > Diller: `tr` (default), `en`
 
 ---
@@ -19,7 +19,7 @@
 - [x] `ensotek_com_tr/frontend/` dizini oluştur
 - [x] `package.json` — name: `ensotek-com-tr-frontend`, port: 3021
 - [x] `tsconfig.json` — kompozit'ten kopyala (Bundler, strict, @/* alias)
-- [x] `next.config.ts` — next-intl plugin, standalone output, `/uploads/*` rewrite → `http://127.0.0.1:8087`
+- [x] `next.config.ts` — next-intl plugin, standalone output, `/uploads/*` rewrite → `http://127.0.0.1:8088`
 - [x] `postcss.config.mjs` — `@tailwindcss/postcss`
 - [x] `.env.local.example` — `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SITE_URL`, `BACKEND_URL`
 - [x] `.env.local` — local değerler
@@ -175,6 +175,6 @@ HTML'den çıkarılan tüm section'lar:
 
 - `item_type = 'cooling_tower'` — products API'sine filter parametresi
 - Backend prefix: `ensotek_com_tr__`
-- Backend port: 8087, frontend port: 3021
+- Backend port: 8088, frontend port: 3021
 - Audit event tablosu şemaya eklenmeli (FAZA 0)
 - Newsletter public endpoint yok — sadece admin route mevcut

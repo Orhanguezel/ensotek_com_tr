@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start --port 3021",
     "start:standalone": "PORT=${PORT:-3021} HOSTNAME=${HOSTNAME:-127.0.0.1} node .next/standalone/server.js",
+    "audit:lighthouse": "npx @lhci/cli autorun --config=./lighthouserc.js",
     "lint": "next lint",
     "type-check": "tsc --noEmit"
   },

@@ -9,12 +9,12 @@ import type React from "react";
 import { useMemo } from "react";
 
 import { AdminImageUploadField } from "@/app/(main)/admin/_components/common/AdminImageUploadField";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription } from "@ensotek/shared-ui/admin/ui/alert";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ensotek/shared-ui/admin/ui/select";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import { useAdminTranslations } from "@/i18n";
 import {
   coerceSiteSettingsStructuredValue,

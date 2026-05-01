@@ -11,10 +11,10 @@
 import { ArrowDown, ArrowUp, Pencil, Trash2 } from "lucide-react";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@ensotek/shared-ui/admin/ui/table";
 import type { SliderAdminDto } from "@/integrations/shared";
 
 const safeText = (v: unknown) => (v === null || v === undefined ? "" : String(v));

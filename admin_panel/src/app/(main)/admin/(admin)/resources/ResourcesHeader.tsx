@@ -6,6 +6,7 @@
 
 import type React from "react";
 
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import type { ResourceType } from "@/integrations/shared/resources.types";
 
 export type ResourcesFilters = {
@@ -42,6 +43,7 @@ export const ResourcesHeader: React.FC<ResourcesHeaderProps> = ({
   onFiltersChange,
   onRefresh,
 }) => {
+  const t = useAdminT();
   return (
     <div className="card mb-3">
       <div className="card-body py-3">
@@ -71,7 +73,7 @@ export const ResourcesHeader: React.FC<ResourcesHeaderProps> = ({
                   value={filters.type}
                   onChange={(e) => onFiltersChange({ ...filters, type: (e.target.value as any) || "" })}
                 >
-                  <option value={ALL}>Tümü</option>
+                  <option value={ALL}>{t("common.all")}</option>
                   {(Object.keys(TYPE_LABEL) as Array<ResourceType>).map((k) => (
                     <option key={k} value={k}>
                       {TYPE_LABEL[k]}
@@ -88,8 +90,8 @@ export const ResourcesHeader: React.FC<ResourcesHeaderProps> = ({
                   onChange={(e) => onFiltersChange({ ...filters, status: e.target.value as any })}
                 >
                   <option value="all">Hepsi</option>
-                  <option value="active">Aktif</option>
-                  <option value="inactive">Pasif</option>
+                  <option value="active">{t("common.active")}</option>
+                  <option value="inactive">{t("common.passive")}</option>
                 </select>
               </div>
 
@@ -129,7 +131,7 @@ export const ResourcesHeader: React.FC<ResourcesHeaderProps> = ({
           >
             <div className="d-flex justify-content-between mb-2 align-items-center">
               <div>
-                <div className="small fw-semibold">Toplam</div>
+                <div className="small fw-semibold">{t("common.total")}</div>
                 <div className="display-6 fs-4 fw-bold">{total}</div>
               </div>
 

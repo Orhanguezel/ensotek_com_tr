@@ -18,11 +18,11 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { AdminImageUploadField } from "@/app/(main)/admin/_components/common/AdminImageUploadField";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription, AlertTitle } from "@ensotek/shared-ui/admin/ui/alert";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader } from "@ensotek/shared-ui/admin/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import { useAdminTranslations } from "@/i18n";
 import {
   coerceSiteSettingsValue,

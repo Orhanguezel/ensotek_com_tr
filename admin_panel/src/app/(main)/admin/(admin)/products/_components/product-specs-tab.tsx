@@ -12,11 +12,12 @@ import { FileJson, Plus, RefreshCw, Save, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { AdminJsonEditor } from "@/app/(main)/admin/_components/common/AdminJsonEditor";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@ensotek/shared-ui/admin/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
 import {
   useListProductSpecsAdminQuery,
   useReplaceProductSpecsAdminMutation,
@@ -30,6 +31,7 @@ export type ProductSpecsTabProps = {
 };
 
 export function ProductSpecsTab({ productId, locale, disabled }: ProductSpecsTabProps) {
+  const t = useAdminT();
   const [items, setItems] = React.useState<AdminProductSpecCreatePayload[]>([]);
   const [viewMode, setViewMode] = React.useState<"form" | "json">("form");
 
@@ -150,8 +152,8 @@ export function ProductSpecsTab({ productId, locale, disabled }: ProductSpecsTab
                   <TableRow>
                     <TableHead>Alan (name)</TableHead>
                     <TableHead>Değer (value)</TableHead>
-                    <TableHead className="w-35">Kategori</TableHead>
-                    <TableHead className="w-20 text-center">Sıra</TableHead>
+                    <TableHead className="w-35">{t("common.category")}</TableHead>
+                    <TableHead className="w-20 text-center">{t("common.order")}</TableHead>
                     <TableHead className="w-15" />
                   </TableRow>
                 </TableHeader>

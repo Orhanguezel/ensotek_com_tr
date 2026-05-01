@@ -17,7 +17,7 @@ import { ArrowDown, ArrowUp, Pencil, Save, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Button } from "@/components/ui/button";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
 import { useDeleteCustomPageAdminMutation, useUpdateCustomPageAdminMutation } from "@/integrations/hooks";
 import type { CustomPageDto } from "@/integrations/shared";
 
@@ -274,7 +274,7 @@ export const CustomPageList: React.FC<CustomPageListProps> = ({
               <th className="w-8 px-2 py-1.5 text-[11px] text-muted-foreground">#</th>
               <th className="w-[25%] px-2 py-1.5 text-[11px]">{t("admin.customPage.form.title")}</th>
               <th className="w-[20%] px-2 py-1.5 text-[11px]">Slug</th>
-              <th className="w-[8%] px-2 py-1.5 text-center text-[11px]">Aktif</th>
+              <th className="w-[8%] px-2 py-1.5 text-center text-[11px]">{t("common.active")}</th>
               <th className="w-[8%] px-2 py-1.5 text-center text-[11px]">One Cikan</th>
               <th className="w-[10%] px-2 py-1.5 text-[11px]">{t("admin.customPage.list.created")}</th>
               <th className="w-[100px] px-2 py-1.5 text-right text-[11px]">{t("admin.common.actions")}</th>

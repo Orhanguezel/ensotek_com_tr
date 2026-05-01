@@ -2,7 +2,7 @@
 // Ensotek COM TR – Dynamic i18n core (LOCALES runtime from site_settings)
 
 import { db } from '@/db/client';
-import { siteSettings } from '@agro/shared-backend/modules/siteSettings/schema';
+import { siteSettings } from '@ensotek/shared-backend/modules/siteSettings/schema';
 import { and, eq } from 'drizzle-orm';
 
 export const APP_LOCALES_SETTING_KEY = 'app_locales';

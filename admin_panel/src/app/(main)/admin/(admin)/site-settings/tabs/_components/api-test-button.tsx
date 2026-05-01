@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { toast } from "sonner";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
 import { useAdminTranslations } from "@/i18n";
 import { getSiteSettingsApiErrorMessage, type SiteSettingsApiTestResult } from "@/integrations/shared";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";

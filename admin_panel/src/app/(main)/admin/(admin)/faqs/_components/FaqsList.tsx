@@ -17,7 +17,7 @@ import { ArrowDown, ArrowUp, Save } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Button } from "@/components/ui/button";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
 import { useDeleteFaqAdminMutation } from "@/integrations/hooks";
 import type { FaqDto } from "@/integrations/shared";
 

@@ -13,12 +13,12 @@ export const productsService = {
     is_active?: number;
   }) =>
     api.get<ApiListResponse<Product> | Product[]>('/products', {
-      params: { item_type: 'cooling_tower', is_active: 1, ...params },
+      params: { item_type: 'product', is_active: 1, ...params },
     }),
 
   getBySlug: async (slug: string, locale?: string) =>
     api.get<Product>(`/products/by-slug/${slug}`, {
-      params: { item_type: 'cooling_tower', ...(locale ? { locale } : {}) },
+      params: { item_type: 'product', ...(locale ? { locale } : {}) },
     }),
 
   getById: async (id: string, locale?: string) =>

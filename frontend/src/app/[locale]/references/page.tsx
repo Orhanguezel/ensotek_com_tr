@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { hasLocale } from '@/i18n/locales';
 import { fetchActiveLocales } from '@/i18n/server';
 import { notFound } from 'next/navigation';
-import { API_BASE_URL, SITE_URL } from '@/lib/utils';
+import { API_BASE_URL, SITE_URL, resolvePublicAssetUrl } from '@/lib/utils';
 import { SectionHeader } from '@/components/patterns/SectionHeader';
 import { Reveal } from '@/components/motion/Reveal';
 import type { Reference } from '@/lib/api';
@@ -29,7 +29,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 async function fetchReferences(locale: string): Promise<Reference[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/references?is_active=1&locale=${locale}`, { next: { revalidate: 3600 } });
+    const res = await fetch(
+      `${API_BASE_URL}/references?is_published=1&locale=${locale}&limit=100`,
+      { cache: 'no-store' },
+    );
     if (!res.ok) return [];
     const data = await res.json();
     return Array.isArray(data) ? data : (data as { items?: Reference[] })?.items ?? [];
@@ -55,30 +58,62 @@ export default async function ReferencesPage({ params }: { params: Promise<{ loc
           </Reveal>
 
           {references.length === 0 ? (
-            <p className="text-(--mist) text-center py-16">{t('empty')}</p>
+            <p className="text-(--color-text-secondary) text-center py-16">{t('empty')}</p>
           ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-(--color-border)">
-              {references.map((ref, i) => (
-                <Reveal key={ref.id} delay={i * 80}>
-                  <div className="bg-(--void) hover:bg-(--panel) transition-colors p-8 border-l-2 border-transparent hover:border-(--cyan) group">
-                    {ref.client_name && (
-                      <div className="text-xs text-(--cyan) tracking-wider uppercase mb-2 font-[family-name:var(--font-display)]">
-                        {ref.client_name}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-(--color-border)">
+              {references.map((ref, i) => {
+                const logo = resolvePublicAssetUrl(ref.featured_image ?? ref.featured_image_url ?? null);
+                const Card = ref.website_url ? 'a' : 'div';
+                const cardProps = ref.website_url
+                  ? { href: ref.website_url, target: '_blank' as const, rel: 'noopener noreferrer' as const }
+                  : {};
+                return (
+                  <Reveal key={ref.id} delay={Math.min(i * 50, 320)}>
+                    <Card
+                      {...cardProps}
+                      className="group flex h-full flex-col bg-(--color-bg) p-8 border-l-2 border-transparent transition-colors hover:bg-(--color-bg-panel) hover:border-(--color-accent)"
+                      aria-label={ref.title}
+                    >
+                      <div className="mb-6 flex h-16 w-32 items-center justify-start overflow-hidden">
+                        {logo ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={logo}
+                            alt={ref.featured_image_alt ?? `${ref.title} logo`}
+                            className="max-h-full max-w-full object-contain object-left"
+                            loading={i < 6 ? 'eager' : 'lazy'}
+                          />
+                        ) : (
+                          <span className="font-[family-name:var(--font-display)] text-2xl font-semibold text-(--color-accent)">
+                            {ref.client_name?.slice(0, 1) ?? ref.title.slice(0, 1)}
+                          </span>
+                        )}
                       </div>
-                    )}
-                    <h2 className="text-base font-semibold text-(--white) mb-2 font-[family-name:var(--font-display)] group-hover:text-(--cyan) transition-colors">
-                      {ref.title}
-                    </h2>
-                    {ref.summary && <p className="text-sm text-(--mist) leading-relaxed">{ref.summary}</p>}
-                    {(ref.location ?? ref.year) && (
-                      <div className="mt-4 flex items-center gap-4 text-xs text-(--silver)">
-                        {ref.location && <span>{ref.location}</span>}
-                        {ref.year && <span>{ref.year}</span>}
-                      </div>
-                    )}
-                  </div>
-                </Reveal>
-              ))}
+
+                      {ref.client_name && ref.client_name !== ref.title && (
+                        <div className="mb-2 font-[family-name:var(--font-display)] text-xs uppercase tracking-wider text-(--color-accent)">
+                          {ref.client_name}
+                        </div>
+                      )}
+
+                      <h2 className="mb-2 font-[family-name:var(--font-display)] text-base font-semibold text-(--color-text-primary) transition-colors group-hover:text-(--color-accent)">
+                        {ref.title}
+                      </h2>
+
+                      {ref.summary && (
+                        <p className="text-sm leading-relaxed text-(--color-text-secondary)">{ref.summary}</p>
+                      )}
+
+                      {(ref.location || ref.year) && (
+                        <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-(--color-text-muted)">
+                          {ref.location && <span>{ref.location}</span>}
+                          {ref.year && <span>{ref.year}</span>}
+                        </div>
+                      )}
+                    </Card>
+                  </Reveal>
+                );
+              })}
             </div>
           )}
         </div>

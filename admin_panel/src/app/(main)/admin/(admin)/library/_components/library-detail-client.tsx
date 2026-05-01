@@ -23,13 +23,13 @@ import RichContentEditor from "@/app/(main)/admin/_components/common/RichContent
 import { useAdminLocales } from "@/app/(main)/admin/_components/common/useAdminLocales";
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import { type LocaleContent, useAIContentAssist } from "@/app/(main)/admin/_components/common/useAIContentAssist";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ensotek/shared-ui/admin/ui/select";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import {
   useCreateLibraryAdminMutation,
   useGetLibraryAdminQuery,
@@ -59,7 +59,7 @@ interface Props {
 // --- Bilesen ---
 
 export default function LibraryDetailClient({ id }: Props) {
-  const _t = useAdminT("admin.library");
+  const t = useAdminT("admin.library");
   const router = useRouter();
   const adminLocale = usePreferencesStore((s) => s.adminLocale);
   const isNew = id === "new";
@@ -390,6 +390,7 @@ function LibraryFormTabs({
   libraryId: string;
   activeLocale: string;
 }) {
+  const t = useAdminT();
   const [tab, setTab] = React.useState<"content" | "images" | "seo">("content");
 
   return (
@@ -515,7 +516,7 @@ function LibraryFormTabs({
                 onCheckedChange={(v) => handleChange("is_active", v)}
                 disabled={isLoading}
               />
-              <Label className="cursor-pointer text-xs">Aktif</Label>
+              <Label className="cursor-pointer text-xs">{t("admin.common.active")}</Label>
             </div>
             <div className="flex items-center gap-2">
               <Switch

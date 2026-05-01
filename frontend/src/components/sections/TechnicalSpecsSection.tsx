@@ -9,7 +9,7 @@ export function TechnicalSpecsSection() {
   const t = useTranslations('home.techSpecs');
 
   return (
-    <section className="section-py bg-(--deep)" id="specs">
+    <section className="section-py bg-(--color-bg-secondary)" id="specs">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <SectionHeader
@@ -29,7 +29,7 @@ export function TechnicalSpecsSection() {
                     <th
                       key={col}
                       className={`px-4 py-4 text-left text-xs tracking-[2px] uppercase font-[family-name:var(--font-display)] ${
-                        col === 'parameter' ? 'text-(--silver)' : 'text-(--cyan)'
+                        col === 'parameter' ? 'text-(--color-text-muted)' : 'text-(--color-accent)'
                       }`}
                     >
                       {t(`col.${col}`)}
@@ -41,13 +41,13 @@ export function TechnicalSpecsSection() {
                 {Array.from({ length: SPEC_ROWS }, (_, i) => (
                   <tr
                     key={i}
-                    className="border-b border-(--color-border) hover:bg-(--panel) transition-colors group"
+                    className="border-b border-(--color-border) hover:bg-(--color-bg-panel) transition-colors group"
                   >
-                    <td className="px-4 py-4 text-sm text-(--mist) font-medium">
+                    <td className="px-4 py-4 text-sm text-(--color-text-primary) font-semibold">
                       {t(`row${i + 1}.param`)}
                     </td>
                     {['counterflow', 'crossflow', 'closedCircuit'].map((col) => (
-                      <td key={col} className="px-4 py-4 text-sm text-(--light)">
+                      <td key={col} className="px-4 py-4 text-sm text-(--color-text-secondary)">
                         {t(`row${i + 1}.${col}`)}
                       </td>
                     ))}

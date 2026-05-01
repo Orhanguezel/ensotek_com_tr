@@ -23,13 +23,13 @@ import RichContentEditor from "@/app/(main)/admin/_components/common/RichContent
 import { useAdminLocales } from "@/app/(main)/admin/_components/common/useAdminLocales";
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import { type LocaleContent, useAIContentAssist } from "@/app/(main)/admin/_components/common/useAIContentAssist";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ensotek/shared-ui/admin/ui/select";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import {
   useCreateProductAdminMutation,
   useGetProductAdminQuery,
@@ -50,7 +50,7 @@ interface Props {
 }
 
 export default function ProductDetailClient({ id, itemType }: Props) {
-  const _t = useAdminT("admin.products");
+  const t = useAdminT("admin.products");
   const router = useRouter();
   const adminLocale = usePreferencesStore((s) => s.adminLocale);
   const isNew = id === "new";
@@ -438,6 +438,7 @@ function ProductFormTabs({
   categories: any[];
   subcategories: any[];
 }) {
+  const t = useAdminT();
   const [tab, setTab] = React.useState<"content" | "images" | "seo">("content");
 
   return (
@@ -520,7 +521,7 @@ function ProductFormTabs({
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
-              <Label className="text-xs">Kategori</Label>
+              <Label className="text-xs">{t("admin.common.category")}</Label>
               <Select
                 value={formData.category_id || "none"}
                 onValueChange={(v) => {
@@ -544,7 +545,7 @@ function ProductFormTabs({
             </div>
             {formData.category_id && (
               <div className="space-y-1.5">
-                <Label className="text-xs">Alt Kategori</Label>
+                <Label className="text-xs">{t("admin.common.subcategory")}</Label>
                 <Select
                   value={formData.sub_category_id || "none"}
                   onValueChange={(v) => handleChange("sub_category_id", v === "none" ? "" : v)}
@@ -582,7 +583,7 @@ function ProductFormTabs({
                 onCheckedChange={(v) => handleChange("is_active", v)}
                 disabled={isLoading}
               />
-              <Label className="cursor-pointer text-xs">Aktif</Label>
+              <Label className="cursor-pointer text-xs">{t("admin.common.active")}</Label>
             </div>
             <div className="flex items-center gap-2">
               <Switch

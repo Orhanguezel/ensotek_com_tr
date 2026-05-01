@@ -42,7 +42,7 @@ export function GlobalReachSection({ globalReachStats }: Props) {
 
       {/* Full-width harita */}
       <Reveal delay={100}>
-        <div className="relative w-full border-y border-(--color-border) bg-(--deep) overflow-hidden py-12 lg:py-20">
+        <div className="relative w-full border-y border-(--color-border) bg-(--color-bg-secondary) overflow-hidden py-12 lg:py-20">
           <div className="mx-auto max-w-5xl relative aspect-[784/458]">
             {/* Harita Arkaplanı */}
             <div
@@ -50,10 +50,10 @@ export function GlobalReachSection({ globalReachStats }: Props) {
               aria-hidden="true"
               style={{ backgroundImage: "url('/world-map.svg')" }}
             />
-            
+
             {/* Arkaplan 'WORLD' yazısı */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <span className="text-[6rem] lg:text-[12rem] font-bold text-(--cyan) opacity-[0.03] font-(family-name:--font-display) select-none">
+              <span className="text-[6rem] lg:text-[12rem] font-bold text-(--color-accent) opacity-[0.03] font-(family-name:--font-display) select-none">
                 WORLD
               </span>
             </div>
@@ -62,10 +62,10 @@ export function GlobalReachSection({ globalReachStats }: Props) {
             {MAP_DOTS.map((dot, i) => (
               <div
                 key={i}
-                className="absolute size-1.5 lg:size-2 bg-(--cyan) rounded-full pulse-dot shadow-[0_0_10px_rgba(22,196,216,0.6)]"
-                style={{ 
-                  top: dot.top, 
-                  left: dot.left, 
+                className="absolute size-1.5 lg:size-2 bg-(--color-accent) rounded-full pulse-dot shadow-[0_0_10px_rgba(22,196,216,0.6)]"
+                style={{
+                  top: dot.top,
+                  left: dot.left,
                   animationDelay: `${i * 0.15}s`,
                   transform: 'translate(-50%, -50%)'
                 }}
@@ -74,11 +74,11 @@ export function GlobalReachSection({ globalReachStats }: Props) {
           </div>
 
           {/* Overlay stat */}
-          <div className="absolute bottom-6 right-8 border border-(--cyan)/30 bg-(--deep)/80 backdrop-blur-sm px-6 py-4 text-right z-20">
-            <div className="text-3xl font-bold text-(--cyan) font-(family-name:--font-display)">
+          <div className="absolute bottom-6 right-8 border border-(--color-accent)/30 bg-(--color-bg-secondary)/80 backdrop-blur-sm px-6 py-4 text-right z-20">
+            <div className="text-3xl font-bold text-(--color-accent) font-(family-name:--font-display)">
               {globalReachStats?.countries_count ?? '40+'}
             </div>
-            <div className="text-xs text-(--mist) tracking-wider uppercase mt-1">{t('countriesServed')}</div>
+            <div className="text-xs text-(--color-text-secondary) tracking-wider uppercase mt-1">{t('countriesServed')}</div>
           </div>
         </div>
       </Reveal>
@@ -92,11 +92,11 @@ export function GlobalReachSection({ globalReachStats }: Props) {
               { value: globalReachStats?.experience_value ?? t('stat.experience.value'), label: globalReachStats?.experience_label ?? t('stat.experience.label') },
               { value: globalReachStats?.capacity_value   ?? t('stat.capacity.value'),   label: globalReachStats?.capacity_label   ?? t('stat.capacity.label') },
             ].map((stat, i) => (
-              <div key={i} className="bg-(--void) px-6 py-6 text-center">
-                <div className="text-2xl font-bold text-(--cyan) font-(family-name:--font-display) mb-1">
+              <div key={i} className="bg-(--color-bg) px-6 py-6 text-center">
+                <div className="text-2xl font-bold text-(--color-accent) font-(family-name:--font-display) mb-1">
                   {stat.value}
                 </div>
-                <div className="text-xs text-(--silver) tracking-wider uppercase">
+                <div className="text-xs text-(--color-text-muted) tracking-wider uppercase">
                   {stat.label}
                 </div>
               </div>

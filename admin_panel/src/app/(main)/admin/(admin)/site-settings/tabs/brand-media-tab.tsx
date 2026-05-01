@@ -13,9 +13,9 @@ import { Copy, ExternalLink, RefreshCcw, Save } from "lucide-react";
 import { toast } from "sonner";
 
 import { AdminImageUploadField } from "@/app/(main)/admin/_components/common/AdminImageUploadField";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
 import { useAdminTranslations } from "@/i18n";
 import { useGetSiteSettingAdminByKeyQuery, useUpdateSiteSettingAdminMutation } from "@/integrations/hooks";
 import {

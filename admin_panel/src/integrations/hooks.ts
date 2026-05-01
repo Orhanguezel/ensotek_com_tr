@@ -64,4 +64,3 @@ export * from "@/integrations/endpoints/admin/theme_admin.endpoints";
 // Core / Auth / Dashboard / DB
 export * from "@/integrations/endpoints/admin/users/auth_admin.endpoints";
 export * from "@/integrations/endpoints/admin/users/roles_admin.endpoints";
-export * from "@/integrations/endpoints/admin/users/roles_admin.endpoints";

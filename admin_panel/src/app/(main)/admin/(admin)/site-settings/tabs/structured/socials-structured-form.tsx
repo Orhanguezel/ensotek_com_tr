@@ -8,9 +8,9 @@ import type React from "react";
 
 import { z } from "zod";
 
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@ensotek/shared-ui/admin/ui/alert";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
 import { useAdminTranslations } from "@/i18n";
 import { SITE_SETTINGS_SOCIAL_KEYS, toStructuredObjectSeed } from "@/integrations/shared";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";

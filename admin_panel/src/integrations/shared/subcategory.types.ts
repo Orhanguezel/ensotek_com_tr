@@ -138,7 +138,7 @@ export interface SubCategorySlugQuery {
 }
 
 /**
- * ADMIN listeleme query paramları (GET /admin/sub-categories/list)
+ * ADMIN listeleme query paramları (GET /admin/subcategories/list)
  */
 export interface SubCategoryAdminListQueryParams {
   q?: string;

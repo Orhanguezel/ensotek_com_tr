@@ -12,8 +12,8 @@
     "db:seed:only": "bun src/db/seed/index.ts --only="
   },
   "dependencies": {
-    "@agro/shared-backend": "workspace:*",
-    "@agro/shared-types": "workspace:*",
+    "@ensotek/shared-backend": "workspace:*",
+    "@ensotek/shared-types": "workspace:*",
     "@fastify/cookie": "^11",
     "@fastify/cors": "^11",
     "@fastify/jwt": "^10",

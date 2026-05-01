@@ -16,6 +16,7 @@ import { toast } from "sonner";
 
 import { type AdminLocaleOption, AdminLocaleSelect } from "@/app/(main)/admin/_components/common/AdminLocaleSelect";
 import { useAdminLocales } from "@/app/(main)/admin/_components/common/useAdminLocales";
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import { useAdminUiCopy } from "@/app/(main)/admin/_components/common/useAdminUiCopy";
 import {
   AlertDialog,
@@ -27,14 +28,14 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ensotek/shared-ui/admin/ui/select";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@ensotek/shared-ui/admin/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
 import {
   useListSkillCountersAdminQuery,
   useListSkillLogosAdminQuery,
@@ -52,6 +53,7 @@ type Filters = {
 export default function AdminSkillsClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useAdminT();
   const { copy } = useAdminUiCopy();
   const page = copy.pages?.skills ?? {};
   const common = copy.common;
@@ -405,8 +407,8 @@ export default function AdminSkillsClient() {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>İptal</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDeleteConfirm}>Sil</AlertDialogAction>
+              <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDeleteConfirm}>{t("common.delete")}</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

@@ -20,7 +20,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@ensotek/shared-ui/admin/ui/dropdown-menu";
 import { useGetMyProfileQuery, useLogoutMutation, useStatusQuery } from "@/integrations/hooks";
 import { getInitials } from "@/lib/utils";
 
@@ -71,7 +71,12 @@ export function AccountSwitcher({ me: propMe }: { me: Me }) {
         </Avatar>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="min-w-64 rounded-lg" side="bottom" align="end" sideOffset={4}>
+      <DropdownMenuContent 
+        className="min-w-64 rounded-lg [html[data-theme-preset=premium]_&]:glass-panel" 
+        side="bottom" 
+        align="end" 
+        sideOffset={4}
+      >
         <div className="px-3 py-2">
           <div className="truncate font-semibold text-sm">{displayName}</div>
           <div className="truncate text-muted-foreground text-xs">{me.role}</div>

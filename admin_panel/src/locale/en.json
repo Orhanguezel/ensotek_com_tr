@@ -88,6 +88,7 @@
         "passwordLabel": "Password",
         "passwordPlaceholder": "••••••••",
         "rememberMe": "Remember me for 30 days",
+        "forgotPassword": "Forgot password?",
         "loginButton": "Login",
         "loggingIn": "Logging in...",
         "loginSuccess": "Logged in successfully.",
@@ -185,7 +186,18 @@
         "metaTitle": "Meta Title",
         "metaDescription": "Meta Description",
         "tags": "Tags"
-      }
+      },
+      "passive": "Inactive",
+      "all": "All",
+      "category": "Category",
+      "subcategory": "Subcategory",
+      "language": "Language",
+      "featured": "Featured",
+      "order": "Order",
+      "published": "Published",
+      "viewsShort": "Views",
+      "downloads": "Downloads",
+      "date": "Date"
     },
     "slider": {
       "header": {
@@ -1226,7 +1238,7 @@
         "themePresetPlaceholder": "Preset",
         "fonts": "Fonts",
         "fontsPlaceholder": "Select font",
-        "language": "Language",
+        "language": "Interface Language",
         "themeMode": "Theme Mode",
         "pageLayout": "Page Layout",
         "navbarBehavior": "Navbar Behavior",
@@ -1250,7 +1262,6 @@
           "icon": "Icon",
           "offcanvas": "OffCanvas"
         },
-        "language": "Interface Language",
         "languagePlaceholder": "Select language"
       },
       "groups": {

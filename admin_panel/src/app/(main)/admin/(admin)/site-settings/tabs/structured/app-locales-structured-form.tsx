@@ -8,11 +8,11 @@ import React from "react";
 
 import { Trash2 } from "lucide-react";
 
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
+import { Alert, AlertDescription } from "@ensotek/shared-ui/admin/ui/alert";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ensotek/shared-ui/admin/ui/select";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
 import { useAdminTranslations } from "@/i18n";
 import { SITE_SETTINGS_AVAILABLE_LANGUAGES } from "@/integrations/shared";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";

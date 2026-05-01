@@ -5,10 +5,10 @@ import React from "react";
 import { Plus, X } from "lucide-react";
 
 import { AdminImageUploadField } from "@/app/(main)/admin/_components/common/AdminImageUploadField";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@ensotek/shared-ui/admin/ui/alert";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
 import { useAdminTranslations } from "@/i18n";
 import { SITE_SETTINGS_BACKGROUND_EMPTY_ITEM } from "@/integrations/shared";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";

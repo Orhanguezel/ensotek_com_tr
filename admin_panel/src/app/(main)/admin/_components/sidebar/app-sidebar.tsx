@@ -19,6 +19,7 @@ import type { TranslateFn } from "@/i18n";
 import { useGetMyProfileQuery, useStatusQuery } from "@/integrations/hooks";
 import type { NavGroup } from "@/navigation/sidebar/sidebar-items";
 import { buildAdminSidebarItems } from "@/navigation/sidebar/sidebar-items";
+import { cn } from "@/lib/utils";
 
 import { useAdminSettings } from "../admin-settings-provider";
 import { NavMain } from "./nav-main";
@@ -104,19 +105,31 @@ export function AppSidebar({
       ];
 
   return (
-    <Sidebar {...props} variant={variant} collapsible={collapsible}>
+    <Sidebar 
+      {...props} 
+      variant={variant} 
+      collapsible={collapsible}
+      className={cn(
+        "[html[data-theme-preset=premium]_&]:border-r-primary/10",
+        props.className
+      )}
+    >
       <SidebarHeader>
         <Link
           prefetch={false}
           href="/admin/dashboard"
-          className="flex items-center gap-3 px-3 py-4 transition-colors hover:bg-sidebar-accent/50"
+          className="group flex items-center gap-3 px-3 py-4 transition-all"
         >
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-lg shadow-primary/20 transition-transform group-hover:scale-110">
             <LayoutDashboard className="size-5" />
           </div>
           <div className="flex flex-col gap-0.5 leading-none">
-            <span className="font-bold text-lg tracking-tight">{label || "ENSOTEK"}</span>
-            <span className="font-medium text-[10px] text-muted-foreground uppercase tracking-widest">Admin Panel</span>
+            <span className="font-bold text-lg tracking-tight [html[data-theme-preset=premium]_&]:font-fraunces">
+              {label || "ENSOTEK"}
+            </span>
+            <span className="font-medium text-[10px] text-muted-foreground uppercase tracking-widest opacity-70">
+              Admin Panel
+            </span>
           </div>
         </Link>
       </SidebarHeader>

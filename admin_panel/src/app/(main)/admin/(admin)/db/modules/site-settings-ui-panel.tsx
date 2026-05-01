@@ -7,13 +7,13 @@ import { Download, Loader2, Zap } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent } from "@ensotek/shared-ui/admin/ui/card";
+import { Checkbox } from "@ensotek/shared-ui/admin/ui/checkbox";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ensotek/shared-ui/admin/ui/select";
+import { Separator } from "@ensotek/shared-ui/admin/ui/separator";
 import { useBootstrapSiteSettingsUiLocaleMutation, useExportSiteSettingsUiJsonQuery } from "@/integrations/hooks";
 
 import { askConfirm } from "../shared/confirm";

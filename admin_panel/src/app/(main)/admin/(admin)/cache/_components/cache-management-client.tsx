@@ -6,15 +6,15 @@ import { AlertCircle, Check, Globe, Plus, Power, RefreshCcw, Trash2, X } from "l
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Separator } from "@ensotek/shared-ui/admin/ui/separator";
 
-/* ── CORS'tan frontend listesi ── */
+/* ── Cache hedef frontend listesi ── */
 
-const CORS_RAW = (process.env.NEXT_PUBLIC_CORS_ORIGINS || "")
+const CORS_RAW = (process.env.NEXT_PUBLIC_REVALIDATE_TARGETS || "http://localhost:3021")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
@@ -49,7 +49,7 @@ function buildFromCors(): FrontendEntry[] {
   });
 }
 
-const STORAGE_KEY = "ensotek_cache_frontends";
+const STORAGE_KEY = "ensotek_com_tr_cache_frontends_v3";
 
 function loadState(corsEntries: FrontendEntry[]): FrontendEntry[] {
   if (typeof window === "undefined") return corsEntries;
@@ -83,10 +83,10 @@ type PurgeResult = { name: string; ok: boolean; error?: string };
 
 async function purgeOne(entry: FrontendEntry, opts: { all?: boolean; path?: string }): Promise<PurgeResult> {
   try {
-    const res = await fetch(`${entry.url}/api/revalidate`, {
+    const res = await fetch("/api/revalidate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(opts),
+      body: JSON.stringify({ ...opts, target: entry.url }),
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
@@ -206,7 +206,7 @@ export default function CacheManagementClient() {
           {entries.length === 0 && (
             <div className="rounded-md border border-dashed p-6 text-center text-muted-foreground text-sm">
               <AlertCircle className="mx-auto mb-2 size-5" />
-              Frontend bulunamadi. .env NEXT_PUBLIC_CORS_ORIGINS degerini kontrol edin.
+              Frontend bulunamadi. .env NEXT_PUBLIC_REVALIDATE_TARGETS degerini kontrol edin.
             </div>
           )}
 

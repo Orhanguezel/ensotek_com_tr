@@ -316,6 +316,7 @@
         "passwordLabel": "Passwort",
         "passwordPlaceholder": "••••••••",
         "rememberMe": "30 Tage lang angemeldet bleiben",
+        "forgotPassword": "Passwort vergessen?",
         "loginButton": "Anmelden",
         "loggingIn": "Anmelden...",
         "loginSuccess": "Erfolgreich angemeldet.",
@@ -413,7 +414,18 @@
         "metaDescription": "Meta-Beschreibung",
         "tags": "Tags"
       },
-      "delete": "Delete"
+      "delete": "Löschen",
+      "passive": "Inaktiv",
+      "all": "Alle",
+      "category": "Kategorie",
+      "subcategory": "Unterkategorie",
+      "language": "Sprache",
+      "featured": "Hervorgehoben",
+      "order": "Reihenfolge",
+      "published": "Veröffentlicht",
+      "viewsShort": "Aufrufe",
+      "downloads": "Downloads",
+      "date": "Datum"
     },
     "slider": {
       "header": {
@@ -799,7 +811,7 @@
         "themePresetPlaceholder": "Vorlage",
         "fonts": "Schriftarten",
         "fontsPlaceholder": "Schriftart auswählen",
-        "language": "Sprache",
+        "language": "Oberflächensprache",
         "themeMode": "Themenmodus",
         "pageLayout": "Seitenlayout",
         "navbarBehavior": "Navigationsleiste Verhalten",
@@ -823,7 +835,6 @@
           "icon": "Symbol",
           "offcanvas": "Außerhalb Canvas"
         },
-        "language": "Oberflächensprache",
         "languagePlaceholder": "Sprache wählen"
       },
       "groups": {

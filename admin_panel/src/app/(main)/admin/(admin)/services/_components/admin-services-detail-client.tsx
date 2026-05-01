@@ -22,12 +22,12 @@ import RichContentEditor from "@/app/(main)/admin/_components/common/RichContent
 import { useAdminLocales } from "@/app/(main)/admin/_components/common/useAdminLocales";
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
 import { type LocaleContent, useAIContentAssist } from "@/app/(main)/admin/_components/common/useAIContentAssist";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Input } from "@ensotek/shared-ui/admin/ui/input";
+import { Label } from "@ensotek/shared-ui/admin/ui/label";
+import { Switch } from "@ensotek/shared-ui/admin/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ensotek/shared-ui/admin/ui/tabs";
+import { Textarea } from "@ensotek/shared-ui/admin/ui/textarea";
 import {
   useCreateServiceAdminMutation,
   useGetServiceAdminQuery,
@@ -40,7 +40,7 @@ function isUuidLike(v?: string) {
 }
 
 export default function AdminServiceDetailClient({ id }: { id: string }) {
-  const _t = useAdminT("admin.services");
+  const t = useAdminT("admin.services");
   const router = useRouter();
   const isNew = id === "new";
   const adminLocale = usePreferencesStore((s) => s.adminLocale);
@@ -348,6 +348,7 @@ export default function AdminServiceDetailClient({ id }: { id: string }) {
 /* ── Ic Tab'lar: Icerik / Ozellikler / Gorseller / SEO ── */
 
 function ServiceFormTabs({ f, setF, set, isLoading }: { f: any; setF: any; set: any; isLoading: boolean }) {
+  const t = useAdminT();
   const [tab, setTab] = React.useState<"content" | "specs" | "images" | "seo">("content");
 
   return (
@@ -406,7 +407,7 @@ function ServiceFormTabs({ f, setF, set, isLoading }: { f: any; setF: any; set: 
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
               <Switch checked={f.is_active} onCheckedChange={(v) => set("is_active", v)} disabled={isLoading} />
-              <Label className="cursor-pointer text-xs">Aktif</Label>
+              <Label className="cursor-pointer text-xs">{t("admin.common.active")}</Label>
             </div>
             <div className="flex items-center gap-2">
               <Switch checked={f.featured} onCheckedChange={(v) => set("featured", v)} disabled={isLoading} />

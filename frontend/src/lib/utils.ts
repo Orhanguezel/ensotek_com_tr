@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]): string {
 }
 
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? 'http://127.0.0.1:8087/api';
+  process.env.NEXT_PUBLIC_API_URL ?? 'http://127.0.0.1:8088/api';
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.ensotek.com.tr';

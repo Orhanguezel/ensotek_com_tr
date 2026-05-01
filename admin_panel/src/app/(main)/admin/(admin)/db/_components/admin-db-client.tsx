@@ -13,8 +13,8 @@ import type React from "react";
 import { Lightbulb } from "lucide-react";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@ensotek/shared-ui/admin/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 import { FullDbHeader } from "../fullDb/full-db-header";

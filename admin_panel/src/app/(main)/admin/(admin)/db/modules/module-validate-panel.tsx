@@ -5,9 +5,9 @@ import type React from "react";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@ensotek/shared-ui/admin/ui/badge";
+import { Button } from "@ensotek/shared-ui/admin/ui/button";
+import { Card, CardContent } from "@ensotek/shared-ui/admin/ui/card";
 import { useLazyValidateModuleManifestQuery } from "@/integrations/hooks";
 
 export type ModuleValidatePanelProps = {

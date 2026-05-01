@@ -1,5 +1,5 @@
 // =============================================================
-// FILE: src/integrations/rtk/endpoints/admin/custom_pages_admin.endpoints.ts
+// FILE: src/integrations/rtk/endpoints/admin/custom-pages_admin.endpoints.ts
 // Ensotek – Admin Custom Pages RTK Endpoints (FINAL)
 // Base URL: /api (baseApi üzerinden)
 // Backend: src/modules/customPages/admin.routes.ts
@@ -42,7 +42,7 @@ const normalizeList = (raw: unknown): ApiCustomPage[] => {
   return [];
 };
 
-const BASE = "/admin/custom_pages";
+const BASE = "/admin/custom-pages";
 
 export const customPagesAdminApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

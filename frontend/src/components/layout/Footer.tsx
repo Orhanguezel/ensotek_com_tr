@@ -4,6 +4,16 @@ import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import type { ContactInfo } from '@/lib/api';
 
+const socialLinks = [
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/ensotek-su-so-utma-kuleleri-ltd-ti-/',
+  },
+  { label: 'YouTube', href: 'https://www.youtube.com/@ensotek' },
+  { label: 'Instagram', href: 'https://www.instagram.com/ensotek/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/ensotek' },
+];
+
 interface Props {
   contactInfo?: ContactInfo;
 }
@@ -36,18 +46,18 @@ export function Footer({ contactInfo }: Props) {
                 />
               </Link>
             </div>
-            <p className="text-sm text-(--mist) leading-relaxed max-w-xs">
+            <p className="text-sm text-(--color-text-secondary) leading-relaxed max-w-xs">
               {t('description')}
             </p>
           </div>
 
           {/* Products */}
           <div>
-            <h3 className="text-xs tracking-[3px] uppercase text-(--cyan) mb-4 font-[family-name:var(--font-display)]">{t('products')}</h3>
+            <h3 className="text-xs tracking-[3px] uppercase text-(--color-accent) mb-4 font-[family-name:var(--font-display)]">{t('products')}</h3>
             <ul className="space-y-2">
               {['counterflow', 'crossflow', 'closedCircuit', 'industrialFan'].map((item) => (
                 <li key={item}>
-                  <Link href="/products" locale={locale} className="text-sm text-(--silver) hover:text-(--cyan) transition-colors">
+                  <Link href="/products" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">
                     {t(`product.${item}`)}
                   </Link>
                 </li>
@@ -57,27 +67,38 @@ export function Footer({ contactInfo }: Props) {
 
           {/* Company */}
           <div>
-            <h3 className="text-xs tracking-[3px] uppercase text-(--cyan) mb-4 font-[family-name:var(--font-display)]">{t('company')}</h3>
+            <h3 className="text-xs tracking-[3px] uppercase text-(--color-accent) mb-4 font-[family-name:var(--font-display)]">{t('company')}</h3>
             <ul className="space-y-2">
-              <li><Link href="/gallery" locale={locale} className="text-sm text-(--silver) hover:text-(--cyan) transition-colors">{t('gallery')}</Link></li>
-              <li><Link href="/references" locale={locale} className="text-sm text-(--silver) hover:text-(--cyan) transition-colors">{t('references')}</Link></li>
-              <li><Link href="/contact" locale={locale} className="text-sm text-(--silver) hover:text-(--cyan) transition-colors">{t('contact')}</Link></li>
+              <li><Link href="/gallery" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">{t('gallery')}</Link></li>
+              <li><Link href="/references" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">{t('references')}</Link></li>
+              <li><Link href="/blog" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">{t('blog')}</Link></li>
+              <li><Link href="/contact" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">{t('contact')}</Link></li>
+              <li>
+                <a
+                  href="https://www.karbonkompozit.com.tr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
+                >
+                  {t('groupCompanies')}
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-xs tracking-[3px] uppercase text-(--cyan) mb-4 font-[family-name:var(--font-display)]">{t('contactTitle')}</h3>
+            <h3 className="text-xs tracking-[3px] uppercase text-(--color-accent) mb-4 font-[family-name:var(--font-display)]">{t('contactTitle')}</h3>
             <ul className="space-y-3 text-sm text-(--silver)">
               <li>{address}</li>
               <li>
-                <a href={`tel:${phone.replace(/\s/g, '')}`} className="hover:text-(--cyan) transition-colors">{phone}</a>
+                <a href={`tel:${phone.replace(/\s/g, '')}`} className="hover:text-(--color-accent) transition-colors">{phone}</a>
                 {phone2 && (
-                  <> / <a href={`tel:${phone2.replace(/\s/g, '')}`} className="hover:text-(--cyan) transition-colors">{phone2}</a></>
+                  <> / <a href={`tel:${phone2.replace(/\s/g, '')}`} className="hover:text-(--color-accent) transition-colors">{phone2}</a></>
                 )}
               </li>
               <li>
-                <a href={`mailto:${email}`} className="hover:text-(--cyan) transition-colors">{email}</a>
+                <a href={`mailto:${email}`} className="hover:text-(--color-accent) transition-colors">{email}</a>
               </li>
             </ul>
           </div>
@@ -87,11 +108,24 @@ export function Footer({ contactInfo }: Props) {
           <p className="text-xs text-(--silver)">
             © {year} Ensotek. {t('rights')}
           </p>
+          <div className="footer-socials-et" aria-label="Ensotek sosyal medya bağlantıları">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Ensotek ${social.label}`}
+              >
+                {social.label}
+              </a>
+            ))}
+          </div>
           <a
             href="https://guezelwebdesign.com"
             target="_blank"
             rel="noreferrer"
-            className="text-xs text-(--silver) hover:text-(--cyan) transition-colors"
+            className="text-xs text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
           >
             GWD | guezelwebdesign.com
           </a>
