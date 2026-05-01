@@ -6,6 +6,10 @@ const nextConfig = {
   compiler: { removeConsole: process.env.NODE_ENV === 'production' },
   transpilePackages: ['@ensotek/shared-ui'],
 
+  // Tek domain altında /admin path — alt domain yok
+  basePath: '/admin',
+  assetPrefix: '/admin',
+
   // VPS düşük RAM build için: TS check skip (lokal build'de zaten yapılıyor)
   typescript: { ignoreBuildErrors: true },
 
