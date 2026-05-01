@@ -77,6 +77,9 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `upda
   (UUID(), 'site_logo_light',      '*', '/media/logo.png',                  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'site_favicon',         '*', '/favicon.ico',                     CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
   (UUID(), 'site_og_default_image','*', '/media/ensotek_icon_512.png',      CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'og_image_default',     '*', '/media/ensotek_icon_512.png',      CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'site_apple_touch_icon','*', '/media/apple-touch-icon.png',      CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
+  (UUID(), 'site_app_icon_512',    '*', '/media/ensotek-apple-icon-512.png',CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
 
   -- App icons
   (UUID(), 'app_icon_192',         '*', '/media/ensotek_icon_192.png',      CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)),
