@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'standalone',
   turbopack: {
-    root: path.resolve(process.cwd(), '../..'),
+    root: path.resolve(process.cwd(), '..'),
   },
 
   async redirects() {

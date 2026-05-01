@@ -6,9 +6,12 @@ const nextConfig = {
   compiler: { removeConsole: process.env.NODE_ENV === 'production' },
   transpilePackages: ['@ensotek/shared-ui'],
 
+  // VPS düşük RAM build için: TS check skip (lokal build'de zaten yapılıyor)
+  typescript: { ignoreBuildErrors: true },
+
   // Workspace root — bun hoisting nedeniyle next paketi üst dizinde çözümlenir
   turbopack: {
-    root: path.resolve(import.meta.dirname, '../..'),
+    root: path.resolve(import.meta.dirname, '..'),
   },
 
   // ✅ Image optimization config
