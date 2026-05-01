@@ -70,8 +70,10 @@ export function ProductsSection({ products }: Props) {
                         <h3 className="text-lg font-semibold text-(--white) mb-2 font-[family-name:var(--font-display)] uppercase tracking-wide group-hover:text-(--cyan) transition-colors">
                           {product.title}
                         </h3>
-                        <p className="text-sm text-(--mist) leading-relaxed flex-1 mb-4">
-                          {product.summary ?? product.description ?? ''}
+                        <p className="text-sm text-(--mist) leading-relaxed flex-1 mb-4 line-clamp-3">
+                          {product.meta_description
+                            ?? product.summary
+                            ?? (product.description ? product.description.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 180) : '')}
                         </p>
                         <Link
                           href={{ pathname: '/products/[slug]', params: { slug: product.slug } }}
