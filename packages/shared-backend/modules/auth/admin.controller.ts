@@ -1,9 +1,13 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
+import { randomUUID } from 'crypto';
+import { hash as argonHash } from 'argon2';
+import { z } from 'zod';
 import { handleRouteError, sendNotFound, toBool, formatAdminUserRow } from '../_shared';
 import { sendPasswordChangedMail } from '../mail';
 import {
   repoGetUserById,
   repoGetUserByEmail,
+  repoCreateUser,
   repoAdminListUsers,
   repoAdminUpdateUser,
   repoAdminSetActive,
@@ -11,6 +15,7 @@ import {
   repoAdminSetPassword,
   repoAdminDeleteUser,
   repoAssignRole,
+  repoEnsureProfileRow,
   repoCreatePasswordChangedNotification,
 } from './repository';
 import {
@@ -28,6 +33,43 @@ import {
   resolveAdminPasswordChangedUserName,
   resolveAdminRoleTarget,
 } from './helpers';
+
+/** POST /admin/users */
+const adminCreateUserBody = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+  full_name: z.string().min(1).optional().nullable(),
+  phone: z.string().optional().nullable(),
+  role: z.enum(['admin', 'editor', 'user']).optional().default('admin'),
+});
+
+export async function adminCreateUser(req: FastifyRequest, reply: FastifyReply) {
+  try {
+    const body = adminCreateUserBody.parse(req.body ?? {});
+    const exists = await repoGetUserByEmail(body.email);
+    if (exists) return reply.status(409).send({ error: { message: 'user_exists' } });
+
+    const id = randomUUID();
+    const password_hash = await argonHash(body.password);
+    await repoCreateUser({
+      id,
+      email: body.email,
+      password_hash,
+      full_name: body.full_name ?? undefined,
+      phone: body.phone ?? undefined,
+    });
+    await repoAssignRole(id, body.role);
+    await repoEnsureProfileRow(id, {
+      full_name: body.full_name ?? null,
+      phone: body.phone ?? null,
+    });
+
+    const created = await formatAdminUserById(id);
+    return reply.code(201).send(created);
+  } catch (e) {
+    return handleRouteError(reply, req, e, 'admin_create_user');
+  }
+}
 
 /** GET /admin/users */
 export async function adminListUsers(req: FastifyRequest, reply: FastifyReply) {

@@ -2,6 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import {
   adminListUsers,
   adminGetUser,
+  adminCreateUser,
   adminUpdateUser,
   adminSetUserActive,
   adminSetUserRoles,
@@ -13,6 +14,7 @@ export async function registerUserAdmin(app: FastifyInstance) {
   const B = '/users';
 
   app.get(`${B}`, adminListUsers);
+  app.post(`${B}`, adminCreateUser);
   app.get(`${B}/:id`, adminGetUser);
   app.patch(`${B}/:id`, adminUpdateUser);
   app.post(`${B}/:id/active`, adminSetUserActive);
