@@ -31,9 +31,9 @@ export const DEFAULT_BRANDING: AdminBrandingConfig = {
   app_copyright: "Ensotek GmbH",
   html_lang: "tr",
   theme_color: "#0066CC",
-  favicon_16: "/favicon/favicon.svg",
-  favicon_32: "/favicon/favicon.svg",
-  apple_touch_icon: "/favicon/apple-touch-icon.png",
+  favicon_16: "/admin/favicon/favicon.svg",
+  favicon_32: "/admin/favicon/favicon.svg",
+  apple_touch_icon: "/admin/favicon/apple-touch-icon.png",
   meta: {
     title: "Ensotek - Industrielle Kühl- und Klimatechnik | HVAC Lösungen",
     description:
@@ -42,7 +42,7 @@ export const DEFAULT_BRANDING: AdminBrandingConfig = {
     og_title: "Ensotek - Industrielle Kühl- und Klimatechnik",
     og_description:
       "Professionelle HVAC-Lösungen für Industrie und Gewerbe. Adiabate Kühlung, Verdunstungskühler und energieeffiziente Klimatechnik.",
-    og_image: "/logo/png/ensotek_logo_512.png",
+    og_image: "/admin/ensotek_icon_512.png",
     twitter_card: "summary_large_image",
   },
 };
