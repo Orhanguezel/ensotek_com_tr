@@ -135,10 +135,10 @@ export default async function ProductDetailPage({
           <div className="mb-10 flex flex-wrap gap-3">
             <DatasheetRequestButton locale={locale} productTitle={product.title} productSlug={slug} />
           </div>
-          {product.content && (
+          {(product.content ?? product.description) && (
             <div
-              className="prose prose-invert max-w-none text-(--mist)"
-              dangerouslySetInnerHTML={{ __html: product.content }}
+              className="prose-themed max-w-4xl"
+              dangerouslySetInnerHTML={{ __html: (product.content ?? product.description ?? '') }}
             />
           )}
           {hasSpecs && (
