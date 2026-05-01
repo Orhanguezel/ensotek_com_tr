@@ -53,7 +53,7 @@ export function Footer({ contactInfo }: Props) {
 
           {/* Products */}
           <div>
-            <h3 className="text-xs tracking-[3px] uppercase text-(--color-accent) mb-4 font-[family-name:var(--font-display)]">{t('products')}</h3>
+            <h3 className="text-xs tracking-[3px] uppercase text-(--color-text-primary) mb-4 font-[family-name:var(--font-display)]">{t('products')}</h3>
             <ul className="space-y-2">
               {['counterflow', 'crossflow', 'closedCircuit', 'industrialFan'].map((item) => (
                 <li key={item}>
@@ -67,7 +67,7 @@ export function Footer({ contactInfo }: Props) {
 
           {/* Company */}
           <div>
-            <h3 className="text-xs tracking-[3px] uppercase text-(--color-accent) mb-4 font-[family-name:var(--font-display)]">{t('company')}</h3>
+            <h3 className="text-xs tracking-[3px] uppercase text-(--color-text-primary) mb-4 font-[family-name:var(--font-display)]">{t('company')}</h3>
             <ul className="space-y-2">
               <li><Link href="/gallery" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">{t('gallery')}</Link></li>
               <li><Link href="/references" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">{t('references')}</Link></li>
@@ -88,7 +88,7 @@ export function Footer({ contactInfo }: Props) {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-xs tracking-[3px] uppercase text-(--color-accent) mb-4 font-[family-name:var(--font-display)]">{t('contactTitle')}</h3>
+            <h3 className="text-xs tracking-[3px] uppercase text-(--color-text-primary) mb-4 font-[family-name:var(--font-display)]">{t('contactTitle')}</h3>
             <ul className="space-y-3 text-sm text-(--silver)">
               <li>{address}</li>
               <li>
