@@ -1,0 +1,59 @@
+{
+  "title": "Ensotek com.tr",
+  "slug": "ensotek-com-tr",
+  "summary": "B2B cooling tower platform for the Turkish market — catalog and document library management with multilingual content on a Fastify + Next.js stack and shared backend packages.",
+  "category": "B2B PLATFORM",
+  "services": [
+    "Frontend Development",
+    "Backend Development",
+    "Architecture & Optimization",
+    "DevOps & Deployment"
+  ],
+  "techs": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Fastify",
+    "Drizzle ORM",
+    "MySQL",
+    "Bun",
+    "Zod",
+    "next-intl",
+    "Tailwind CSS",
+    "React Query",
+    "Redux Toolkit",
+    "Cloudinary",
+    "JWT",
+    "Swagger",
+    "Docker",
+    "Nginx",
+    "CI/CD"
+  ],
+  "features": [
+    "Admin panel",
+    "Catalog management",
+    "Document library handling",
+    "Multi-language content",
+    "Shared backend packages"
+  ],
+  "designHighlights": [
+    "Shared backend/UI packages via workspace",
+    "Locale-aware content flows",
+    "Standalone build deployment"
+  ],
+  "featured": false,
+  "displayOrder": 3,
+  "clientName": "Own Project",
+  "status": "in-development",
+  "startDate": "2025-04-01",
+  "completeDate": null,
+  "completionTimeLabel": "Ongoing",
+  "repoUrl": "https://github.com/Orhanguezel/ensotek_com_tr",
+  "websiteUrl": "https://www.ensotek.com.tr",
+  "demoUrl": null,
+  "featuredImage": "/assets/imgs/work/projects/ensotek-com-tr.png",
+  "featuredImageAlt": "Ensotek com.tr B2B Platform",
+  "resumeTitle": "Ensotek com.tr",
+  "resumeSubtitle": "B2B Cooling Tower Platform (TR)",
+  "excludeFromPortfolio": false
+}
