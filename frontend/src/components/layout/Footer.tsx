@@ -73,16 +73,6 @@ export function Footer({ contactInfo }: Props) {
               <li><Link href="/references" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">{t('references')}</Link></li>
               <li><Link href="/blog" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">{t('blog')}</Link></li>
               <li><Link href="/contact" locale={locale} className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors">{t('contact')}</Link></li>
-              <li>
-                <a
-                  href="https://www.karbonkompozit.com.tr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
-                >
-                  {t('groupCompanies')}
-                </a>
-              </li>
             </ul>
           </div>
 

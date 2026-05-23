@@ -17,6 +17,10 @@ export const routing = defineRouting({
       tr: '/iletisim',
       en: '/contact',
     },
+    '/offer': {
+      tr: '/teklif-al',
+      en: '/offer',
+    },
     '/gallery': {
       tr: '/galeri',
       en: '/gallery',

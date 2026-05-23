@@ -19,7 +19,6 @@
     "references": "References",
     "blog": "Knowledge Base",
     "contact": "Contact",
-    "groupCompanies": "Group Companies: MOE Kompozit",
     "contactTitle": "Contact",
     "address": "Istanbul, Turkey",
     "phone": "+90 212 613 33 01",
@@ -192,7 +191,7 @@
       "title": "Get in Touch",
       "subtitle": "Reach our expert team for technical questions and projects.",
       "info": {
-        "address": { "label": "Address", "value": "Oruçreis District, Tekstilkent Site, A17 Block No:41, 34235 Esenler / Istanbul" },
+        "address": { "label": "Address", "value": "Orucreis District, Tekstilkent Site, A17 Block No:41, 34235 Esenler / Istanbul" },
         "phone": { "label": "Phone", "value": "+90 212 613 33 01 / +90 531 880 31 51" },
         "email": { "label": "Email", "value": "ensotek@ensotek.com.tr" }
       },
@@ -271,6 +270,34 @@
     "backToList": "All Articles",
     "empty": "No articles added yet."
   },
+  "offer": {
+    "label": "Quote Request",
+    "title": "Get a technical quote for your project",
+    "subtitle": "Share your cooling tower requirement and our engineering team will contact you for capacity, operating conditions and product selection.",
+    "detailsTitle": "Quote scope",
+    "details": {
+      "capacity": "Capacity and operating condition review",
+      "selection": "Suitable tower type and equipment selection",
+      "followup": "Fast follow-up from the technical team"
+    },
+    "field": {
+      "name": "Full Name *",
+      "company": "Company Name",
+      "email": "Email *",
+      "phone": "Phone",
+      "country": "Country / City",
+      "subject": "Subject",
+      "message": "Project details *",
+      "terms": "I agree to be contacted about my quote request.",
+      "marketing": "I would like to receive product and service updates."
+    },
+    "submit": "Send Quote Request",
+    "sending": "Sending...",
+    "required": "Please check this field.",
+    "successTitle": "Quote Request Received",
+    "successMessage": "We will contact you as soon as possible.",
+    "error": "Quote request could not be sent. Please try again."
+  },
   "common": {
     "loading": "Loading...",
     "error": "An error occurred",
@@ -305,6 +332,10 @@
     "contact": {
       "title": "Contact — Ensotek",
       "description": "Contact Ensotek for your cooling tower projects."
+    },
+    "offer": {
+      "title": "Get a Quote — Ensotek",
+      "description": "Request a quote from Ensotek's engineering team for your industrial cooling tower projects."
     }
   }
 }

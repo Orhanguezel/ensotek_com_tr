@@ -31,7 +31,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [catalogOpen, setCatalogOpen] = useState(false);
-  const desktopNavLinks = NAV_LINKS.filter((link) => link.key !== 'contact');
+  const desktopNavLinks = NAV_LINKS;
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -96,7 +96,7 @@ export function Header() {
               <ThemeModeSwitcher className="inline-flex" />
               <LanguageSwitcher className="flex" />
               <Link
-                href="/contact"
+                href="/offer"
                 locale={locale}
                 className="btn-fill text-xs py-2.5 px-5"
               >
@@ -141,7 +141,7 @@ export function Header() {
                 <ThemeModeSwitcher />
                 <LanguageSwitcher />
               </div>
-              <Link href="/contact" locale={locale} className="btn-fill text-xs py-2 px-4" onClick={() => setMobileOpen(false)}>
+              <Link href="/offer" locale={locale} className="btn-fill text-xs py-2 px-4" onClick={() => setMobileOpen(false)}>
                 {t('contactCta')}
               </Link>
               <button

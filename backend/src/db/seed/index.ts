@@ -74,7 +74,7 @@ function shouldRun(file: string, flags: Flags) {
 }
 
 function getAdminVars() {
-  const email = (process.env.ADMIN_EMAIL || 'admin@ensotek.com.tr').trim();
+  const email = (process.env.ADMIN_EMAIL || 'orhanguzell@gmail.com').trim();
   const id = (process.env.ADMIN_ID || 'ens0tr01-0000-0000-0000-000000000001').trim();
   const plainPassword = process.env.ADMIN_PASSWORD || 'admin123';
   const passwordHash = bcrypt.hashSync(plainPassword, 12);

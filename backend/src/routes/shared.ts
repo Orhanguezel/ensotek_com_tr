@@ -71,6 +71,8 @@ import { registerLibraryAdmin } from '@ensotek/shared-backend/modules/library/ad
 
 // Newsletter (sadece admin route'u var, public subscribe endpoint yok)
 import { registerNewsletterAdmin } from '@ensotek/shared-backend/modules/newsletter/admin.routes';
+import { registerOffer } from '../modules/offer/router';
+import { registerOfferAdmin } from '../modules/offer/admin.routes';
 
 export async function registerSharedPublic(api: FastifyInstance) {
   await registerAuth(api);
@@ -93,6 +95,7 @@ export async function registerSharedPublic(api: FastifyInstance) {
   await registerReferences(api);
   await registerReviews(api);
   await registerLibrary(api);
+  await registerOffer(api);
 }
 
 export async function registerSharedAdmin(adminApi: FastifyInstance) {
@@ -116,6 +119,7 @@ export async function registerSharedAdmin(adminApi: FastifyInstance) {
     registerReviewsAdmin,
     registerLibraryAdmin,
     registerNewsletterAdmin,
+    registerOfferAdmin,
     (await import('../modules/dashboard/admin.routes')).registerDashboardAdmin,
     (await import('../modules/footerSections/admin.routes')).registerFooterSectionsAdmin,
     (await import('../modules/faqs/admin.routes')).registerFaqsAdmin,

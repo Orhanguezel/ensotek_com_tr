@@ -178,3 +178,85 @@ HTML'den çıkarılan tüm section'lar:
 - Backend port: 8088, frontend port: 3021
 - Audit event tablosu şemaya eklenmeli (FAZA 0)
 - Newsletter public endpoint yok — sadece admin route mevcut
+
+---
+
+## FAZA 11 — Pending Fixes (2026-05-23) — Claude Code + Codex müşterek
+
+> **Koordinasyon:** Claude Code mimari/karar verir, Codex implement eder. Aynı dosya üzerinde aynı anda iki araç çalıştırılmaz. Her tamamlanan madde için kutucuğu işaretle.
+
+### 1. Footer — "Group Companies: MOE Kompozit" kaldırılacak
+
+- [x] `frontend/public/locales/tr.json` satır 22: `"groupCompanies": "Grup Şirketleri: MOE Kompozit"` sil
+- [x] `frontend/public/locales/en.json` satır 22: `"groupCompanies": "Group Companies: MOE Kompozit"` sil
+- [x] `frontend/src/components/layout/Footer.tsx` içinde `groupCompanies` kullanan satırı kaldır
+- [x] `bun run type-check` ile doğrula
+
+### 2. İngilizce sayfalardaki Türkçe noktalı `İ` karakteri
+
+> Sorun: EN locale içerikte Türkçe büyük `İ` (U+0130) yerine ASCII `I` (U+0049) kullanılmalı.
+
+Aşağıdaki dosyalarda `İ` taranıp **yalnız EN bağlamında** `I` ile değiştirilecek (TR aynen kalır):
+
+- [x] `frontend/src/components/layout/CatalogModal.tsx` — EN metinleri kontrol
+- [x] `frontend/src/components/products/DatasheetRequestButton.tsx`
+- [x] `frontend/src/app/[locale]/layout.tsx`
+- [x] `frontend/src/data/blog-posts.ts` — EN alanlarındaki `İ` → `I`
+- [x] `frontend/src/data/reference-placeholders.ts` — EN alanlarındaki `İ` → `I`
+- [x] Tüm `*.tsx` / `*.ts` dosyalarında `grep -P "[İıĞğŞşÇçÖöÜü]"` ile EN string'lerde Türkçe karakter kontrolü
+- [x] `public/locales/en.json` içinde Türkçe diacritic taraması (sıfır olmalı)
+
+### 3. Header menüsünde "İletişim / Contact" linki
+
+> Şu an `Header.tsx:34` desktop nav'dan `contact` linkini filter ile gizliyor (sadece sağ üstte "Get a Quote" CTA var). Menüde de görünmesi gerekiyor.
+
+- [x] `frontend/src/components/layout/Header.tsx:34` — `desktopNavLinks` filter'ından `link.key !== 'contact'` koşulunu kaldır
+- [x] CTA butonu ("Get a Quote" / "Teklif Al") ile çift link çakışmasını UX olarak doğrula — gerekirse CTA'yı "Catalog" yanına taşı
+- [x] Mobil menüde zaten var — sırayı kontrol et
+
+### 4. Offer (Teklif) modülü — ensotek_de'den birebir port
+
+> Referans: `Ensotek/ensotek_de/` içindeki offer modülü (backend + frontend + admin_panel). Admin_panel'de zaten var, **backend ve frontend tarafı eksik**.
+
+#### 4.1 Backend port
+
+- [x] `ensotek_de/backend/src/modules/offer/` → `ensotek_com_tr/backend/src/modules/offer/` (schema, repository, service, controller, router, admin.controller, admin.routes, validation, pdfTemplate)
+- [x] `ensotek_com_tr/backend/src/db/seed/sql/` altında offer şema dosyası oluştur (`ALTER` yasak — `CREATE TABLE` ile fresh seed)
+- [x] Route kayıt dosyalarına offer router ekle (app.ts / routes.ts)
+- [x] Backend prefix `ensotek_com_tr__` ile table isimlerini güncelle
+- [ ] `bun run build && bun run db:seed:*:fresh` ile DB'yi yeniden kur
+- [x] `backend/uploads/offers/` dizinini oluştur
+
+#### 4.2 Frontend port
+
+- [x] `ensotek_de/frontend/src/features/offer/` → `ensotek_com_tr/frontend/src/features/offer/`
+- [x] `ensotek_de/frontend/src/components/containers/offer/` → aynı yola
+- [x] `ensotek_de/frontend/src/app/[locale]/offer/page.tsx` → aynı yola
+- [x] i18n çevirileri: `public/locales/{tr,en}.json` içine `offer` namespace
+- [x] Header menüye "Teklif Al / Get a Quote" linki (eğer CTA değiştirilmediyse)
+
+#### 4.3 Admin panel kontrolü
+
+- [x] `admin_panel/src/app/(main)/admin/(admin)/offer/` zaten var — backend bağlantısını doğrula
+- [ ] Admin panelde teklif listesi + detay + PDF indirme çalışıyor mu test et
+
+### 5. Admin Login & Seed Hesap
+
+- [x] Admin URL: `https://www.ensotek.com.tr/admin/auth/login` çalışıyor mu doğrula
+- [x] Seed admin user oluştur: **email** `orhanguzell@gmail.com`, **password** `admin123` (diğer projelerle standart)
+- [x] `backend/src/db/seed/` içinde admin user seed dosyasını güncelle / oluştur
+- [ ] `bun run db:seed` sonrası login testi
+- [x] Production VPS deploy notu: seed canlıda bir kez çalıştırılacak
+
+### 6. Codex koordinasyonu
+
+- [x] `Ensotek/ensotek_com_tr/AGENTS.md` dosyasına bu fazı referans olarak ekle
+- [x] Codex'e iş paylaşımı: 4.1 + 4.2 implement, Claude Code review eder
+- [x] Her PR/commit sonrası bu checklist güncellenir
+
+#### Codex Notu (2026-05-23)
+
+- `bun run build` backend ve frontend için başarılı.
+- `bun run type-check` frontend için başarılı.
+- `bun src/db/seed/index.ts --no-drop --only=013` denendi ancak lokal MySQL `127.0.0.1:3306` kapalı olduğu için `ECONNREFUSED` ile doğrulama yapılamadı.
+- Canlı admin login URL'i `https://www.ensotek.com.tr/admin/auth/login` HTTP 200 dönüyor.

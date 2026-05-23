@@ -164,9 +164,25 @@ const trReferences: ReferencePlaceholder[] = [
 
 const enReferences: ReferencePlaceholder[] = trReferences.map((item) => ({
   ...item,
-  title: `${item.client_name} industrial cooling tower project`,
-  summary: `Placeholder reference for ${item.sector.toLowerCase()} applications. Final logo and project details will be replaced with approved customer data.`,
-  location: item.location.replace('Türkiye', 'Turkey'),
+  client_name: item.client_name
+    .replaceAll('İ', 'I')
+    .replaceAll('Ş', 'S')
+    .replaceAll('Ç', 'C')
+    .replaceAll('Ü', 'U'),
+  title: `${item.client_name
+    .replaceAll('İ', 'I')
+    .replaceAll('Ş', 'S')
+    .replaceAll('Ç', 'C')
+    .replaceAll('Ü', 'U')} industrial cooling tower project`,
+  summary: `Placeholder reference for ${item.sector
+    .toLowerCase()
+    .replaceAll('ı', 'i')
+    .replaceAll('ç', 'c')
+    .replaceAll('ü', 'u')} applications. Final logo and project details will be replaced with approved customer data.`,
+  location: item.location
+    .replace('Türkiye', 'Turkey')
+    .replaceAll('İ', 'I')
+    .replaceAll('ğ', 'g'),
 }));
 
 export function getReferencePlaceholders(locale: string): ReferencePlaceholder[] {

@@ -19,7 +19,6 @@
     "references": "Referanslar",
     "blog": "Bilgi Bankası",
     "contact": "İletişim",
-    "groupCompanies": "Grup Şirketleri: MOE Kompozit",
     "contactTitle": "İletişim",
     "address": "Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41 34235 Esenler / İstanbul",
     "phone": "+90 212 613 33 01",
@@ -271,6 +270,34 @@
     "backToList": "Tüm Yazılar",
     "empty": "Henüz içerik eklenmemiş."
   },
+  "offer": {
+    "label": "Teklif Talebi",
+    "title": "Projeniz için teknik teklif alın",
+    "subtitle": "Soğutma kulesi ihtiyacınızı paylaşın; mühendislik ekibimiz kapasite, uygulama koşulları ve ürün seçimi için sizinle iletişime geçsin.",
+    "detailsTitle": "Teklif kapsamı",
+    "details": {
+      "capacity": "Kapasite ve çalışma koşulları değerlendirmesi",
+      "selection": "Uygun kule tipi ve ekipman seçimi",
+      "followup": "Teknik ekipten hızlı geri dönüş"
+    },
+    "field": {
+      "name": "Ad Soyad *",
+      "company": "Firma Adı",
+      "email": "E-posta *",
+      "phone": "Telefon",
+      "country": "Ülke / Şehir",
+      "subject": "Konu",
+      "message": "Proje detayları *",
+      "terms": "Teklif talebim için iletişime geçilmesini kabul ediyorum.",
+      "marketing": "Ürün ve hizmet bilgilendirmeleri almak istiyorum."
+    },
+    "submit": "Teklif Talebi Gönder",
+    "sending": "Gönderiliyor...",
+    "required": "Lütfen bu alanı kontrol edin.",
+    "successTitle": "Teklif Talebiniz Alındı",
+    "successMessage": "En kısa sürede sizinle iletişime geçeceğiz.",
+    "error": "Teklif talebi gönderilemedi. Lütfen tekrar deneyin."
+  },
   "common": {
     "loading": "Yükleniyor...",
     "error": "Bir hata oluştu",
@@ -305,6 +332,10 @@
     "contact": {
       "title": "İletişim — Ensotek",
       "description": "Soğutma kulesi projeleriniz için Ensotek ile iletişime geçin."
+    },
+    "offer": {
+      "title": "Teklif Al — Ensotek",
+      "description": "Endüstriyel soğutma kulesi projeleriniz için Ensotek mühendislik ekibinden teklif alın."
     }
   }
 }
