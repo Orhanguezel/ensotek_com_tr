@@ -40,4 +40,3 @@ uploads/
 *.tsbuildinfo
 
 # PM2 production config — VPS-managed
-backend/ecosystem.config.cjs
