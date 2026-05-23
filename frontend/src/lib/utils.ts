@@ -5,8 +5,18 @@ export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }
 
+const CLIENT_API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? '/api';
+
+function resolveServerApiBase(): string {
+  if (/^https?:\/\//i.test(CLIENT_API_BASE_URL)) return CLIENT_API_BASE_URL;
+  const backend = (process.env.BACKEND_URL || 'http://127.0.0.1:8087').replace(/\/+$/, '');
+  const path = CLIENT_API_BASE_URL.startsWith('/') ? CLIENT_API_BASE_URL : `/${CLIENT_API_BASE_URL}`;
+  return `${backend}${path}`;
+}
+
+/** Server bundle (SSR/build) icin mutlak URL, client bundle icin relative /api. Next.js her ikisini ayri ayri derler. */
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? 'http://127.0.0.1:8088/api';
+  typeof window === 'undefined' ? resolveServerApiBase() : CLIENT_API_BASE_URL;
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.ensotek.com.tr';

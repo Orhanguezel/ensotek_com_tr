@@ -1,5 +1,5 @@
 import 'server-only';
-import { getLocaleSettings, API_BASE_URL } from './locale-settings';
+import { getLocaleSettings, serverApiUrl } from './locale-settings';
 
 type JsonLike = string | number | boolean | null | JsonLike[] | { [key: string]: JsonLike };
 type SettingRow = { value: JsonLike } | null;
@@ -20,7 +20,7 @@ export async function fetchSetting(
   options?: { revalidate?: number },
 ): Promise<SettingRow> {
   try {
-    const url = `${API_BASE_URL}/site_settings/${encodeURIComponent(key)}?locale=${encodeURIComponent(locale)}&prefix=ensotek_com_tr__`;
+    const url = `${serverApiUrl()}/site_settings/${encodeURIComponent(key)}?locale=${encodeURIComponent(locale)}&prefix=ensotek_com_tr__`;
     const res = await fetch(url, {
       next: { revalidate: options?.revalidate ?? 3600 },
     });
@@ -35,7 +35,7 @@ export async function fetchSetting(
 export async function fetchMenuItems(locale: string): Promise<Record<string, unknown>[]> {
   try {
     const res = await fetch(
-      `${API_BASE_URL}/menu_items?locale=${encodeURIComponent(locale)}&is_active=1&nested=1`,
+      `${serverApiUrl()}/menu_items?locale=${encodeURIComponent(locale)}&is_active=1&nested=1`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return [];
@@ -49,7 +49,7 @@ export async function fetchMenuItems(locale: string): Promise<Record<string, unk
 export async function fetchFooterSections(locale: string): Promise<Record<string, unknown>[]> {
   try {
     const res = await fetch(
-      `${API_BASE_URL}/footer_sections?locale=${encodeURIComponent(locale)}&is_active=1`,
+      `${serverApiUrl()}/footer_sections?locale=${encodeURIComponent(locale)}&is_active=1`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return [];

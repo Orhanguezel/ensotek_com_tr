@@ -1,7 +1,8 @@
 import { AVAILABLE_LOCALES, FALLBACK_LOCALE } from './locales';
+import { API_BASE_URL as RESOLVED_API_BASE_URL } from '@/lib/utils';
 
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? 'http://127.0.0.1:8088/api';
+export const API_BASE_URL = RESOLVED_API_BASE_URL;
+export function serverApiUrl(): string { return RESOLVED_API_BASE_URL; }
 
 type LocaleItem = {
   code?: unknown;
@@ -56,7 +57,7 @@ function normalizeAppLocales(value: unknown): { activeLocales: string[]; default
 
 async function fetchSettingValue(key: string): Promise<unknown> {
   const res = await fetch(
-    `${API_BASE_URL}/site_settings/${encodeURIComponent(key)}?prefix=ensotek_com_tr__`,
+    `${serverApiUrl()}/site_settings/${encodeURIComponent(key)}?prefix=ensotek_com_tr__`,
     { next: { revalidate: 300 } },
   );
   if (!res.ok) return null;
