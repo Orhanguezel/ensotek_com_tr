@@ -7,7 +7,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   turbopack: {
-    root: path.resolve(process.cwd(), '..'),
+    root: path.resolve(import.meta.dirname, '../..'),
   },
 
   async redirects() {
