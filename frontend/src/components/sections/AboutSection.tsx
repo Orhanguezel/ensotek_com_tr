@@ -13,7 +13,9 @@ interface Props {
 export function AboutSection({ aboutContent }: Props) {
   const t = useTranslations('home.about');
   const locale = useLocale();
-  const aboutImageUrl = aboutContent?.image_url ?? '/uploads/kap.jpg';
+  const aboutImageUrl =
+    aboutContent?.image_url ??
+    'https://res.cloudinary.com/dbozv7wqd/image/upload/v1752786288/uploads/metahub/about-images/closed-circuit-water-cooling-towers1-1752786287184-840184158.webp';
   const features = aboutContent
     ? [aboutContent.feature1, aboutContent.feature2, aboutContent.feature3, aboutContent.feature4].filter(Boolean) as string[]
     : Array.from({ length: 4 }, (_, i) => t(`feature${i + 1}`));
