@@ -74,6 +74,14 @@ import { registerNewsletterAdmin } from '@ensotek/shared-backend/modules/newslet
 import { registerOffer } from '../modules/offer/router';
 import { registerOfferAdmin } from '../modules/offer/admin.routes';
 
+// Servisler, slider, destek (admin_panel bunlari cagiriyor)
+import { registerServices } from '@ensotek/shared-backend/modules/services/router';
+import { registerServicesAdmin } from '@ensotek/shared-backend/modules/services/admin.routes';
+import { registerSlider } from '@ensotek/shared-backend/modules/slider/router';
+import { registerSliderAdmin } from '@ensotek/shared-backend/modules/slider/admin.routes';
+import { registerSupport } from '@ensotek/shared-backend/modules/support/router';
+import { registerSupportAdmin } from '@ensotek/shared-backend/modules/support/admin.routes';
+
 export async function registerSharedPublic(api: FastifyInstance) {
   await registerAuth(api);
   await registerHealth(api);
@@ -96,6 +104,9 @@ export async function registerSharedPublic(api: FastifyInstance) {
   await registerReviews(api);
   await registerLibrary(api);
   await registerOffer(api);
+  await registerServices(api);
+  await registerSlider(api);
+  await registerSupport(api);
 }
 
 export async function registerSharedAdmin(adminApi: FastifyInstance) {
@@ -120,6 +131,9 @@ export async function registerSharedAdmin(adminApi: FastifyInstance) {
     registerLibraryAdmin,
     registerNewsletterAdmin,
     registerOfferAdmin,
+    registerServicesAdmin,
+    registerSliderAdmin,
+    registerSupportAdmin,
     (await import('../modules/dashboard/admin.routes')).registerDashboardAdmin,
     (await import('../modules/footerSections/admin.routes')).registerFooterSectionsAdmin,
     (await import('../modules/faqs/admin.routes')).registerFaqsAdmin,
