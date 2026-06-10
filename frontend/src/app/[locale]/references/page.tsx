@@ -28,17 +28,26 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 async function fetchReferences(locale: string): Promise<Reference[]> {
+  const PAGE = 200; // backend limit cap
+  const all: Reference[] = [];
   try {
-    const res = await fetch(
-      `${API_BASE_URL}/references?is_published=1&locale=${locale}&limit=100`,
-      { cache: 'no-store' },
-    );
-    if (!res.ok) return [];
-    const data = await res.json();
-    return Array.isArray(data) ? data : (data as { items?: Reference[] })?.items ?? [];
+    for (let offset = 0; offset < 4000; offset += PAGE) {
+      const res = await fetch(
+        `${API_BASE_URL}/references?is_published=1&locale=${locale}&limit=${PAGE}&offset=${offset}&sort=display_order&orderDir=asc`,
+        { cache: 'no-store' },
+      );
+      if (!res.ok) break;
+      const data = await res.json();
+      const items: Reference[] = Array.isArray(data)
+        ? data
+        : (data as { items?: Reference[] })?.items ?? [];
+      all.push(...items);
+      if (items.length < PAGE) break;
+    }
   } catch {
-    return [];
+    return all;
   }
+  return all;
 }
 
 export default async function ReferencesPage({ params }: { params: Promise<{ locale: string }> }) {
