@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ssh vps-Ensotek 'ls /var/www/Ensotek/ && echo \"---ENSOTEK_COM_TR---\" && ls /var/www/Ensotek/ensotek_com_tr/ 2>/dev/null && echo \"---PM2---\" && pm2 list 2>/dev/null | grep -E \"ensotek|kompozit|kuhlturm\" || pm2 list')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr && echo \"---GIT STATUS---\" && git status --short && echo \"---BRANCH---\" && git rev-parse --abbrev-ref HEAD && echo \"---LOG---\" && git log --oneline -3 && echo \"---REMOTE---\" && git remote -v && echo \"---ENV BACKEND---\" && ls -la backend/.env* 2>/dev/null && echo \"---ENV FRONTEND---\" && ls -la frontend/.env* 2>/dev/null')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr/backend && grep -E \"db:seed|\\\\\"build\\\\\"|\\\\\"start\\\\\"\" package.json | head -10 && echo \"---SEED INDEX ARGS---\" && grep -n \"only\\\\|no-drop\\\\|drop\" src/db/seed/index.ts | head -15')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr/backend && ls src/db/seed/sql/ | head -20 && echo \"---ADMIN SQL---\" && grep -l \"ADMIN_EMAIL\\\\|ADMIN_PASSWORD_HASH\\\\|users\\\\|admin\" src/db/seed/sql/*.sql 2>/dev/null')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr/backend && grep -n \"ADMIN_EMAIL\\\\|ADMIN_PASSWORD_HASH\\\\|ADMIN_ID\" src/db/seed/sql/002_seed.sql | head -10')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr && cat frontend/ecosystem.config.cjs 2>/dev/null | head -30 && echo \"---BE ECO---\" && cat backend/ecosystem.config.cjs 2>/dev/null | head -30 && echo \"---ADMIN ECO---\" && cat admin_panel/ecosystem.config.cjs 2>/dev/null | head -30')",
+      "Bash(ssh vps-Ensotek 'ls /var/www/Ensotek/node_modules/puppeteer 2>/dev/null | head -3 && echo \"OK_ROOT\" || echo \"MISSING_ROOT\"')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr && git pull origin main 2>&1 | tail -15')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr/frontend && bun run build 2>&1 | tail -25')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr/backend && bun src/db/seed/index.ts --no-drop --only=013 2>&1 | tail -30')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr/backend && grep -E \"^DB_\" .env')",
+      "Bash(ssh vps-Ensotek 'mysql -h 127.0.0.1 -P 3306 -u ensotek -pTemizlik123 ensotek_com_tr_db -e \"SELECT id, email, role FROM users WHERE role = '\\\\''admin'\\\\'' OR id = '\\\\''ens0tr01-0000-0000-0000-000000000001'\\\\'';\" 2>&1 | tail -10')",
+      "Bash(curl -sS -o /tmp/login_test.json -w \"HTTP %{http_code}\\\\n\" -X POST \"https://www.ensotek.com.tr/api/auth/login\" -H \"Content-Type: application/json\" -d '{\"email\":\"orhanguzell@gmail.com\",\"password\":\"admin123\"}')",
+      "Bash(ssh vps-Ensotek 'cd /var/www/Ensotek/ensotek_com_tr/frontend && bun run build 2>&1 | tail -40')",
+      "Bash(ssh vps-Ensotek 'ls /var/www/Ensotek/ensotek_com_tr/frontend/.next/lock 2>&1 && ps aux | grep -E \"next-build|next build\" | grep -v grep')",
+      "Bash(ssh vps-Ensotek 'until ! pgrep -f \"next build\" >/dev/null; do sleep 5; done; echo \"BUILD DONE\"; ls -la /var/www/Ensotek/ensotek_com_tr/frontend/.next/BUILD_ID 2>&1; ls /var/www/Ensotek/ensotek_com_tr/frontend/.next/server/app/\\\\[locale\\\\]/offer 2>&1')",
+      "Bash(ssh vps-Ensotek 'pgrep -f \"next build\" >/dev/null && echo \"RUNNING \\(PID: $\\(pgrep -f \"next build\"\\)\\)\" || echo \"FINISHED\"')"
+    ]
+  }
+}
