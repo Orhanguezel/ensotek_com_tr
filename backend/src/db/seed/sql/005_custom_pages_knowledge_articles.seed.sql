@@ -13,7 +13,7 @@ START TRANSACTION;
 
 -- Görseller
 SET @IMG_MAIN := 'https://res.cloudinary.com/dbozv7wqd/image/upload/v1752786288/uploads/metahub/about-images/closed-circuit-water-cooling-towers1-1752786287184-840184158.webp';
-SET @IMG_OPEN := 'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321557/products/cover/open-circuit-ctp-single-1-250x250-1.png';
+SET @IMG_OPEN := 'https://ensotek.de/uploads/material/su-sogutma-kulesi-1-250x250-1.jpg';
 SET @IMG_CLOSED_DIAGRAM := 'https://www.ensotek.de/uploads/library/how-is-closed-circuit-water-cooling-tower-operation.png';
 SET @IMG_SELECTION := 'https://www.ensotek.de/uploads/library/su-sogutma-kulesi-ozellikleri-1.jpg';
 

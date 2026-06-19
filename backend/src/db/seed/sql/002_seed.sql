@@ -428,9 +428,7 @@ INSERT INTO `products` (
   '/uploads/kap.jpg',
   NULL,
   JSON_ARRAY(
-    'https://www.ensotek.de/uploads/material/closed-circuit-cooling-tower-1-250x250-1.jpg',
-    'https://www.ensotek.de/uploads/material/closed-circuit-cooling-tower-2-250x250-1.jpg',
-    'https://www.ensotek.de/uploads/material/closed-circuit-cooling-tower-3-250x250-1.jpg'
+    'https://ensotek.de/uploads/material/closed-circuit-cooling-towers-250x250-1.jpeg'
   ),
   JSON_ARRAY(),
   1, 1, 100, 'CC-CTP', 0, 5.00, 0,
@@ -444,12 +442,10 @@ INSERT INTO `products` (
   'aaaa0002-1111-4111-8111-aaaaaaaa0002',
   'bbbb0102-1111-4111-8111-bbbbbbbb0102',
   0.00,
-  'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321557/products/cover/open-circuit-ctp-single-1-250x250-1.png',
+  'https://ensotek.de/uploads/material/su-sogutma-kulesi-1-250x250-1.jpg',
   NULL,
   JSON_ARRAY(
-    'https://www.ensotek.de/uploads/material/open-circuit-ctp-single-1-250x250-1.jpg',
-    'https://www.ensotek.de/uploads/material/open-circuit-ctp-single-2-250x250-1.jpg',
-    'https://www.ensotek.de/uploads/material/open-circuit-ctp-single-3-250x250-1.jpg'
+    'https://ensotek.de/uploads/material/su-sogutma-kulesi-1-250x250-1.jpg'
   ),
   JSON_ARRAY(),
   1, 1, 200, 'CTP-SINGLE', 0, 5.00, 0,
@@ -463,12 +459,10 @@ INSERT INTO `products` (
   'aaaa0002-1111-4111-8111-aaaaaaaa0002',
   'bbbb0102-1111-4111-8111-bbbbbbbb0102',
   0.00,
-  'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321522/products/cover/open-circuit-dctp-double-1-250x250-1.png',
+  'https://ensotek.de/uploads/product/su-sogutma-kulesi-2-li.jpg.jpg',
   NULL,
   JSON_ARRAY(
-    'https://www.ensotek.de/uploads/material/open-circuit-dctp-double-1-250x250-1.jpg',
-    'https://www.ensotek.de/uploads/material/open-circuit-dctp-double-2-250x250-1.jpg',
-    'https://www.ensotek.de/uploads/material/open-circuit-dctp-double-3-250x250-1.jpg'
+    'https://ensotek.de/uploads/product/su-sogutma-kulesi-2-li.jpg.jpg'
   ),
   JSON_ARRAY(),
   1, 1, 300, 'DCTP-DOUBLE', 0, 5.00, 0,
@@ -482,12 +476,10 @@ INSERT INTO `products` (
   'aaaa0002-1111-4111-8111-aaaaaaaa0002',
   'bbbb0102-1111-4111-8111-bbbbbbbb0102',
   0.00,
-  'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321488/products/cover/open-circuit-tctp-triple-1-250x250-1.png',
+  'https://ensotek.de/uploads/product/su-sogutma-kulesi-3-lu.jpg',
   NULL,
   JSON_ARRAY(
-    'https://www.ensotek.de/uploads/material/open-circuit-tctp-triple-1-250x250-1.jpg',
-    'https://www.ensotek.de/uploads/material/open-circuit-tctp-triple-2-250x250-1.jpg',
-    'https://www.ensotek.de/uploads/material/open-circuit-tctp-triple-3-250x250-1.jpg'
+    'https://ensotek.de/uploads/product/su-sogutma-kulesi-3-lu.jpg'
   ),
   JSON_ARRAY(),
   1, 1, 400, 'TCTP-TRIPLE', 0, 5.00, 0,

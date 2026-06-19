@@ -26,7 +26,7 @@ VALUES
   'product', JSON_OBJECT(
     'title', 'Soğutma Kulesi Ürünleri | Ensotek',
     'description', 'Ensotek soğutma kulesi ürün gamı: açık devre, kapalı devre, CTP, DCTP, TCTP serileri. Türkiye''nin lider üreticisinden teknik özellikler ve katalog.',
-    'og_image', 'https://res.cloudinary.com/dbozv7wqd/image/upload/v1767321557/products/cover/open-circuit-ctp-single-1-250x250-1.png',
+    'og_image', 'https://ensotek.de/uploads/material/su-sogutma-kulesi-1-250x250-1.jpg',
     'no_index', false
   ),
   'sparepart', JSON_OBJECT(
