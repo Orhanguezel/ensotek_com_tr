@@ -1,15 +1,31 @@
 {
-  "title": "Ensotek com.tr",
-  "slug": "ensotek-com-tr",
-  "summary": "B2B cooling tower platform for the Turkish market — catalog and document library management with multilingual content on a Fastify + Next.js stack and shared backend packages.",
-  "category": "B2B PLATFORM",
+  "schemaVersion": 2,
+  "project": {
+    "key": "ensotek-com-tr",
+    "title": "Ensotek com.tr",
+    "summary": "B2B cooling tower platform for the Turkish market — catalog and document library management with multilingual content on a Fastify + Next.js stack and shared backend packages.",
+    "description": "B2B cooling tower platform for the Turkish market — catalog and document library management with multilingual content on a Fastify + Next.js stack and shared backend packages.",
+    "category": "custom-software",
+    "status": "live",
+    "ownership": "client",
+    "owner": {
+      "id": "hamdi-yagar",
+      "name": "Hamdi Yağar",
+      "kind": "person"
+    },
+    "group": {
+      "id": "ensotek",
+      "name": "Ensotek"
+    },
+    "productType": "owned-product"
+  },
   "services": [
     "Frontend Development",
     "Backend Development",
     "Architecture & Optimization",
     "DevOps & Deployment"
   ],
-  "techs": [
+  "technologies": [
     "Next.js",
     "React",
     "TypeScript",
@@ -36,24 +52,46 @@
     "Multi-language content",
     "Shared backend packages"
   ],
-  "designHighlights": [
-    "Shared backend/UI packages via workspace",
-    "Locale-aware content flows",
-    "Standalone build deployment"
+  "timeline": {
+    "startedAt": "2025-04-01",
+    "targetEndAt": null,
+    "completedAt": null,
+    "progressPercent": null
+  },
+  "links": {
+    "website": "https://www.ensotek.com.tr",
+    "demo": null,
+    "repository": "https://github.com/Orhanguezel/ensotek_com_tr"
+  },
+  "media": [
+    {
+      "id": "legacy-1",
+      "role": "cover",
+      "src": "/assets/imgs/work/projects/ensotek-com-tr.png",
+      "alt": "Ensotek com.tr B2B Platform",
+      "caption": "",
+      "displayPermission": true,
+      "rightsConfirmed": true
+    }
   ],
-  "featured": false,
-  "displayOrder": 3,
-  "clientName": "Own Project",
-  "status": "in-development",
-  "startDate": "2025-04-01",
-  "completeDate": null,
-  "completionTimeLabel": "Ongoing",
-  "repoUrl": "https://github.com/Orhanguezel/ensotek_com_tr",
-  "websiteUrl": "https://www.ensotek.com.tr",
-  "demoUrl": null,
-  "featuredImage": "/assets/imgs/work/projects/ensotek-com-tr.png",
-  "featuredImageAlt": "Ensotek com.tr B2B Platform",
-  "resumeTitle": "Ensotek com.tr",
-  "resumeSubtitle": "B2B Cooling Tower Platform (TR)",
-  "excludeFromPortfolio": false
+  "channels": {
+    "website": {
+      "enabled": false,
+      "disabledReason": "CRM v2 geçişinde web yayın içeriği ve izinleri kullanıcı onayı bekliyor"
+    },
+    "bionluk": {
+      "enabled": false,
+      "disabledReason": "CRM v2 geçişinde Bionluk içeriği ve ticari uygunluk kullanıcı onayı bekliyor"
+    }
+  },
+  "publication": {
+    "privacy": "public",
+    "displayPermission": true
+  },
+  "management": {
+    "priority": "normal",
+    "controlPlane": "gzl-gelir-crm",
+    "lastChangedBy": "orhan"
+  },
+  "updatedAt": "2026-08-18T15:32:21.974Z"
 }
