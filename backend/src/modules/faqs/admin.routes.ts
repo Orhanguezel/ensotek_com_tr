@@ -17,6 +17,7 @@ export async function registerFaqsAdmin(app: FastifyInstance) {
   app.get(BASE, listFaqsAdmin);
   app.get(`${BASE}/:id`, getFaqAdmin);
   app.post(BASE, createFaqAdmin);
+  app.patch(`${BASE}/:id`, updateFaqAdmin);
   app.put(`${BASE}/:id`, updateFaqAdmin);
   app.delete(`${BASE}/:id`, deleteFaqAdmin);
 }
