@@ -1,4 +1,4 @@
-import { publicUrl, recordLanguages } from '@/lib/public-seo';
+import { publicUrl, recordLanguages, redirectToLocalizedSlugOrNotFound } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { hasLocale } from '@/i18n/locales';
@@ -50,7 +50,11 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
     getTranslations({ locale, namespace: 'gallery' }),
   ]);
 
-  if (!gallery) notFound();
+  if (!gallery) {
+    // Baska dilin slug'i ise istenen dildeki galeriye 308; karsiligi yoksa 404.
+    await redirectToLocalizedSlugOrNotFound('gallery', slug, locale);
+    return null;
+  }
 
   const imageUrls = (gallery.images ?? [])
     .map((img: GalleryImage) => resolvePublicAssetUrl(img.image_url ?? img.url ?? null))

@@ -1,6 +1,7 @@
 import { routing } from '@/i18n/routing';
 import { SITE_URL, API_BASE_URL } from './utils';
 import { cache } from 'react';
+import { notFound, permanentRedirect } from 'next/navigation';
 
 export function publicUrl(locale: string, path: string): string {
   const [segment, ...rest] = path.replace(/^\//, '').split('/');
@@ -37,4 +38,16 @@ export async function recordLanguages(section: PublicSection, id: string) {
   }
   if (languages.tr) languages['x-default'] = languages.tr;
   return languages;
+}
+
+/** Slug baska bir dile aitse ayni icerik kimliginin istenen dildeki adresine kalici yonlendirir; karsiligi yoksa 404. */
+export async function redirectToLocalizedSlugOrNotFound(section: PublicSection, slug: string, locale: string): Promise<never> {
+  const current = await publicRecords(section, locale);
+  for (const other of routing.locales) {
+    if (other === locale) continue;
+    const original = (await publicRecords(section, other)).find((row) => row.slug === slug);
+    const translated = original && current.find((row) => row.id === original.id);
+    if (translated && translated.slug !== slug) permanentRedirect(publicUrl(locale, `/${section}/${encodeURIComponent(translated.slug)}`).replace(SITE_URL, ''));
+  }
+  notFound();
 }

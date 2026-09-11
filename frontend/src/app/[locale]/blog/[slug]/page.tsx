@@ -1,9 +1,9 @@
-import { recordLanguages, publicRecords } from '@/lib/public-seo';
+import { recordLanguages, redirectToLocalizedSlugOrNotFound } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
-import { hasLocale, AVAILABLE_LOCALES } from '@/i18n/locales';
-import { notFound, permanentRedirect } from 'next/navigation';
+import { hasLocale } from '@/i18n/locales';
+import { notFound } from 'next/navigation';
 import { API_BASE_URL, SITE_URL, resolvePublicAssetUrl } from '@/lib/utils';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
@@ -39,18 +39,6 @@ async function fetchBlogPost(slug: string, locale: string): Promise<BlogPost | n
   } catch {
     return locale === 'tr' ? fallbackBlogPost(slug) : null;
   }
-}
-
-/** Slug baska bir dile aitse ayni icerik kimliginin istenen dildeki adresine kalici yonlendirir; karsiligi yoksa 404. */
-async function redirectForeignSlugOrNotFound(slug: string, locale: string): Promise<never> {
-  const current = await publicRecords('blog', locale);
-  for (const other of AVAILABLE_LOCALES) {
-    if (other === locale) continue;
-    const original = (await publicRecords('blog', other)).find((row) => row.slug === slug);
-    const translated = original && current.find((row) => row.id === original.id);
-    if (translated && translated.slug !== slug) permanentRedirect(`/${locale}/blog/${encodeURIComponent(translated.slug)}`);
-  }
-  notFound();
 }
 
 function htmlFromContent(content?: string | null): string {
@@ -118,7 +106,7 @@ export default async function BlogDetailPage({
   ]);
 
   if (!post || (post as { localeMismatch?: boolean }).localeMismatch) {
-    await redirectForeignSlugOrNotFound(slug, locale);
+    await redirectToLocalizedSlugOrNotFound('blog', slug, locale);
     return null; // ulasilmaz: yukaridaki cagri yonlendirir veya 404 atar
   }
   const html = htmlFromContent(post.content);
