@@ -199,6 +199,11 @@ body {
   font-weight: 700;
 }
 
+/* Sag tarafta urun mozaigi varken baslik yarim kolona sigmali */
+@media (min-width: 1024px) {
+  .hero--with-showcase h1 { font-size: clamp(3rem, 5.6vw, 5.5rem); }
+}
+
 .hero h1 em {
   font-family: var(--font-serif), serif;
   font-style: italic;

@@ -125,7 +125,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
 
           {/* Spare Parts Section */}
           {spareParts.length > 0 && (
-            <div className="mt-24">
+            <div id="spare-parts" className="mt-24 scroll-mt-28">
               <Reveal>
                 <SectionHeader
                   label={t('sparePartsLabel')}

@@ -1,0 +1,205 @@
+/* Hero urun mozaigi — ensotek.com.tr (cyan/industrial token dili) */
+.showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.label {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-display), sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.all {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: gap 0.3s var(--motion-ease-out);
+}
+
+.all:hover { gap: 14px; color: var(--cyan-glow); }
+.all:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+.allIcon { width: 16px; height: 16px; }
+
+.mosaic {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  min-height: 480px;
+}
+
+.tile,
+.tileLarge {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  min-height: 0;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-panel);
+  isolation: isolate;
+}
+
+.tileLarge { grid-row: 1 / span 2; }
+
+.tile:focus-visible,
+.tileLarge:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+
+.tileImage {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s var(--motion-ease-out);
+}
+
+.tile:hover .tileImage,
+.tileLarge:hover .tileImage { transform: scale(1.04); }
+
+.tileShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--void) 92%, transparent) 0%,
+    color-mix(in srgb, var(--void) 45%, transparent) 45%,
+    transparent 75%
+  );
+  pointer-events: none;
+}
+
+.tileIndex {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 9px;
+  border: 1px solid var(--color-border-strong);
+  background: color-mix(in srgb, var(--void) 70%, transparent);
+  color: var(--color-accent);
+  font-family: var(--font-display), sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  line-height: 1;
+}
+
+.tileBody {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: grid;
+  gap: 6px;
+  padding: 16px 52px 16px 16px;
+  color: var(--white);
+}
+
+.tileCategory {
+  color: var(--color-accent);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.tileTitle {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(14px, 1.15vw, 19px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.tileLarge .tileBody { padding: 22px 60px 22px 22px; }
+.tileLarge .tileTitle { font-size: clamp(18px, 1.6vw, 26px); -webkit-line-clamp: 4; }
+
+.tileArrow {
+  position: absolute;
+  right: 16px;
+  bottom: 18px;
+  width: 20px;
+  height: 20px;
+  color: var(--color-accent);
+  transition: transform 0.3s var(--motion-ease-out);
+}
+
+.tileLarge .tileArrow { right: 22px; bottom: 24px; }
+.tile:hover .tileArrow,
+.tileLarge:hover .tileArrow { transform: translateX(4px); }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips a {
+  display: inline-block;
+  padding: 9px 14px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.chips a:hover {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  color: var(--color-accent);
+}
+
+.chips a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tileImage, .tileArrow, .all { transition: none; }
+  .tile:hover .tileImage, .tileLarge:hover .tileImage { transform: none; }
+}
+
+@media (max-width: 1023px) {
+  .mosaic { min-height: 420px; }
+}
+
+@media (max-width: 767px) {
+  .showcase { gap: 12px; }
+  .mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    gap: 10px;
+    min-height: 0;
+  }
+  .tileLarge { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 10; }
+  .tile { aspect-ratio: 1 / 1; }
+  .tileBody { padding: 12px 40px 12px 12px; gap: 4px; }
+  .tileLarge .tileBody { padding: 16px 48px 16px 16px; }
+  .tileTitle { font-size: 12px; letter-spacing: 0.3px; }
+  .tileLarge .tileTitle { font-size: clamp(16px, 4.6vw, 22px); }
+  .tileCategory { font-size: 9px; letter-spacing: 2px; }
+  .tileArrow { right: 12px; bottom: 14px; width: 16px; height: 16px; }
+  .tileLarge .tileArrow { right: 16px; bottom: 18px; }
+  .chips a { padding: 8px 12px; font-size: 10px; letter-spacing: 1.5px; }
+}

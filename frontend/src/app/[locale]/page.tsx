@@ -9,6 +9,7 @@ import { API_BASE_URL, SITE_URL } from '@/lib/utils';
 import type { Product, ContactInfo, HeroStats, AboutContent, GlobalReachStats, FeaturedTestimonial, FaqItem, Review } from '@/lib/api';
 
 import { HeroSection } from '@/components/sections/HeroSection';
+import { pickShowcaseProducts, collectCategoryNames, localizedPath as showcasePath } from '@/components/sections/HeroProductShowcase';
 import { MarqueeBar } from '@/components/sections/MarqueeBar';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
@@ -62,7 +63,7 @@ export async function generateMetadata({
 async function fetchFeaturedProducts(locale: string): Promise<Product[]> {
   try {
     const res = await fetch(
-      `${API_BASE_URL}/products?item_type=product&is_active=1&limit=3&locale=${locale}`,
+      `${API_BASE_URL}/products?item_type=product&is_active=1&limit=24&locale=${locale}`,
       { next: { revalidate: 3600 } },
     );
     if (!res.ok) return [];
@@ -91,6 +92,17 @@ async function fetchSetting<T>(key: string, locale: string, fallback: T): Promis
 
 const fetchContactInfo = (locale: string) => fetchSetting<ContactInfo>('contact_info', locale, {});
 const fetchHeroStats = (locale: string) => fetchSetting<HeroStats>('hero_stats', locale, {});
+
+async function fetchSparePartCount(locale: string): Promise<number> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/products?item_type=sparepart&is_active=1&limit=100&locale=${locale}`, { next: { revalidate: 3600 } });
+    if (!res.ok) return 0;
+    const data = await res.json();
+    return (Array.isArray(data) ? data : (data as { items?: unknown[] })?.items ?? []).length;
+  } catch {
+    return 0;
+  }
+}
 const fetchAboutContent = (locale: string) => fetchSetting<AboutContent>('about_content', locale, {});
 const fetchGlobalReachStats = (locale: string) => fetchSetting<GlobalReachStats>('global_reach_stats', locale, {});
 const fetchTestimonial = (locale: string) => fetchSetting<FeaturedTestimonial>('testimonial_featured', locale, {});
@@ -145,8 +157,11 @@ export default async function HomePage({
   if (!hasLocale(locale)) notFound();
   setRequestLocale(locale);
 
-  const [products, contactInfo, heroStats, aboutContent, globalReachStats, testimonial, testimonials, faqItems, tFaq] = await Promise.all([
+  const [products, sparePartCount, tHero, tProducts, contactInfo, heroStats, aboutContent, globalReachStats, testimonial, testimonials, faqItems, tFaq] = await Promise.all([
     fetchFeaturedProducts(locale),
+    fetchSparePartCount(locale),
+    getTranslations({ locale, namespace: 'home.hero' }),
+    getTranslations({ locale, namespace: 'products' }),
     fetchContactInfo(locale),
     fetchHeroStats(locale),
     fetchAboutContent(locale),
@@ -165,6 +180,23 @@ export default async function HomePage({
         }));
   const faqSchema = buildFaqJsonLd(locale, displayFaqItems);
 
+  // Hero urun mozaigi: farkli kategorilerden 3 urun + urun grubu cipleri (kategoriler + yedek parca bolumu)
+  const showcaseProducts = pickShowcaseProducts(products, 3);
+  const heroShowcase = showcaseProducts.length >= 2
+    ? {
+        products: showcaseProducts,
+        chips: [
+          ...collectCategoryNames(products, 3).map((name) => ({ label: name, href: showcasePath(locale, '/products') })),
+          ...(sparePartCount > 0 ? [{ label: `${tProducts('sparePartsLabel')} (${sparePartCount})`, href: `${showcasePath(locale, '/products')}#spare-parts` }] : []),
+        ],
+        labels: {
+          heading: tHero('showcaseHeading'),
+          viewAll: tHero('showcaseViewAll', { count: products.length + sparePartCount }),
+          chips: tHero('showcaseChips'),
+        },
+      }
+    : null;
+
   return (
     <>
       <script
@@ -175,7 +207,7 @@ export default async function HomePage({
       <Suspense fallback={null}>
         <HomeScrollManager />
       </Suspense>
-      <HeroSection heroStats={heroStats} />
+      <HeroSection heroStats={heroStats} showcase={heroShowcase} />
       <MarqueeBar />
       <AboutSection aboutContent={aboutContent} />
       <HowItWorksSection />

@@ -45,7 +45,10 @@
         "years": "Years Experience",
         "towers": "Towers Installed",
         "countries": "Countries Served"
-      }
+      },
+      "showcaseHeading": "Our Product Range",
+      "showcaseViewAll": "See all {count} products",
+      "showcaseChips": "Product groups"
     },
     "marquee": {
       "item1": "Counterflow Cooling Towers",
@@ -71,10 +74,22 @@
       "label": "How It Works",
       "title": "The Cooling Process",
       "subtitle": "Understand the working principle of industrial cooling towers in 4 steps.",
-      "step1": { "title": "Hot Water Inlet", "description": "Hot water returning from the system is fed into the tower from the top or side inlet." },
-      "step2": { "title": "Air Contact", "description": "Water contacts air in counterflow or crossflow principle as it passes through the fill media." },
-      "step3": { "title": "Evaporative Cooling", "description": "A small portion of the water evaporates, carrying large amounts of heat energy to the atmosphere." },
-      "step4": { "title": "Cooled Water", "description": "The cooled water collects in the basin and is fed back to the system, repeating the cycle." }
+      "step1": {
+        "title": "Hot Water Inlet",
+        "description": "Hot water returning from the system is fed into the tower from the top or side inlet."
+      },
+      "step2": {
+        "title": "Air Contact",
+        "description": "Water contacts air in counterflow or crossflow principle as it passes through the fill media."
+      },
+      "step3": {
+        "title": "Evaporative Cooling",
+        "description": "A small portion of the water evaporates, carrying large amounts of heat energy to the atmosphere."
+      },
+      "step4": {
+        "title": "Cooled Water",
+        "description": "The cooled water collects in the basin and is fed back to the system, repeating the cycle."
+      }
     },
     "towerTypes": {
       "label": "Tower Types",
@@ -131,47 +146,128 @@
         "crossflow": "Crossflow",
         "closedCircuit": "Closed Circuit"
       },
-      "row1": { "param": "Flow Principle", "counterflow": "Water moves downward while air moves upward", "crossflow": "Water moves downward while air moves horizontally", "closedCircuit": "Process fluid circulates in a closed-loop coil" },
-      "row2": { "param": "Product Type", "counterflow": "Open-circuit evaporative tower", "crossflow": "Open-circuit evaporative tower", "closedCircuit": "Closed-circuit cooling tower" },
-      "row3": { "param": "Water-Air Contact", "counterflow": "Direct contact occurs", "crossflow": "Direct contact occurs", "closedCircuit": "Process fluid does not directly contact the outside environment" },
-      "row4": { "param": "Fluid Protection", "counterflow": "Suitable for standard system water applications", "crossflow": "Suitable for standard system water applications", "closedCircuit": "Suitable where fluid cleanliness must be preserved" },
-      "row5": { "param": "Key Advantage", "counterflow": "Compact structure and high thermal efficiency", "crossflow": "Easy maintenance access and broad air intake area", "closedCircuit": "Closed-loop operation that reduces contamination risk" },
-      "row6": { "param": "Typical Use", "counterflow": "Industrial open-circuit tower applications", "crossflow": "Open-circuit applications where maintenance access matters", "closedCircuit": "Systems where process fluid protection is critical" }
+      "row1": {
+        "param": "Flow Principle",
+        "counterflow": "Water moves downward while air moves upward",
+        "crossflow": "Water moves downward while air moves horizontally",
+        "closedCircuit": "Process fluid circulates in a closed-loop coil"
+      },
+      "row2": {
+        "param": "Product Type",
+        "counterflow": "Open-circuit evaporative tower",
+        "crossflow": "Open-circuit evaporative tower",
+        "closedCircuit": "Closed-circuit cooling tower"
+      },
+      "row3": {
+        "param": "Water-Air Contact",
+        "counterflow": "Direct contact occurs",
+        "crossflow": "Direct contact occurs",
+        "closedCircuit": "Process fluid does not directly contact the outside environment"
+      },
+      "row4": {
+        "param": "Fluid Protection",
+        "counterflow": "Suitable for standard system water applications",
+        "crossflow": "Suitable for standard system water applications",
+        "closedCircuit": "Suitable where fluid cleanliness must be preserved"
+      },
+      "row5": {
+        "param": "Key Advantage",
+        "counterflow": "Compact structure and high thermal efficiency",
+        "crossflow": "Easy maintenance access and broad air intake area",
+        "closedCircuit": "Closed-loop operation that reduces contamination risk"
+      },
+      "row6": {
+        "param": "Typical Use",
+        "counterflow": "Industrial open-circuit tower applications",
+        "crossflow": "Open-circuit applications where maintenance access matters",
+        "closedCircuit": "Systems where process fluid protection is critical"
+      }
     },
     "industries": {
       "label": "Industries",
       "title": "Industries We Serve",
       "subtitle": "We provide cooling solutions across a wide industrial spectrum.",
       "industry": {
-        "hvac": { "title": "HVAC & Air Conditioning", "description": "Building and facility climate control systems" },
-        "power": { "title": "Power Plants", "description": "Thermal and nuclear power plant cooling" },
-        "petrochemical": { "title": "Petrochemical", "description": "Refinery and chemical processing facilities" },
-        "food": { "title": "Food & Beverage", "description": "Food processing and cold chain applications" },
-        "pharma": { "title": "Pharma & Healthcare", "description": "GMP-compliant precision cooling systems" },
-        "steel": { "title": "Metal & Steel", "description": "High-capacity process cooling" },
-        "textile": { "title": "Textile", "description": "Production line cooling and humidity control" },
-        "chemical": { "title": "Chemical", "description": "Reactor and process cooling applications" }
+        "hvac": {
+          "title": "HVAC & Air Conditioning",
+          "description": "Building and facility climate control systems"
+        },
+        "power": {
+          "title": "Power Plants",
+          "description": "Thermal and nuclear power plant cooling"
+        },
+        "petrochemical": {
+          "title": "Petrochemical",
+          "description": "Refinery and chemical processing facilities"
+        },
+        "food": {
+          "title": "Food & Beverage",
+          "description": "Food processing and cold chain applications"
+        },
+        "pharma": {
+          "title": "Pharma & Healthcare",
+          "description": "GMP-compliant precision cooling systems"
+        },
+        "steel": {
+          "title": "Metal & Steel",
+          "description": "High-capacity process cooling"
+        },
+        "textile": {
+          "title": "Textile",
+          "description": "Production line cooling and humidity control"
+        },
+        "chemical": {
+          "title": "Chemical",
+          "description": "Reactor and process cooling applications"
+        }
       }
     },
     "advantages": {
       "label": "Our Advantages",
       "title": "Why Choose Ensotek?",
       "subtitle": "Core values that set us apart from the competition.",
-      "advantage1": { "title": "Domestic Production", "description": "Manufacturing in Turkey, short lead times and cost advantage." },
-      "advantage2": { "title": "ISO 9001 Quality", "description": "Production and testing processes to international quality standards." },
-      "advantage3": { "title": "24/7 Technical Support", "description": "Uninterrupted breakdown and maintenance support from our expert team." },
-      "advantage4": { "title": "Custom Engineering", "description": "Individual engineering calculations and design for each project." },
-      "advantage5": { "title": "FRP Technology", "description": "Long-lasting, corrosion-resistant structure with fiberglass reinforced polyester." },
-      "advantage6": { "title": "Energy Efficiency", "description": "Low operating costs with high-efficiency fan and fill systems." }
+      "advantage1": {
+        "title": "Domestic Production",
+        "description": "Manufacturing in Turkey, short lead times and cost advantage."
+      },
+      "advantage2": {
+        "title": "ISO 9001 Quality",
+        "description": "Production and testing processes to international quality standards."
+      },
+      "advantage3": {
+        "title": "24/7 Technical Support",
+        "description": "Uninterrupted breakdown and maintenance support from our expert team."
+      },
+      "advantage4": {
+        "title": "Custom Engineering",
+        "description": "Individual engineering calculations and design for each project."
+      },
+      "advantage5": {
+        "title": "FRP Technology",
+        "description": "Long-lasting, corrosion-resistant structure with fiberglass reinforced polyester."
+      },
+      "advantage6": {
+        "title": "Energy Efficiency",
+        "description": "Low operating costs with high-efficiency fan and fill systems."
+      }
     },
     "globalReach": {
       "label": "Global Reach",
       "title": "Projects Worldwide",
       "countriesServed": "Countries Served",
       "stat": {
-        "projects": { "value": "3000+", "label": "Completed Projects" },
-        "experience": { "value": "40+", "label": "Years Experience" },
-        "capacity": { "value": "500+", "label": "MW Cooling Capacity" }
+        "projects": {
+          "value": "3000+",
+          "label": "Completed Projects"
+        },
+        "experience": {
+          "value": "40+",
+          "label": "Years Experience"
+        },
+        "capacity": {
+          "value": "500+",
+          "label": "MW Cooling Capacity"
+        }
       }
     },
     "testimonial": {
@@ -191,9 +287,18 @@
       "title": "Get in Touch",
       "subtitle": "Reach our expert team for technical questions and projects.",
       "info": {
-        "address": { "label": "Address", "value": "Orucreis District, Tekstilkent Site, A17 Block No:41, 34235 Esenler / Istanbul" },
-        "phone": { "label": "Phone", "value": "+90 212 613 33 01 / +90 531 880 31 51" },
-        "email": { "label": "Email", "value": "ensotek@ensotek.com.tr" }
+        "address": {
+          "label": "Address",
+          "value": "Orucreis District, Tekstilkent Site, A17 Block No:41, 34235 Esenler / Istanbul"
+        },
+        "phone": {
+          "label": "Phone",
+          "value": "+90 212 613 33 01 / +90 531 880 31 51"
+        },
+        "email": {
+          "label": "Email",
+          "value": "ensotek@ensotek.com.tr"
+        }
       },
       "field": {
         "name": "Full Name *",

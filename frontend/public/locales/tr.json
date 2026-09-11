@@ -45,7 +45,10 @@
         "years": "Yıl Deneyim",
         "towers": "Kule Kurulumu",
         "countries": "Ülkede Proje"
-      }
+      },
+      "showcaseHeading": "Ürün Gruplarımız",
+      "showcaseViewAll": "{count} ürünün tümünü gör",
+      "showcaseChips": "Ürün grupları"
     },
     "marquee": {
       "item1": "Counterflow Soğutma Kuleleri",
@@ -71,10 +74,22 @@
       "label": "Nasıl Çalışır",
       "title": "Soğutma Süreci",
       "subtitle": "Endüstriyel soğutma kulelerinin çalışma prensibini 4 adımda anlayın.",
-      "step1": { "title": "Sıcak Su Girişi", "description": "Sistemden dönen sıcak su, kuleye üst kısımdan veya yan girişten beslenir." },
-      "step2": { "title": "Hava ile Temas", "description": "Su, dolgu ortamından geçerken hava ile karşı akış veya çapraz akış prensibinde temas eder." },
-      "step3": { "title": "Evaporatif Soğutma", "description": "Suyun küçük bir kısmı buharlaşarak büyük ısı enerjisini atmosfere taşır." },
-      "step4": { "title": "Soğutulmuş Su", "description": "Soğutulan su havuzda toplanır ve sisteme geri beslenerek süreç tekrarlanır." }
+      "step1": {
+        "title": "Sıcak Su Girişi",
+        "description": "Sistemden dönen sıcak su, kuleye üst kısımdan veya yan girişten beslenir."
+      },
+      "step2": {
+        "title": "Hava ile Temas",
+        "description": "Su, dolgu ortamından geçerken hava ile karşı akış veya çapraz akış prensibinde temas eder."
+      },
+      "step3": {
+        "title": "Evaporatif Soğutma",
+        "description": "Suyun küçük bir kısmı buharlaşarak büyük ısı enerjisini atmosfere taşır."
+      },
+      "step4": {
+        "title": "Soğutulmuş Su",
+        "description": "Soğutulan su havuzda toplanır ve sisteme geri beslenerek süreç tekrarlanır."
+      }
     },
     "towerTypes": {
       "label": "Kule Tipleri",
@@ -131,47 +146,128 @@
         "crossflow": "Crossflow",
         "closedCircuit": "Kapalı Devre"
       },
-      "row1": { "param": "Akış Prensibi", "counterflow": "Su aşağı, hava yukarı hareket eder", "crossflow": "Su aşağı, hava yatay hareket eder", "closedCircuit": "Proses akışkanı serpantin içinde kapalı devrede dolaşır" },
-      "row2": { "param": "Ürün Tipi", "counterflow": "Açık tip evaporatif kule", "crossflow": "Açık tip evaporatif kule", "closedCircuit": "Kapalı tip soğutma kulesi" },
-      "row3": { "param": "Su ile Hava Teması", "counterflow": "Doğrudan temas vardır", "crossflow": "Doğrudan temas vardır", "closedCircuit": "Proses akışkanı dış ortamla doğrudan temas etmez" },
-      "row4": { "param": "Su Kalitesini Koruma", "counterflow": "Standart sistem suyu uygulamaları için uygundur", "crossflow": "Standart sistem suyu uygulamaları için uygundur", "closedCircuit": "Akışkan temizliğinin korunması gereken uygulamalar için uygundur" },
-      "row5": { "param": "Öne Çıkan Avantaj", "counterflow": "Kompakt yapı ve yüksek termal verim", "crossflow": "Kolay bakım erişimi ve geniş hava giriş alanı", "closedCircuit": "Kirlenme riskini azaltan kapalı devre çalışma" },
-      "row6": { "param": "Yaygın Kullanım", "counterflow": "Endüstriyel açık tip kule uygulamaları", "crossflow": "Bakım erişiminin önemli olduğu açık tip uygulamalar", "closedCircuit": "Proses akışkanının korunmasının kritik olduğu sistemler" }
+      "row1": {
+        "param": "Akış Prensibi",
+        "counterflow": "Su aşağı, hava yukarı hareket eder",
+        "crossflow": "Su aşağı, hava yatay hareket eder",
+        "closedCircuit": "Proses akışkanı serpantin içinde kapalı devrede dolaşır"
+      },
+      "row2": {
+        "param": "Ürün Tipi",
+        "counterflow": "Açık tip evaporatif kule",
+        "crossflow": "Açık tip evaporatif kule",
+        "closedCircuit": "Kapalı tip soğutma kulesi"
+      },
+      "row3": {
+        "param": "Su ile Hava Teması",
+        "counterflow": "Doğrudan temas vardır",
+        "crossflow": "Doğrudan temas vardır",
+        "closedCircuit": "Proses akışkanı dış ortamla doğrudan temas etmez"
+      },
+      "row4": {
+        "param": "Su Kalitesini Koruma",
+        "counterflow": "Standart sistem suyu uygulamaları için uygundur",
+        "crossflow": "Standart sistem suyu uygulamaları için uygundur",
+        "closedCircuit": "Akışkan temizliğinin korunması gereken uygulamalar için uygundur"
+      },
+      "row5": {
+        "param": "Öne Çıkan Avantaj",
+        "counterflow": "Kompakt yapı ve yüksek termal verim",
+        "crossflow": "Kolay bakım erişimi ve geniş hava giriş alanı",
+        "closedCircuit": "Kirlenme riskini azaltan kapalı devre çalışma"
+      },
+      "row6": {
+        "param": "Yaygın Kullanım",
+        "counterflow": "Endüstriyel açık tip kule uygulamaları",
+        "crossflow": "Bakım erişiminin önemli olduğu açık tip uygulamalar",
+        "closedCircuit": "Proses akışkanının korunmasının kritik olduğu sistemler"
+      }
     },
     "industries": {
       "label": "Sektörler",
       "title": "Hizmet Verdiğimiz Sektörler",
       "subtitle": "Geniş endüstriyel yelpazede soğutma çözümleri sunuyoruz.",
       "industry": {
-        "hvac": { "title": "HVAC & Klima", "description": "Bina ve tesis iklimlendirme sistemleri" },
-        "power": { "title": "Enerji Santralleri", "description": "Termik ve nükleer santral soğutması" },
-        "petrochemical": { "title": "Petrokimya", "description": "Rafinery ve kimyasal işleme tesisleri" },
-        "food": { "title": "Gıda & İçecek", "description": "Gıda işleme ve soğuk zincir uygulamaları" },
-        "pharma": { "title": "İlaç & Sağlık", "description": "GMP uyumlu hassas soğutma sistemleri" },
-        "steel": { "title": "Metal & Çelik", "description": "Yüksek kapasiteli proses soğutması" },
-        "textile": { "title": "Tekstil", "description": "Üretim hattı soğutma ve nem kontrolü" },
-        "chemical": { "title": "Kimya", "description": "Reaktör ve proses soğutma uygulamaları" }
+        "hvac": {
+          "title": "HVAC & Klima",
+          "description": "Bina ve tesis iklimlendirme sistemleri"
+        },
+        "power": {
+          "title": "Enerji Santralleri",
+          "description": "Termik ve nükleer santral soğutması"
+        },
+        "petrochemical": {
+          "title": "Petrokimya",
+          "description": "Rafinery ve kimyasal işleme tesisleri"
+        },
+        "food": {
+          "title": "Gıda & İçecek",
+          "description": "Gıda işleme ve soğuk zincir uygulamaları"
+        },
+        "pharma": {
+          "title": "İlaç & Sağlık",
+          "description": "GMP uyumlu hassas soğutma sistemleri"
+        },
+        "steel": {
+          "title": "Metal & Çelik",
+          "description": "Yüksek kapasiteli proses soğutması"
+        },
+        "textile": {
+          "title": "Tekstil",
+          "description": "Üretim hattı soğutma ve nem kontrolü"
+        },
+        "chemical": {
+          "title": "Kimya",
+          "description": "Reaktör ve proses soğutma uygulamaları"
+        }
       }
     },
     "advantages": {
       "label": "Avantajlarımız",
       "title": "Neden Ensotek?",
       "subtitle": "Rakiplerimizden farkımızı yaratan temel değerler.",
-      "advantage1": { "title": "Yerli Üretim", "description": "Türkiye'de üretim, kısa tedarik süresi ve maliyet avantajı." },
-      "advantage2": { "title": "ISO 9001 Kalite", "description": "Uluslararası kalite standartlarında üretim ve test süreçleri." },
-      "advantage3": { "title": "7/24 Teknik Destek", "description": "Uzman ekibimizle arıza ve bakım desteği kesintisiz devam eder." },
-      "advantage4": { "title": "Özel Tasarım", "description": "Her projeye özel mühendislik hesabı ve tasarım." },
-      "advantage5": { "title": "FRP Teknolojisi", "description": "Cam elyaf takviyeli polyester ile uzun ömürlü, korozyona dayanıklı yapı." },
-      "advantage6": { "title": "Enerji Verimliliği", "description": "Yüksek verimli fan ve dolgu sistemi ile düşük işletme maliyeti." }
+      "advantage1": {
+        "title": "Yerli Üretim",
+        "description": "Türkiye'de üretim, kısa tedarik süresi ve maliyet avantajı."
+      },
+      "advantage2": {
+        "title": "ISO 9001 Kalite",
+        "description": "Uluslararası kalite standartlarında üretim ve test süreçleri."
+      },
+      "advantage3": {
+        "title": "7/24 Teknik Destek",
+        "description": "Uzman ekibimizle arıza ve bakım desteği kesintisiz devam eder."
+      },
+      "advantage4": {
+        "title": "Özel Tasarım",
+        "description": "Her projeye özel mühendislik hesabı ve tasarım."
+      },
+      "advantage5": {
+        "title": "FRP Teknolojisi",
+        "description": "Cam elyaf takviyeli polyester ile uzun ömürlü, korozyona dayanıklı yapı."
+      },
+      "advantage6": {
+        "title": "Enerji Verimliliği",
+        "description": "Yüksek verimli fan ve dolgu sistemi ile düşük işletme maliyeti."
+      }
     },
     "globalReach": {
       "label": "Global Erişim",
       "title": "Dünya Genelinde Projeler",
       "countriesServed": "Ülkede Proje",
       "stat": {
-        "projects": { "value": "3000+", "label": "Tamamlanan Proje" },
-        "experience": { "value": "40+", "label": "Yıl Deneyim" },
-        "capacity": { "value": "500+", "label": "MW Soğutma Kapasitesi" }
+        "projects": {
+          "value": "3000+",
+          "label": "Tamamlanan Proje"
+        },
+        "experience": {
+          "value": "40+",
+          "label": "Yıl Deneyim"
+        },
+        "capacity": {
+          "value": "500+",
+          "label": "MW Soğutma Kapasitesi"
+        }
       }
     },
     "testimonial": {
@@ -191,9 +287,18 @@
       "title": "Bizimle İletişime Geçin",
       "subtitle": "Teknik sorularınız ve projeleriniz için uzman ekibimize ulaşın.",
       "info": {
-        "address": { "label": "Adres", "value": "Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41 34235 Esenler / İstanbul" },
-        "phone": { "label": "Telefon", "value": "+90 212 613 33 01 / +90 531 880 31 51" },
-        "email": { "label": "E-posta", "value": "ensotek@ensotek.com.tr" }
+        "address": {
+          "label": "Adres",
+          "value": "Oruçreis Mah. Tekstilkent Sit. A17 Blok No:41 34235 Esenler / İstanbul"
+        },
+        "phone": {
+          "label": "Telefon",
+          "value": "+90 212 613 33 01 / +90 531 880 31 51"
+        },
+        "email": {
+          "label": "E-posta",
+          "value": "ensotek@ensotek.com.tr"
+        }
       },
       "field": {
         "name": "Ad Soyad *",
