@@ -32,7 +32,9 @@ async function fetchBlogPosts(locale: string): Promise<BlogPost[]> {
     );
     if (!res.ok) return locale === 'tr' ? FALLBACK_BLOG_POSTS : [];
     const data = await res.json();
-    const items = Array.isArray(data) ? data : (data as { items?: BlogPost[] })?.items ?? [];
+    const raw = Array.isArray(data) ? data : (data as { items?: BlogPost[] })?.items ?? [];
+    // Backend, cevirisi olmayan yaziyi TR icerigiyle doner; listede yalnizca istenen dilde yazilmis kayitlar gosterilir.
+    const items = raw.filter((post) => !post.locale || post.locale === locale);
     return items.length > 0 ? items : locale === 'tr' ? FALLBACK_BLOG_POSTS : [];
   } catch {
     return locale === 'tr' ? FALLBACK_BLOG_POSTS : [];

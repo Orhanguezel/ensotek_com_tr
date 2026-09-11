@@ -1,9 +1,9 @@
-import { recordLanguages } from '@/lib/public-seo';
+import { recordLanguages, publicRecords } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
-import { hasLocale } from '@/i18n/locales';
-import { notFound } from 'next/navigation';
+import { hasLocale, AVAILABLE_LOCALES } from '@/i18n/locales';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { API_BASE_URL, SITE_URL, resolvePublicAssetUrl } from '@/lib/utils';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
@@ -32,10 +32,25 @@ async function fetchBlogPost(slug: string, locale: string): Promise<BlogPost | n
     );
     if (!res.ok) return locale === 'tr' ? fallbackBlogPost(slug) : null;
     const post = (await res.json()) as BlogPost;
-    return post.module_key === 'blog' ? post : locale === 'tr' ? fallbackBlogPost(slug) : null;
+    if (post.module_key !== 'blog') return locale === 'tr' ? fallbackBlogPost(slug) : null;
+    // Backend cevirisi olmayan yaziyi TR icerigiyle doner; farkli dildeki icerik bu adreste gosterilmez.
+    if (post.locale && post.locale !== locale) return { ...post, localeMismatch: true } as BlogPost & { localeMismatch: true };
+    return post;
   } catch {
     return locale === 'tr' ? fallbackBlogPost(slug) : null;
   }
+}
+
+/** Slug baska bir dile aitse ayni icerik kimliginin istenen dildeki adresine kalici yonlendirir; karsiligi yoksa 404. */
+async function redirectForeignSlugOrNotFound(slug: string, locale: string): Promise<never> {
+  const current = await publicRecords('blog', locale);
+  for (const other of AVAILABLE_LOCALES) {
+    if (other === locale) continue;
+    const original = (await publicRecords('blog', other)).find((row) => row.slug === slug);
+    const translated = original && current.find((row) => row.id === original.id);
+    if (translated && translated.slug !== slug) permanentRedirect(`/${locale}/blog/${encodeURIComponent(translated.slug)}`);
+  }
+  notFound();
 }
 
 function htmlFromContent(content?: string | null): string {
@@ -76,7 +91,7 @@ export async function generateMetadata({
   const { locale, slug: encodedSlug } = await params;
   const slug = decodeURIComponent(encodedSlug);
   const post = await fetchBlogPost(slug, locale);
-  if (!post) return {};
+  if (!post || (post as { localeMismatch?: boolean }).localeMismatch) return {};
   return {
     title: post.meta_title ?? post.title,
     description: post.meta_description ?? post.summary ?? undefined,
@@ -102,7 +117,10 @@ export default async function BlogDetailPage({
     getTranslations({ locale, namespace: 'blog' }),
   ]);
 
-  if (!post) notFound();
+  if (!post || (post as { localeMismatch?: boolean }).localeMismatch) {
+    await redirectForeignSlugOrNotFound(slug, locale);
+    return null; // ulasilmaz: yukaridaki cagri yonlendirir veya 404 atar
+  }
   const html = htmlFromContent(post.content);
   const schema = articleSchema(post, locale, slug);
 

@@ -9,7 +9,7 @@ export function publicUrl(locale: string, path: string): string {
   const localized = typeof mapping === 'string' ? mapping : mapping?.[locale] ?? key;
   return `${SITE_URL}/${locale}${localized === '/' ? '' : localized}${rest.length ? '/' + rest.join('/') : ''}`;
 }
-export type PublicRecord = { id: string; slug: string; updated_at?: string; };
+export type PublicRecord = { id: string; slug: string; updated_at?: string; locale?: string; };
 export type PublicSection = 'products' | 'gallery' | 'blog';
 export const publicRecords = cache(async (section: PublicSection, locale: string): Promise<PublicRecord[]> => {
   const endpoints = section === 'products' ? ['products?item_type=product&is_active=1', 'products?item_type=sparepart&is_active=1'] : section === 'gallery' ? ['galleries?is_active=true'] : ['custom-pages?module_key=blog&is_published=1'];
@@ -20,7 +20,9 @@ export const publicRecords = cache(async (section: PublicSection, locale: string
       if (!res.ok) throw new Error(`Public inventory ${section}: ${res.status}`);
       const data = await res.json();
       const batch: PublicRecord[] = Array.isArray(data) ? data : data.items ?? [];
-      rows.push(...batch.filter(item => item.slug));
+      // Backend cevirisi olmayan kayitlarda varsayilan dile (tr) duser ve `locale` alaninda gercek dili bildirir.
+      // Sitemap/hreflang/liste yalnizca istenen dilde gercekten var olan kayitlari icermeli.
+      rows.push(...batch.filter(item => item.slug && (!item.locale || item.locale === locale)));
       if (batch.length < 200) break;
     }
     return rows;
