@@ -1,4 +1,4 @@
-import { publicUrl, recordLanguages } from '@/lib/public-seo';
+import { publicUrl, recordLanguages, redirectToLocalizedSlugOrNotFound } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
@@ -84,7 +84,11 @@ export default async function ProductDetailPage({
     getTranslations({ locale, namespace: 'products' }),
   ]);
 
-  if (!product) notFound();
+  if (!product) {
+    // Baska dilin slug'i ise ayni urunun istenen dildeki adresine 308; karsiligi yoksa 404.
+    await redirectToLocalizedSlugOrNotFound('products', slug, locale);
+    return null;
+  }
   const productSchema = jsonLdProduct(product, locale, slug);
   const hasSpecs = product.specifications && Object.keys(product.specifications).length > 0;
 
