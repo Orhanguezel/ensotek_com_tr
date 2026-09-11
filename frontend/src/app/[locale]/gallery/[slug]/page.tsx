@@ -1,3 +1,4 @@
+import { publicUrl, recordLanguages } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { hasLocale } from '@/i18n/locales';
@@ -24,25 +25,23 @@ async function fetchGallery(slug: string, locale: string): Promise<Gallery | nul
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { locale, slug: encodedSlug } = await params;
+  const slug = decodeURIComponent(encodedSlug);
   const gallery = await fetchGallery(slug, locale);
   if (!gallery) return {};
   return {
     title: gallery.meta_title ?? gallery.title,
     description: gallery.meta_description ?? gallery.description ?? gallery.summary ?? undefined,
     alternates: {
-      canonical: `${SITE_URL}/${locale}/gallery/${slug}`,
-      languages: {
-        tr: `${SITE_URL}/tr/galeri/${slug}`,
-        en: `${SITE_URL}/en/gallery/${slug}`,
-        'x-default': `${SITE_URL}/tr/galeri/${slug}`,
-      },
+      canonical: publicUrl(locale, `/gallery/${slug}`),
+      languages: await recordLanguages('gallery', gallery.id),
     },
   };
 }
 
 export default async function GalleryDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
-  const { locale, slug } = await params;
+  const { locale, slug: encodedSlug } = await params;
+  const slug = decodeURIComponent(encodedSlug);
   if (!hasLocale(locale)) notFound();
   setRequestLocale(locale);
 
@@ -72,7 +71,7 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
           </Reveal>
 
           <Reveal delay={60}>
-            <SectionHeader
+            <SectionHeader as="h1"
               label={t('label')}
               title={gallery.title}
               description={gallery.description ?? gallery.summary ?? undefined}

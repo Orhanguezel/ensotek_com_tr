@@ -1,3 +1,4 @@
+import { publicUrl } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
@@ -21,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `${SITE_URL}/${locale}/references`,
-      languages: { tr: `${SITE_URL}/tr/references`, en: `${SITE_URL}/en/references`, 'x-default': `${SITE_URL}/tr/references` },
+      canonical: publicUrl(locale, `/references`),
+      languages: { tr: publicUrl('tr', `/references`), en: publicUrl('en', `/references`), 'x-default': publicUrl('tr', `/references`) },
     },
   };
 }
@@ -63,7 +64,7 @@ export default async function ReferencesPage({ params }: { params: Promise<{ loc
       <div className="section-py">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <SectionHeader label={t('label')} title={t('title')} description={t('subtitle')} className="mb-16" />
+            <SectionHeader as="h1" label={t('label')} title={t('title')} description={t('subtitle')} className="mb-16" />
           </Reveal>
 
           {references.length === 0 ? (

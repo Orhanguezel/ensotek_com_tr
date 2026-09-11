@@ -1,3 +1,4 @@
+import { publicUrl } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
@@ -23,8 +24,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `${SITE_URL}/${locale}/gallery`,
-      languages: { tr: `${SITE_URL}/tr/gallery`, en: `${SITE_URL}/en/gallery`, 'x-default': `${SITE_URL}/tr/gallery` },
+      canonical: publicUrl(locale, `/gallery`),
+      languages: { tr: publicUrl('tr', `/gallery`), en: publicUrl('en', `/gallery`), 'x-default': publicUrl('tr', `/gallery`) },
     },
   };
 }
@@ -53,7 +54,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ locale
       <div className="section-py">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <SectionHeader label={t('label')} title={t('title')} description={t('subtitle')} className="mb-16" />
+            <SectionHeader as="h1" label={t('label')} title={t('title')} description={t('subtitle')} className="mb-16" />
           </Reveal>
 
           {galleries.length === 0 ? (

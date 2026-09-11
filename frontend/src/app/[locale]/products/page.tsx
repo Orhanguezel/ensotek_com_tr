@@ -1,3 +1,4 @@
+import { publicUrl } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
@@ -23,8 +24,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `${SITE_URL}/${locale}/products`,
-      languages: { tr: `${SITE_URL}/tr/products`, en: `${SITE_URL}/en/products`, 'x-default': `${SITE_URL}/tr/products` },
+      canonical: publicUrl(locale, `/products`),
+      languages: { tr: publicUrl('tr', `/products`), en: publicUrl('en', `/products`), 'x-default': publicUrl('tr', `/products`) },
     },
   };
 }
@@ -108,7 +109,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {/* Cooling Towers Section */}
           <Reveal>
-            <SectionHeader
+            <SectionHeader as="h1"
               label={t('label')}
               title={t('title')}
               description={t('subtitle')}

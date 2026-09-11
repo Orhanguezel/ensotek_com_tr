@@ -1186,11 +1186,17 @@
         "description": "Suche, Status und Sortieroptionen.",
         "searchLabel": "Suchen",
         "searchPlaceholder": "Kunde, Firma, E-Mail oder Betreff...",
+        "sourceLabel": "Quelle",
+        "sourcePlaceholder": "Z. B. ensotek, komposit",
+        "sectorLabel": "Branche / Kategorie",
+        "sectorPlaceholder": "Branche oder Kategorie",
         "statusLabel": "Status",
         "statusAll": "Alle",
         "orderLabel": "Sortierung",
         "orderDesc": "Neueste zuerst",
-        "orderAsc": "Älteste zuerst"
+        "orderAsc": "Älteste zuerst",
+        "createdFromLabel": "Startdatum",
+        "createdToLabel": "Enddatum"
       },
       "list": {
         "title": "Angebote",
@@ -1209,7 +1215,7 @@
         "actions": "Aktionen"
       },
       "status": {
-        "new": "Neu",
+        "new": "E-Mail-Bestätigung ausstehend",
         "in_review": "In Prüfung",
         "quoted": "Angebot erstellt",
         "sent": "Gesendet",
@@ -1270,6 +1276,8 @@
         "consentTerms": "AGB akzeptiert"
       },
       "formData": {
+        "source": "Anfragequelle",
+        "sourceFrontendOfferPage": "Angebotsformular der Website",
         "relatedType": "Anfragetyp",
         "contactRole": "Kontaktrolle",
         "productId": "Produkt-ID (form_data)",
@@ -1294,6 +1302,7 @@
       },
       "actions": {
         "refresh": "Aktualisieren",
+        "exportCsv": "CSV herunterladen",
         "create": "Neues Angebot",
         "edit": "Bearbeiten",
         "delete": "Löschen",
@@ -1374,6 +1383,8 @@
         "locale": "Sprache",
         "createdAt": "Erstellt",
         "emailSentAt": "E-Mail gesendet",
+        "emailVerifiedAt": "E-Mail bestätigt",
+        "failureReason": "Fehlerursache",
         "message": "Nachricht",
         "consentMarketing": "Marketing-Einwilligung",
         "consentTerms": "AGB-Einwilligung",

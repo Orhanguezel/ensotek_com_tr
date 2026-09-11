@@ -40,3 +40,6 @@ uploads/
 *.tsbuildinfo
 
 # PM2 production config — VPS-managed
+
+# GZL private project manifest
+project.portfolio.private.json

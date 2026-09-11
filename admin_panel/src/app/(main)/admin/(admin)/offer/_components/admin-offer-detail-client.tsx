@@ -186,6 +186,7 @@ function resolvePdfUrl(pdfUrl: string | null): string | null {
 type FieldDef = { key: string; labelKey: string };
 
 const FIELD_DEFS: FieldDef[] = [
+  { key: "source", labelKey: "formData.source" },
   { key: "related_type", labelKey: "formData.relatedType" },
   { key: "contact_role", labelKey: "formData.contactRole" },
   { key: "related_product_id", labelKey: "formData.productId" },
@@ -299,11 +300,17 @@ export default function AdminOfferDetailClient({ id }: { id: string }) {
   // form_data display
   const { pairs, extras } = React.useMemo(() => {
     const fd = form.form_data ?? {};
-    const ps = FIELD_DEFS.map((f) => ({
-      key: f.key,
-      label: t(f.labelKey),
-      value: formatValue(fd[f.key]),
-    })).filter((p) => p.value);
+    const ps = FIELD_DEFS.map((f) => {
+      const rawValue = formatValue(fd[f.key]);
+      return {
+        key: f.key,
+        label: t(f.labelKey),
+        value:
+          f.key === "source" && rawValue === "frontend_offer_page"
+            ? t("formData.sourceFrontendOfferPage")
+            : rawValue,
+      };
+    }).filter((p) => p.value);
 
     const known = new Set(FIELD_DEFS.map((x) => x.key));
     const ex = Object.keys(fd)

@@ -1,3 +1,4 @@
+import { registerNewsletter } from '@ensotek/shared-backend/modules/newsletter/router';
 // src/routes/shared.ts
 // @ensotek/shared-backend modüllerini kullanarak tüm ortak route'ları kaydeder.
 import type { FastifyInstance } from 'fastify';
@@ -69,10 +70,18 @@ import { registerReviewsAdmin } from '@ensotek/shared-backend/modules/review/adm
 import { registerLibrary } from '@ensotek/shared-backend/modules/library/router';
 import { registerLibraryAdmin } from '@ensotek/shared-backend/modules/library/admin.routes';
 
-// Newsletter (sadece admin route'u var, public subscribe endpoint yok)
+// Newsletter public and admin routes share the existing subscriber module.
 import { registerNewsletterAdmin } from '@ensotek/shared-backend/modules/newsletter/admin.routes';
-import { registerOffer } from '../modules/offer/router';
-import { registerOfferAdmin } from '../modules/offer/admin.routes';
+// Offer modulu ARTIK PAYLASILAN moduldur (yerel kopya kaldirildi).
+// Site-ozel olan tek sey teklif PDF'inin marka tasarimi; o da asagida
+// setOfferPdfRenderer ile enjekte ediliyor.
+import { registerOffer } from '@ensotek/shared-backend/modules/offer/router';
+import { registerOfferAdmin } from '@ensotek/shared-backend/modules/offer/admin.routes';
+import { setOfferPdfRenderer } from '@ensotek/shared-backend/modules/offer/service';
+import { renderOfferPdfHtml } from '../offer/pdf-template';
+
+// Ensotek marka teklif belgesi — paylasilan modul bunu kullanir.
+setOfferPdfRenderer(renderOfferPdfHtml);
 
 // Servisler, slider, destek (admin_panel bunlari cagiriyor)
 import { registerServices } from '@ensotek/shared-backend/modules/services/router';
@@ -83,6 +92,7 @@ import { registerSupport } from '@ensotek/shared-backend/modules/support/router'
 import { registerSupportAdmin } from '@ensotek/shared-backend/modules/support/admin.routes';
 
 export async function registerSharedPublic(api: FastifyInstance) {
+  await registerNewsletter(api);
   await registerAuth(api);
   await registerHealth(api);
   await registerStorage(api);

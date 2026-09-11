@@ -67,24 +67,24 @@ export function OfferForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <input {...register('customer_name')} className={inputClass} placeholder={t('field.name')} />
+          <input {...register('customer_name')} className={inputClass} placeholder={t('field.name')} aria-label={t('field.name')} />
           {errors.customer_name && <p className="mt-1 text-xs text-red-500">{t('required')}</p>}
         </div>
-        <input {...register('company_name')} className={inputClass} placeholder={t('field.company')} />
+        <input {...register('company_name')} className={inputClass} placeholder={t('field.company')} aria-label={t('field.company')} />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <input {...register('email')} type="email" className={inputClass} placeholder={t('field.email')} />
+          <input {...register('email')} type="email" className={inputClass} placeholder={t('field.email')} aria-label={t('field.email')} />
           {errors.email && <p className="mt-1 text-xs text-red-500">{t('required')}</p>}
         </div>
-        <input {...register('phone')} type="tel" className={inputClass} placeholder={t('field.phone')} />
+        <input {...register('phone')} type="tel" className={inputClass} placeholder={t('field.phone')} aria-label={t('field.phone')} />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <input {...register('country_code')} className={inputClass} placeholder={t('field.country')} />
-        <input {...register('subject')} className={inputClass} placeholder={t('field.subject')} />
+        <input {...register('country_code')} className={inputClass} placeholder={t('field.country')} aria-label={t('field.country')} />
+        <input {...register('subject')} className={inputClass} placeholder={t('field.subject')} aria-label={t('field.subject')} />
       </div>
       <div>
-        <textarea {...register('message')} rows={7} className={`${inputClass} resize-none`} placeholder={t('field.message')} />
+        <textarea {...register('message')} rows={7} className={`${inputClass} resize-none`} placeholder={t('field.message')} aria-label={t('field.message')} />
         {errors.message && <p className="mt-1 text-xs text-red-500">{t('required')}</p>}
       </div>
       <label className="flex gap-3 text-sm text-(--color-text-secondary)">

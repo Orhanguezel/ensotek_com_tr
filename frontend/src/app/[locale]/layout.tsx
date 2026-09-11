@@ -1,9 +1,13 @@
+import { LeadEvents } from '../../../../../packages/shared-ui/public/components/analytics/LeadEvents';
+import { ConsentGate } from '../../../../../packages/shared-ui/public/components/analytics/ConsentGate';
+import { socialLinksFromSetting } from '@/lib/social-links';
 import type { Metadata } from 'next';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { AVAILABLE_LOCALES, FALLBACK_LOCALE, getLocaleMessages, hasLocale } from '@/i18n/locales';
-import { fetchActiveLocales } from '@/i18n/server';
+import { fetchActiveLocales, fetchSetting } from '@/i18n/server';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ClientShell } from '@/components/layout/ClientShell';
@@ -88,10 +92,15 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
-  const [messages, contactInfo] = await Promise.all([
+  const [messages, contactInfo, analyticsSetting, socialSetting] = await Promise.all([
     Promise.resolve(getLocaleMessages(locale)),
     fetchContactInfo(locale),
+    fetchSetting('ga4_measurement_id', locale, { revalidate: 300 }),
+    fetchSetting('socials', locale, { revalidate: 300 }),
   ]);
+  const measurementId = typeof analyticsSetting?.value === 'string'
+    ? analyticsSetting.value.replace(/^"|"$/g, '').trim() : '';
+  const socialLinks = socialLinksFromSetting(socialSetting?.value);
   const orgSchema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -99,12 +108,11 @@ export default async function LocaleLayout({
         '@type': 'Organization',
         '@id': `${SITE_URL}/#org`,
         name: 'Ensotek',
-        legalName: 'ENSOTEK Su Soğutma Kuleleri ve Teknolojileri Mühendislik San. Tic. Ltd. Şti.',
+        legalName: contactInfo.company_name || undefined,
         url: SITE_URL,
         logo: `${SITE_URL}/ensotek_icon_512.png`,
         description:
           'Endüstriyel soğutma kuleleri, CTP/FRP kule üretimi, mühendislik, montaj, bakım ve modernizasyon hizmetleri.',
-        foundingDate: '1985',
         telephone: contactInfo.phone || '+90 212 613 33 01',
         email: contactInfo.email || 'ensotek@ensotek.com.tr',
         address: {
@@ -114,13 +122,7 @@ export default async function LocaleLayout({
           addressLocality: contactInfo.city || 'Esenler / İstanbul',
           addressCountry: contactInfo.country || 'TR',
         },
-        numberOfEmployees: { '@type': 'QuantitativeValue', minValue: 50, maxValue: 200 },
-        sameAs: [
-          'https://www.linkedin.com/company/ensotek-su-so-utma-kuleleri-ltd-ti-/',
-          'https://www.youtube.com/@ensotek',
-          'https://www.instagram.com/ensotek/',
-          'https://www.facebook.com/ensotek',
-        ],
+        sameAs: socialLinks.map(({ href }) => href),
         knowsAbout: [
           'Soğutma kulesi',
           'CTP soğutma kulesi',
@@ -155,12 +157,13 @@ export default async function LocaleLayout({
       <NextIntlClientProvider locale={locale} messages={messages}>
         <Header />
         <main>{children}</main>
-        <Footer contactInfo={contactInfo} />
+        <Footer contactInfo={contactInfo} socialLinks={socialLinks} />
         <ClientShell
           whatsappNumber={contactInfo.phone_2 || contactInfo.phone}
           whatsappMessage="Merhaba, Ensotek soğutma kulesi çözümleri hakkında bilgi almak istiyorum."
         />
       </NextIntlClientProvider>
+      {/^G-[A-Z0-9]+$/.test(measurementId) && <ConsentGate locale={locale}><LeadEvents measurementId={measurementId} locale={locale} /><GoogleAnalytics gaId={measurementId} /></ConsentGate>}
     </>
   );
 }

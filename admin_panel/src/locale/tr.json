@@ -1186,11 +1186,17 @@
         "description": "Arama, durum ve sıralama seçenekleri.",
         "searchLabel": "Ara",
         "searchPlaceholder": "Müşteri, firma, e-posta veya konu...",
+        "sourceLabel": "Kaynak",
+        "sourcePlaceholder": "Örn. ensotek, kompozit",
+        "sectorLabel": "Sektör / Kategori",
+        "sectorPlaceholder": "Sektör veya kategori",
         "statusLabel": "Durum",
         "statusAll": "Tümü",
         "orderLabel": "Sıralama",
         "orderDesc": "En yeni önce",
-        "orderAsc": "En eski önce"
+        "orderAsc": "En eski önce",
+        "createdFromLabel": "Başlangıç Tarihi",
+        "createdToLabel": "Bitiş Tarihi"
       },
       "list": {
         "title": "Teklifler",
@@ -1209,7 +1215,7 @@
         "actions": "İşlemler"
       },
       "status": {
-        "new": "Yeni",
+        "new": "E-posta Doğrulaması Bekleniyor",
         "in_review": "İncelemede",
         "quoted": "Fiyatlandırıldı",
         "sent": "Gönderildi",
@@ -1270,6 +1276,8 @@
         "consentTerms": "Şartlar kabul edildi"
       },
       "formData": {
+        "source": "Talep Kaynağı",
+        "sourceFrontendOfferPage": "Web Sitesi Teklif Formu",
         "relatedType": "Talep Türü",
         "contactRole": "Yetkili Görevi",
         "productId": "Ürün ID (form_data)",
@@ -1294,6 +1302,7 @@
       },
       "actions": {
         "refresh": "Yenile",
+        "exportCsv": "CSV İndir",
         "create": "Yeni Teklif",
         "edit": "Düzenle",
         "delete": "Sil",
@@ -1374,6 +1383,8 @@
         "locale": "Dil",
         "createdAt": "Oluşturulma",
         "emailSentAt": "E-posta Gönderildi",
+        "emailVerifiedAt": "E-posta Doğrulandı",
+        "failureReason": "Hata Nedeni",
         "message": "Mesaj",
         "consentMarketing": "Pazarlama onayı",
         "consentTerms": "Şartlar onayı",

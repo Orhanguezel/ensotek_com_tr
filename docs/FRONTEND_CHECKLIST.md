@@ -177,7 +177,7 @@ HTML'den çıkarılan tüm section'lar:
 - Backend prefix: `ensotek_com_tr__`
 - Backend port: 8088, frontend port: 3021
 - Audit event tablosu şemaya eklenmeli (FAZA 0)
-- Newsletter public endpoint yok — sadece admin route mevcut
+- 10 Eylül 2026: Mevcut shared newsletter public subscribe/unsubscribe rotaları canlıya bağlandı; TR/EN footer ve DB kabulü tamamlandı.
 
 ---
 
@@ -238,14 +238,14 @@ Aşağıdaki dosyalarda `İ` taranıp **yalnız EN bağlamında** `I` ile deği�
 #### 4.3 Admin panel kontrolü
 
 - [x] `admin_panel/src/app/(main)/admin/(admin)/offer/` zaten var — backend bağlantısını doğrula
-- [ ] Admin panelde teklif listesi + detay + PDF indirme çalışıyor mu test et
+- [x] Admin teklif liste/detay/PDF kabulü: kontrollü gerçek teklif, admin API 200 ve İngilizce/Ensotek PDF indirme; kök uygulama raporu 10 Eylül kanıtları.
 
 ### 5. Admin Login & Seed Hesap
 
 - [x] Admin URL: `https://www.ensotek.com.tr/admin/auth/login` çalışıyor mu doğrula
 - [x] Seed admin user oluştur: **email** `orhanguzell@gmail.com`, **password** `admin123` (diğer projelerle standart)
 - [x] `backend/src/db/seed/` içinde admin user seed dosyasını güncelle / oluştur
-- [ ] `bun run db:seed` sonrası login testi
+- [x] `bun run db:seed` sonrası login testi — 10 Eylül: mevcut 001/002 seed geçici izole DB üzerinde, doğru login/admin 200, yanlış parola/anonim 401; DB kaldırıldı. Canlı DB sıfırlanmadı. Kanıt: kök `output/checklist-2026-09-09/continuation/tr-seed-login.jsonl`.
 - [x] Production VPS deploy notu: seed canlıda bir kez çalıştırılacak
 
 ### 6. Codex koordinasyonu

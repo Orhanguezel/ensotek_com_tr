@@ -194,6 +194,14 @@ export default function AdminCatalogDetailClient({ id }: { id: string }) {
               <Label>{t("detail.emailSentAt")}</Label>
               <Input value={row ? fmtDate(row.email_sent_at) : ""} readOnly />
             </div>
+            <div className="space-y-2">
+              <Label>{t("detail.emailVerifiedAt")}</Label>
+              <Input value={row ? fmtDate(row.email_verified_at) : ""} readOnly />
+            </div>
+            <div className="space-y-2 md:col-span-2">
+              <Label>{t("detail.failureReason")}</Label>
+              <Textarea value={row?.failure_reason ?? ""} readOnly rows={3} />
+            </div>
 
             <div className="space-y-2 md:col-span-2">
               <Label>{t("detail.message")}</Label>

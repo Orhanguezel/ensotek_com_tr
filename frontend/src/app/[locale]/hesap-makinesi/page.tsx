@@ -1,3 +1,4 @@
+import { publicUrl } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { hasLocale } from '@/i18n/locales';
@@ -20,11 +21,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       ? 'Estimate cooling tower heat rejection capacity from flow rate, inlet temperature, outlet temperature and wet bulb temperature.'
       : 'Debi, giriş sıcaklığı, çıkış sıcaklığı ve yaş termometre değerleriyle soğutma kulesi kapasitesini yaklaşık olarak hesaplayın.',
     alternates: {
-      canonical: `${SITE_URL}/${locale}/hesap-makinesi`,
+      canonical: publicUrl(locale, `/hesap-makinesi`),
       languages: {
-        tr: `${SITE_URL}/tr/hesap-makinesi`,
-        en: `${SITE_URL}/en/hesap-makinesi`,
-        'x-default': `${SITE_URL}/tr/hesap-makinesi`,
+        tr: publicUrl('tr', `/hesap-makinesi`),
+        en: publicUrl('en', `/hesap-makinesi`),
+        'x-default': publicUrl('tr', `/hesap-makinesi`),
       },
     },
   };

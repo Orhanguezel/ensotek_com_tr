@@ -29,6 +29,10 @@ export type CatalogRequestDto = {
   admin_notes: string | null;
 
   email_sent_at: string | null; // ISO string
+  email_verified_at: string | null;
+  verification_expires_at: string | null;
+  failure_reason: string | null;
+  last_attempt_at: string | null;
   created_at: string; // ISO string
   updated_at: string; // ISO string
 };

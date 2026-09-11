@@ -1,24 +1,19 @@
+import { ConsentPreferences } from '../../../../../packages/shared-ui/public/components/analytics/ConsentGate';
+import { NewsletterForm } from '@/components/sections/NewsletterForm';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import type { ContactInfo } from '@/lib/api';
 
-const socialLinks = [
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/ensotek-su-so-utma-kuleleri-ltd-ti-/',
-  },
-  { label: 'YouTube', href: 'https://www.youtube.com/@ensotek' },
-  { label: 'Instagram', href: 'https://www.instagram.com/ensotek/' },
-  { label: 'Facebook', href: 'https://www.facebook.com/ensotek' },
-];
+import type { SocialLink } from '@/lib/social-links';
 
 interface Props {
   contactInfo?: ContactInfo;
+  socialLinks?: SocialLink[];
 }
 
-export function Footer({ contactInfo }: Props) {
+export function Footer({ contactInfo, socialLinks = [] }: Props) {
   const t = useTranslations('footer');
   const locale = useLocale();
   const year = new Date().getFullYear();
@@ -94,10 +89,12 @@ export function Footer({ contactInfo }: Props) {
           </div>
         </div>
 
+        <NewsletterForm />
         <div className="footer-bottom-et">
           <p className="text-xs text-(--silver)">
             © {year} Ensotek. {t('rights')}
           </p>
+          <ConsentPreferences locale={locale} />
           <div className="footer-socials-et" aria-label="Ensotek sosyal medya bağlantıları">
             {socialLinks.map((social) => (
               <a

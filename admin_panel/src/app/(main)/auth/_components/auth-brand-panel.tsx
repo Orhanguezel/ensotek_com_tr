@@ -5,7 +5,10 @@ import { useGetSiteSettingByKeyQuery } from "@/integrations/hooks";
 import { useGetThemeAdminQuery } from "@/integrations/hooks";
 import { motion } from "framer-motion";
 
-const LOGO_FALLBACK = "/logo/png/ensotek_logo_512.png";
+// The admin app is mounted under Next.js `basePath: /admin`. Runtime values
+// from site settings may be absolute, but the bundled fallback must include
+// the base path so Next Image does not request the public frontend root.
+const LOGO_FALLBACK = "/admin/logo/png/ensotek_logo_512.png";
 
 type Props = {
   heading: string;

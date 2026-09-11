@@ -1,3 +1,4 @@
+import { publicUrl } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -19,11 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `${SITE_URL}/${locale}/offer`,
+      canonical: publicUrl(locale, `/offer`),
       languages: {
-        tr: `${SITE_URL}/tr/offer`,
-        en: `${SITE_URL}/en/offer`,
-        'x-default': `${SITE_URL}/tr/offer`,
+        tr: publicUrl('tr', `/offer`),
+        en: publicUrl('en', `/offer`),
+        'x-default': publicUrl('tr', `/offer`),
       },
     },
   };

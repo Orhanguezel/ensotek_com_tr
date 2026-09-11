@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 
 type SectionHeaderProps = {
   label?: string;
+  as?: 'h1' | 'h2';
   title: string;
   description?: string;
   align?: 'left' | 'center';
@@ -12,6 +13,7 @@ type SectionHeaderProps = {
 
 export function SectionHeader({
   label,
+  as: Heading = 'h2',
   title,
   description,
   align = 'left',
@@ -23,7 +25,7 @@ export function SectionHeader({
       {label && (
         <span className="section-label-et">{label}</span>
       )}
-      <h2 className="section-title-et">{title}</h2>
+      <Heading className="section-title-et">{title}</Heading>
       {description && (
         <p className={cn('section-subtitle-et', align === 'center' && 'mx-auto')}>{description}</p>
       )}

@@ -664,11 +664,17 @@
         "description": "Search, status and sorting options.",
         "searchLabel": "Search",
         "searchPlaceholder": "Customer, company, email or subject...",
+        "sourceLabel": "Source",
+        "sourcePlaceholder": "E.g. ensotek, composite",
+        "sectorLabel": "Sector / Category",
+        "sectorPlaceholder": "Sector or category",
         "statusLabel": "Status",
         "statusAll": "All",
         "orderLabel": "Sort",
         "orderDesc": "Newest first",
-        "orderAsc": "Oldest first"
+        "orderAsc": "Oldest first",
+        "createdFromLabel": "Start Date",
+        "createdToLabel": "End Date"
       },
       "list": {
         "title": "Offers",
@@ -687,7 +693,7 @@
         "actions": "Actions"
       },
       "status": {
-        "new": "New",
+        "new": "Awaiting Email Verification",
         "in_review": "In Review",
         "quoted": "Quoted",
         "sent": "Sent",
@@ -748,6 +754,8 @@
         "consentTerms": "Terms accepted"
       },
       "formData": {
+        "source": "Request Source",
+        "sourceFrontendOfferPage": "Website Offer Form",
         "relatedType": "Request Type",
         "contactRole": "Contact Role",
         "productId": "Product ID (form_data)",
@@ -772,6 +780,7 @@
       },
       "actions": {
         "refresh": "Refresh",
+        "exportCsv": "Download CSV",
         "create": "New Offer",
         "edit": "Edit",
         "delete": "Delete",
@@ -852,6 +861,8 @@
         "locale": "Locale",
         "createdAt": "Created",
         "emailSentAt": "Email Sent",
+        "emailVerifiedAt": "Email Verified",
+        "failureReason": "Failure Reason",
         "message": "Message",
         "consentMarketing": "Marketing consent",
         "consentTerms": "Terms consent",

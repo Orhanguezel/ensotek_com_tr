@@ -1,3 +1,4 @@
+import { publicUrl } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { hasLocale } from '@/i18n/locales';
@@ -59,10 +60,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: about?.meta_title ?? about?.title ?? 'Hakkımızda | Ensotek',
     description: about?.meta_description ?? about?.summary ?? undefined,
     alternates: {
-      canonical: `${SITE_URL}/${locale}/about`,
+      canonical: publicUrl(locale, `/about`),
       languages: {
         tr: `${SITE_URL}/tr/kurumsal`,
-        en: `${SITE_URL}/en/about`,
+        en: publicUrl('en', `/about`),
         'x-default': `${SITE_URL}/tr/kurumsal`,
       },
     },
@@ -98,7 +99,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           {about && (
             <>
               <Reveal>
-                <SectionHeader
+                <SectionHeader as="h1"
                   label={t('label')}
                   title={about.title}
                   description={about.summary ?? undefined}

@@ -780,6 +780,11 @@ CREATE TABLE IF NOT EXISTS `lead_catalog_downloads` (
   `consent_terms`     TINYINT(1)     NOT NULL DEFAULT 0,
   `admin_notes`       TEXT           DEFAULT NULL,
   `email_sent_at`     DATETIME(3)    DEFAULT NULL,
+  `email_verified_at` DATETIME(3)    DEFAULT NULL,
+  `verification_token_hash` VARCHAR(64) DEFAULT NULL,
+  `verification_expires_at` DATETIME(3) DEFAULT NULL,
+  `failure_reason`    TEXT           DEFAULT NULL,
+  `last_attempt_at`   DATETIME(3)    DEFAULT NULL,
   `ip`                VARCHAR(64)    DEFAULT NULL,
   `user_agent`        VARCHAR(512)   DEFAULT NULL,
   `created_at`        DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -788,6 +793,7 @@ CREATE TABLE IF NOT EXISTS `lead_catalog_downloads` (
   KEY `lead_catalog_status_idx` (`status`),
   KEY `lead_catalog_locale_idx` (`locale`),
   KEY `lead_catalog_email_idx` (`email`),
+  KEY `lead_catalog_verification_token_idx` (`verification_token_hash`),
   KEY `lead_catalog_created_idx` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

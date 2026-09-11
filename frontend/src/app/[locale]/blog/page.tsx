@@ -54,7 +54,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       <div className="section-py">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <SectionHeader
+            <SectionHeader as="h1"
               label={t('label')}
               title={t('title')}
               description={t('subtitle')}

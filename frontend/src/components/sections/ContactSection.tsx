@@ -15,7 +15,7 @@ const schema = z.object({
   name: z.string().min(2),
   company: z.string().optional(),
   email: z.string().email(),
-  phone: z.string().optional(),
+  phone: z.string().trim().min(5).max(64),
   message: z.string().min(10),
 });
 
@@ -23,10 +23,11 @@ type FormData = z.infer<typeof schema>;
 
 interface Props {
   contactInfo?: ContactInfo;
+  headingLevel?: 'h1' | 'h2';
   initialMessage?: string;
 }
 
-export function ContactSection({ contactInfo, initialMessage = '' }: Props) {
+export function ContactSection({ contactInfo, initialMessage = '', headingLevel = 'h2' }: Props) {
   const t = useTranslations('home.contact');
   const locale = useLocale();
   const [submitted, setSubmitted] = useState(false);
@@ -42,7 +43,7 @@ export function ContactSection({ contactInfo, initialMessage = '' }: Props) {
   async function onSubmit(data: FormData) {
     try {
       setError('');
-      await contactService.submit(data);
+      await contactService.submit({ ...data, locale, subject: locale === 'de' ? 'Kontaktanfrage über die Website' : locale === 'en' ? 'Website contact request' : 'Web sitesi iletişim talebi' });
       setSubmitted(true);
       reset();
     } catch {
@@ -72,7 +73,7 @@ export function ContactSection({ contactInfo, initialMessage = '' }: Props) {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Info */}
           <Reveal>
-            <SectionHeader
+            <SectionHeader as={headingLevel}
               label={t('label')}
               title={t('title')}
               description={t('subtitle')}
@@ -226,6 +227,7 @@ export function ContactSection({ contactInfo, initialMessage = '' }: Props) {
                     <input
                       {...register('name')}
                       placeholder={t('field.name')}
+                      aria-label={t('field.name')}
                       className={inputClass}
                     />
                     {errors.name && <p className="text-xs text-red-500 mt-1">{t('required')}</p>}
@@ -234,6 +236,7 @@ export function ContactSection({ contactInfo, initialMessage = '' }: Props) {
                     <input
                       {...register('company')}
                       placeholder={t('field.company')}
+                      aria-label={t('field.company')}
                       className={inputClass}
                     />
                   </div>
@@ -244,6 +247,7 @@ export function ContactSection({ contactInfo, initialMessage = '' }: Props) {
                       {...register('email')}
                       type="email"
                       placeholder={t('field.email')}
+                      aria-label={t('field.email')}
                       className={inputClass}
                     />
                     {errors.email && <p className="text-xs text-red-500 mt-1">{t('required')}</p>}
@@ -253,8 +257,10 @@ export function ContactSection({ contactInfo, initialMessage = '' }: Props) {
                       {...register('phone')}
                       type="tel"
                       placeholder={t('field.phone')}
+                      aria-label={t('field.phone')}
                       className={inputClass}
                     />
+                    {errors.phone && <p className="text-xs text-red-500 mt-1">{t('required')}</p>}
                   </div>
                 </div>
                 <div>
@@ -262,6 +268,7 @@ export function ContactSection({ contactInfo, initialMessage = '' }: Props) {
                     {...register('message')}
                     rows={5}
                     placeholder={t('field.message')}
+                      aria-label={t('field.message')}
                     className={`${inputClass} resize-none`}
                   />
                   {errors.message && <p className="text-xs text-red-500 mt-1">{t('required')}</p>}

@@ -1,3 +1,5 @@
+import { registerTanitioContent } from '@ensotek/shared-backend/integrations/tanitio';
+import { pool as contentPool } from './db/client';
 // src/app.ts
 import cors from '@fastify/cors';
 import jwt from '@fastify/jwt';
@@ -126,6 +128,8 @@ export async function createApp() {
 
   registerErrorHandlers(app);
   startRetentionJob();
+
+  await registerTanitioContent(app, { site: 'ensotek_com_tr', apiKey: () => process.env.TANITIO_CONTENT_API_KEY, query: async (sql, values) => { const [rows] = await contentPool.query(sql, values); return rows as any[]; } });
 
   return app;
 }

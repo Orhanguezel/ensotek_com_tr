@@ -107,7 +107,7 @@ export default async function ContactPage({
 
   return (
     <div className="pt-24">
-      <ContactSection contactInfo={contactInfo} initialMessage={initialMessage} />
+      <ContactSection headingLevel="h1" contactInfo={contactInfo} initialMessage={initialMessage} />
     </div>
   );
 }

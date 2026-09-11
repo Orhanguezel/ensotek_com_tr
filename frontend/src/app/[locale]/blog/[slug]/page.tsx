@@ -1,3 +1,4 @@
+import { recordLanguages } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
@@ -72,7 +73,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { locale, slug: encodedSlug } = await params;
+  const slug = decodeURIComponent(encodedSlug);
   const post = await fetchBlogPost(slug, locale);
   if (!post) return {};
   return {
@@ -80,11 +82,7 @@ export async function generateMetadata({
     description: post.meta_description ?? post.summary ?? undefined,
     alternates: {
       canonical: `${SITE_URL}/${locale}/blog/${slug}`,
-      languages: {
-        tr: `${SITE_URL}/tr/blog/${slug}`,
-        en: `${SITE_URL}/en/blog/${slug}`,
-        'x-default': `${SITE_URL}/tr/blog/${slug}`,
-      },
+      languages: await recordLanguages('blog', post.id),
     },
   };
 }
@@ -94,7 +92,8 @@ export default async function BlogDetailPage({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { locale, slug } = await params;
+  const { locale, slug: encodedSlug } = await params;
+  const slug = decodeURIComponent(encodedSlug);
   if (!hasLocale(locale)) notFound();
   setRequestLocale(locale);
 
@@ -132,7 +131,7 @@ export default async function BlogDetailPage({
           </Reveal>
 
           <Reveal delay={60}>
-            <SectionHeader
+            <SectionHeader as="h1"
               label={t('articleLabel')}
               title={post.title}
               description={post.summary ?? undefined}

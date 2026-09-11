@@ -27,4 +27,4 @@ Ozet:
 
 - `ALTER TABLE` yasak. Schema degisiklikleri `src/db/seed/sql/0XX_*_schema.sql` icindeki `CREATE TABLE`'a eklenir; `bun run db:seed:*:fresh` ile DB sifirdan kurulur.
 - Backend prefix: `ensotek_com_tr__` (tum yeni tablolar bu prefix ile)
-- Backend port: 8088, frontend port: 3021, admin_panel port: bkz. ecosystem.config.cjs
+- Canlı backend port: 8087 (`ensotek-com-tr-backend`); frontend: 3021; admin: 3024. Eski 8088 notu güncel runtime değildir. DB: `ensotek_com_tr_db`. Güncel harita: kökte `docs/RUNTIME-KABUL-2026-09-10.md`.

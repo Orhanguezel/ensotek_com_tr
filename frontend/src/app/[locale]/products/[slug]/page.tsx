@@ -1,3 +1,4 @@
+import { publicUrl, recordLanguages } from '@/lib/public-seo';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
@@ -12,16 +13,15 @@ import { DatasheetRequestButton } from '@/components/products/DatasheetRequestBu
 import { ProductGallery } from '@/components/products/ProductGallery';
 
 async function fetchByItemType(slug: string, locale: string, itemType: 'product' | 'sparepart'): Promise<Product | null> {
-  try {
+
     const res = await fetch(
       `${API_BASE_URL}/products/by-slug/${encodeURIComponent(slug)}?item_type=${itemType}&locale=${locale}`,
       { next: { revalidate: 3600 } },
     );
-    if (!res.ok) return null;
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error(`Product API: ${res.status}`);
     return res.json();
-  } catch {
-    return null;
-  }
+
 }
 
 async function fetchProduct(slug: string, locale: string): Promise<Product | null> {
@@ -43,7 +43,7 @@ function jsonLdProduct(product: Product, locale: string, slug: string) {
     name: product.title,
     description: product.meta_description ?? product.summary ?? product.description ?? undefined,
     image,
-    url: `${SITE_URL}/${locale}/products/${slug}`,
+    url: publicUrl(locale, `/products/${slug}`),
     brand: { '@type': 'Brand', name: 'Ensotek' },
     manufacturer: { '@type': 'Organization', name: 'Ensotek' },
     category: 'Endüstriyel soğutma kulesi',
@@ -55,19 +55,16 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { locale, slug: encodedSlug } = await params;
+  const slug = decodeURIComponent(encodedSlug);
   const product = await fetchProduct(slug, locale);
   if (!product) return {};
   return {
     title: product.meta_title ?? product.title,
     description: product.meta_description ?? product.summary ?? product.description ?? undefined,
     alternates: {
-      canonical: `${SITE_URL}/${locale}/products/${slug}`,
-      languages: {
-        tr: `${SITE_URL}/tr/products/${slug}`,
-        en: `${SITE_URL}/en/products/${slug}`,
-        'x-default': `${SITE_URL}/tr/products/${slug}`,
-      },
+      canonical: publicUrl(locale, `/products/${slug}`),
+      languages: await recordLanguages('products', product.id),
     },
   };
 }
@@ -77,7 +74,8 @@ export default async function ProductDetailPage({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { locale, slug } = await params;
+  const { locale, slug: encodedSlug } = await params;
+  const slug = decodeURIComponent(encodedSlug);
   if (!hasLocale(locale)) notFound();
   setRequestLocale(locale);
 
