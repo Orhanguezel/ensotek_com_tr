@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { hasLocale } from '@/i18n/locales';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { API_BASE_URL, SITE_URL, resolvePublicAssetUrl } from '@/lib/utils';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
@@ -88,6 +88,10 @@ export default async function ProductDetailPage({
     // Baska dilin slug'i ise ayni urunun istenen dildeki adresine 308; karsiligi yoksa 404.
     await redirectToLocalizedSlugOrNotFound('products', slug, locale);
     return null;
+  }
+  if (product.slug && product.slug !== slug) {
+    // Backend yabanci slug'i cozup istenen dilin kaydini dondurur; adres o dilin gercek slug'ina tasinir.
+    permanentRedirect(publicUrl(locale, `/products/${encodeURIComponent(product.slug)}`).replace(SITE_URL, ''));
   }
   const productSchema = jsonLdProduct(product, locale, slug);
   const hasSpecs = product.specifications && Object.keys(product.specifications).length > 0;
